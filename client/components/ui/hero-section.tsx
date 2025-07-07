@@ -234,15 +234,16 @@ export function HeroSection() {
                       <motion.circle
                         r="4"
                         fill="currentColor"
-                        initial={{ offsetDistance: "0%" }}
-                        animate={{ offsetDistance: "100%" }}
+                        cx="80"
+                        cy="120"
+                        animate={{
+                          cx: [80, 200, 320],
+                          cy: [120, 80, 140],
+                        }}
                         transition={{
                           duration: 3,
                           repeat: Infinity,
                           ease: "easeInOut",
-                        }}
-                        style={{
-                          offsetPath: "path('M80 120 Q200 80, 320 140')",
                         }}
                       />
                     </g>
