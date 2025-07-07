@@ -442,10 +442,97 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     } else if (type === "agent") {
       switch (currentStep) {
         case 0:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="fullName">Full Name *</Label>
+                <Input
+                  id="fullName"
+                  value={formData.fullName}
+                  onChange={(e) => updateFormData("fullName", e.target.value)}
+                  placeholder="Enter your full name"
+                  className={cn(errors.fullName && "border-red-500")}
+                />
+                {errors.fullName && (
+                  <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+                )}
+              </div>
+            </div>
+          );
+
         case 1:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="email">Email Address *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => updateFormData("email", e.target.value)}
+                  placeholder="Enter your email address"
+                  className={cn(errors.email && "border-red-500")}
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="password">Password *</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => updateFormData("password", e.target.value)}
+                  placeholder="Create a secure password"
+                  className={cn(errors.password && "border-red-500")}
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="confirmPassword">Confirm Password *</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={(e) =>
+                    updateFormData("confirmPassword", e.target.value)
+                  }
+                  placeholder="Confirm your password"
+                  className={cn(errors.confirmPassword && "border-red-500")}
+                />
+                {errors.confirmPassword && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.confirmPassword}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+
         case 2:
-          // Same as client for first 3 steps
-          return type === "client" ? null : renderStepContent();
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="phone">Phone Number *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => updateFormData("phone", e.target.value)}
+                  placeholder="+1 (555) 123-4567"
+                  className={cn(errors.phone && "border-red-500")}
+                />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                )}
+              </div>
+            </div>
+          );
 
         case 3:
           return (
