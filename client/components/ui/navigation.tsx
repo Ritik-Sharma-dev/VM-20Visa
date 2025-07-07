@@ -93,13 +93,17 @@ export function Navigation({ className }: NavigationProps) {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" className="font-semibold">
-              Sign In
-            </Button>
-            <Button variant="premium" size="lg" className="group">
-              Get Started
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link to="/login">
+              <Button variant="ghost" className="font-semibold">
+                Sign In
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button variant="premium" size="lg" className="group">
+                Get Started
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
