@@ -439,10 +439,364 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
             </div>
           );
       }
-    }
+    } else if (type === "agent") {
+      switch (currentStep) {
+        case 0:
+        case 1:
+        case 2:
+          // Same as client for first 3 steps
+          return type === "client" ? null : renderStepContent();
 
-    // Add similar cases for agent and organization types...
-    // This is a simplified version focusing on the client flow
+        case 3:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="experience">Years of Experience *</Label>
+                <select
+                  id="experience"
+                  value={formData.experience || ""}
+                  onChange={(e) => updateFormData("experience", e.target.value)}
+                  className={cn(
+                    "w-full p-3 border border-cool-gray-300 rounded-xl focus:ring-2 focus:ring-royal-blue-500 focus:border-royal-blue-500",
+                    errors.experience && "border-red-500",
+                  )}
+                >
+                  <option value="">Select your experience level</option>
+                  <option value="0-1">0-1 years</option>
+                  <option value="2-5">2-5 years</option>
+                  <option value="6-10">6-10 years</option>
+                  <option value="11-15">11-15 years</option>
+                  <option value="15+">15+ years</option>
+                </select>
+                {errors.experience && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.experience}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+
+        case 4:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label>Areas of Expertise * (Select all that apply)</Label>
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  {expertiseOptions.map((option) => (
+                    <label
+                      key={option}
+                      className="flex items-center space-x-3 p-3 rounded-xl border border-cool-gray-200 hover:bg-royal-blue-50 cursor-pointer"
+                    >
+                      <Checkbox
+                        checked={formData.expertise?.includes(option) || false}
+                        onCheckedChange={(checked) => {
+                          const current = formData.expertise || [];
+                          if (checked) {
+                            updateFormData("expertise", [...current, option]);
+                          } else {
+                            updateFormData(
+                              "expertise",
+                              current.filter((e) => e !== option),
+                            );
+                          }
+                        }}
+                      />
+                      <span className="text-sm">{option}</span>
+                    </label>
+                  ))}
+                </div>
+                {errors.expertise && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.expertise}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+
+        case 5:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="license">Professional License (Optional)</Label>
+                <div className="mt-2 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center hover:border-royal-blue-400 transition-colors">
+                  <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-3" />
+                  <p className="text-sm text-cool-gray-600 mb-2">
+                    Upload your professional license or certification
+                  </p>
+                  <input
+                    type="file"
+                    id="license"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    onChange={(e) =>
+                      updateFormData("license", e.target.files?.[0] || null)
+                    }
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="license"
+                    className="cursor-pointer text-royal-blue-600 hover:text-royal-blue-700 font-medium"
+                  >
+                    Choose file
+                  </label>
+                </div>
+                {formData.license && (
+                  <p className="text-sm text-sage-green-600 mt-2">
+                    ✓ {formData.license.name}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="bio">Professional Bio (Optional)</Label>
+                <textarea
+                  id="bio"
+                  value={formData.bio || ""}
+                  onChange={(e) => updateFormData("bio", e.target.value)}
+                  placeholder="Tell us about your background and expertise..."
+                  rows={4}
+                  className="w-full p-3 border border-cool-gray-300 rounded-xl focus:ring-2 focus:ring-royal-blue-500 focus:border-royal-blue-500 resize-none"
+                />
+              </div>
+            </div>
+          );
+
+        case 6:
+          return (
+            <div className="space-y-6">
+              <div className="glass-card p-6 rounded-2xl">
+                <h3 className="text-xl font-heading font-bold mb-4">
+                  Review Your Agent Profile
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <p>
+                    <strong>Name:</strong> {formData.fullName}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {formData.email}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {formData.phone}
+                  </p>
+                  <p>
+                    <strong>Experience:</strong> {formData.experience} years
+                  </p>
+                  <p>
+                    <strong>Expertise:</strong> {formData.expertise?.join(", ")}
+                  </p>
+                  {formData.license && (
+                    <p>
+                      <strong>License:</strong> {formData.license.name}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="terms"
+                  checked={formData.agreeToTerms}
+                  onCheckedChange={(checked) =>
+                    updateFormData("agreeToTerms", checked)
+                  }
+                />
+                <Label htmlFor="terms" className="text-sm leading-relaxed">
+                  I agree to the Agent{" "}
+                  <a href="#" className="text-royal-blue-600 hover:underline">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-royal-blue-600 hover:underline">
+                    Professional Guidelines
+                  </a>
+                </Label>
+              </div>
+              {errors.agreeToTerms && (
+                <p className="text-red-500 text-sm">{errors.agreeToTerms}</p>
+              )}
+            </div>
+          );
+      }
+    } else if (type === "organization") {
+      switch (currentStep) {
+        case 0:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="orgName">Organization Name *</Label>
+                <Input
+                  id="orgName"
+                  value={formData.orgName || ""}
+                  onChange={(e) => updateFormData("orgName", e.target.value)}
+                  placeholder="Enter your organization name"
+                  className={cn(errors.orgName && "border-red-500")}
+                />
+                {errors.orgName && (
+                  <p className="text-red-500 text-sm mt-1">{errors.orgName}</p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="adminName">Admin Name *</Label>
+                <Input
+                  id="adminName"
+                  value={formData.adminName || ""}
+                  onChange={(e) => updateFormData("adminName", e.target.value)}
+                  placeholder="Enter the admin's full name"
+                  className={cn(errors.adminName && "border-red-500")}
+                />
+                {errors.adminName && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.adminName}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+
+        case 1:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="email">Organization Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => updateFormData("email", e.target.value)}
+                  placeholder="admin@vmvisa.com"
+                  className={cn(errors.email && "border-red-500")}
+                />
+                <p className="text-xs text-cool-gray-500 mt-1">
+                  Must be a @vmvisa.com email address
+                </p>
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="phone">Organization Phone *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => updateFormData("phone", e.target.value)}
+                  placeholder="+1 (555) 123-4567"
+                  className={cn(errors.phone && "border-red-500")}
+                />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                )}
+              </div>
+            </div>
+          );
+
+        case 2:
+          return (
+            <div className="space-y-6">
+              <div>
+                <Label htmlFor="website">Website (Optional)</Label>
+                <Input
+                  id="website"
+                  type="url"
+                  value={formData.website || ""}
+                  onChange={(e) => updateFormData("website", e.target.value)}
+                  placeholder="https://yourorganization.com"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="password">Password *</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => updateFormData("password", e.target.value)}
+                  placeholder="Create a secure password"
+                  className={cn(errors.password && "border-red-500")}
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="confirmPassword">Confirm Password *</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={(e) =>
+                    updateFormData("confirmPassword", e.target.value)
+                  }
+                  placeholder="Confirm your password"
+                  className={cn(errors.confirmPassword && "border-red-500")}
+                />
+                {errors.confirmPassword && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.confirmPassword}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+
+        case 3:
+          return (
+            <div className="space-y-6">
+              <div className="glass-card p-6 rounded-2xl">
+                <h3 className="text-xl font-heading font-bold mb-4">
+                  Review Organization Information
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <p>
+                    <strong>Organization:</strong> {formData.orgName}
+                  </p>
+                  <p>
+                    <strong>Admin:</strong> {formData.adminName}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {formData.email}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {formData.phone}
+                  </p>
+                  {formData.website && (
+                    <p>
+                      <strong>Website:</strong> {formData.website}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="terms"
+                  checked={formData.agreeToTerms}
+                  onCheckedChange={(checked) =>
+                    updateFormData("agreeToTerms", checked)
+                  }
+                />
+                <Label htmlFor="terms" className="text-sm leading-relaxed">
+                  I agree to the Organization{" "}
+                  <a href="#" className="text-royal-blue-600 hover:underline">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-royal-blue-600 hover:underline">
+                    Partnership Agreement
+                  </a>
+                </Label>
+              </div>
+              {errors.agreeToTerms && (
+                <p className="text-red-500 text-sm">{errors.agreeToTerms}</p>
+              )}
+            </div>
+          );
+      }
+    }
 
     return null;
   };
