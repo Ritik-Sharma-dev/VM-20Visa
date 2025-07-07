@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 
 function AppContent() {
   const location = useLocation();
-  const hideNavigation = false; // You can add logic here to hide navigation on specific routes
+  const hideNavigation = ["/signup", "/login"].includes(location.pathname);
 
   return (
     <>
@@ -26,6 +26,8 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
