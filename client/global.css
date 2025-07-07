@@ -157,12 +157,7 @@
   }
 
   .btn-premium {
-    @apply relative overflow-hidden rounded-xl px-8 py-4 font-semibold text-white transition-all duration-300 transform hover:scale-105 hover:shadow-2xl;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--royal-blue-600)),
-      hsl(var(--sky-blue-500))
-    );
+    @apply relative overflow-hidden rounded-xl px-8 py-4 font-semibold text-white transition-all duration-300 transform hover:scale-105 hover:shadow-2xl bg-gradient-royal;
   }
 
   .btn-premium::before {
