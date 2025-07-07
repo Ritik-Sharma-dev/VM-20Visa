@@ -154,22 +154,24 @@ export function Navigation({ className }: NavigationProps) {
               ))}
 
               <div className="pt-4 space-y-3">
-                <Button
-                  variant="outline"
-                  className="w-full justify-center text-lg"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Sign In
-                </Button>
-                <Button
-                  variant="premium"
-                  size="lg"
-                  className="w-full justify-center group"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Get Started
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-center text-lg"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/signup" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button
+                    variant="premium"
+                    size="lg"
+                    className="w-full justify-center group"
+                  >
+                    Get Started
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>
