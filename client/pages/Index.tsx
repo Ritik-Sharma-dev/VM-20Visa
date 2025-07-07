@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/ui/hero-section";
+import { FeaturesSection } from "@/components/ui/features-section";
 import { Button } from "@/components/ui/button";
 
 export default function Index() {
@@ -8,6 +9,9 @@ export default function Index() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Features Section */}
+      <FeaturesSection />
 
       {/* Simple footer for now */}
       <section className="py-12 bg-cool-gray-800 text-white">
