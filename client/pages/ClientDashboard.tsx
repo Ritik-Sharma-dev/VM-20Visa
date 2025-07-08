@@ -232,9 +232,9 @@ export default function ClientDashboard() {
 
         {!sidebarCollapsed ? (
           /* Expanded Sidebar - Digital ID Card */
-          <div className="p-6 h-full overflow-y-auto">
+          <div className="p-6 h-full overflow-y-auto text-white">
             {/* ID Card Block */}
-            <div className="glass-card p-6 rounded-2xl mb-6 bg-gradient-to-br from-sage-green-500/10 to-sky-blue-500/10">
+            <div className="p-6 rounded-2xl mb-6 bg-white/10 backdrop-blur-sm border border-white/20">
               {/* Profile Picture */}
               <div className="text-center mb-4">
                 <div className="relative inline-block">
