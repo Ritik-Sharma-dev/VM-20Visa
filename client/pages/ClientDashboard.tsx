@@ -69,7 +69,6 @@ export default function ClientDashboard() {
         "vm-visa-dashboard-state",
         JSON.stringify({
           currentView,
-          sidebarCollapsed,
           timestamp: Date.now(),
         }),
       );
@@ -77,7 +76,7 @@ export default function ClientDashboard() {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [currentView, sidebarCollapsed]);
+  }, [currentView]);
 
   // Restore saved state
   useEffect(() => {
