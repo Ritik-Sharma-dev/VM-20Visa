@@ -555,7 +555,7 @@ export default function ClientDashboard() {
           </div>
 
           {/* Enhanced Pill Navigation */}
-          <div className="flex items-center justify-between bg-white/60 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-white/20">
+          <div className="flex items-center justify-between bg-cool-gray-50 rounded-2xl p-2">
             {tabItems.map((tab) => (
               <motion.button
                 key={tab.id}
