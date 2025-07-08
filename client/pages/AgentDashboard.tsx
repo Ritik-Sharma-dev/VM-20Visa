@@ -253,7 +253,7 @@ export default function AgentDashboard() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setShowProfileCard(true)}
-                className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-4 cursor-pointer shadow-sm border border-blue-200 transition-all duration-200 hover:shadow-md"
+                className="bg-white rounded-2xl p-4 cursor-pointer shadow-sm border border-gray-200 transition-all duration-200 hover:shadow-md"
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
