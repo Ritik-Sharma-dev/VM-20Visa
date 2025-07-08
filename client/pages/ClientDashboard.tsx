@@ -276,100 +276,100 @@ export default function ClientDashboard() {
             </div>
 
             {/* Navigation Items */}
-            <div className="space-y-2 flex-1">
+            <div className="space-y-3 flex-1">
               {/* Data Table - Active */}
               <motion.button
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("overview")}
-                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all duration-200 ${
                   currentView === "overview"
                     ? "bg-blue-500 text-white shadow-lg"
-                    : "text-gray-600 hover:bg-white/60"
+                    : "text-gray-700 hover:bg-white/60"
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <BarChart3 className="w-5 h-5" />
-                  <span className="font-medium">Data Table</span>
+                <div className="flex items-center space-x-4">
+                  <BarChart3 className="w-6 h-6" />
+                  <span className="font-medium text-base">Data Table</span>
                 </div>
-                <Menu className="w-4 h-4 opacity-50" />
+                <Menu className="w-5 h-5 opacity-60" />
               </motion.button>
 
-              {/* Request History */}
+              {/* Request History (replacing Kanban) */}
               <motion.button
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("request-history")}
-                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all duration-200 ${
                   currentView === "request-history"
                     ? "bg-blue-500 text-white shadow-lg"
-                    : "text-gray-600 hover:bg-white/60"
+                    : "text-gray-700 hover:bg-white/60"
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <FileText className="w-5 h-5" />
-                  <span className="font-medium">Request History</span>
+                <div className="flex items-center space-x-4">
+                  <FileText className="w-6 h-6" />
+                  <span className="font-medium text-base">Request History</span>
                 </div>
-                <Menu className="w-4 h-4 opacity-50" />
+                <Menu className="w-5 h-5 opacity-60" />
               </motion.button>
 
-              {/* Security */}
+              {/* Security (replacing Analytics) */}
               <motion.button
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("settings")}
-                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all duration-200 ${
                   currentView === "settings"
                     ? "bg-blue-500 text-white shadow-lg"
-                    : "text-gray-600 hover:bg-white/60"
+                    : "text-gray-700 hover:bg-white/60"
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <Shield className="w-5 h-5" />
-                  <span className="font-medium">Security</span>
+                <div className="flex items-center space-x-4">
+                  <Shield className="w-6 h-6" />
+                  <span className="font-medium text-base">Security</span>
                 </div>
-                <Menu className="w-4 h-4 opacity-50" />
+                <Menu className="w-5 h-5 opacity-60" />
               </motion.button>
 
               {/* Calendar */}
               <motion.button
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("my-bio")}
-                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all duration-200 ${
                   currentView === "my-bio"
                     ? "bg-blue-500 text-white shadow-lg"
-                    : "text-gray-600 hover:bg-white/60"
+                    : "text-gray-700 hover:bg-white/60"
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5" />
-                  <span className="font-medium">Calendar</span>
+                <div className="flex items-center space-x-4">
+                  <Calendar className="w-6 h-6" />
+                  <span className="font-medium text-base">Calendar</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                  <div className="bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-medium">
                     14 Events
                   </div>
-                  <Menu className="w-4 h-4 opacity-50" />
+                  <Menu className="w-5 h-5 opacity-60" />
                 </div>
               </motion.button>
 
-              {/* Messages */}
+              {/* Messages (replacing Crypto) */}
               <motion.button
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("messages")}
-                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all duration-200 ${
                   currentView === "messages"
                     ? "bg-blue-500 text-white shadow-lg"
-                    : "text-gray-600 hover:bg-white/60"
+                    : "text-gray-700 hover:bg-white/60"
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <MessageCircle className="w-5 h-5" />
-                  <span className="font-medium">Messages</span>
+                <div className="flex items-center space-x-4">
+                  <MessageCircle className="w-6 h-6" />
+                  <span className="font-medium text-base">Messages</span>
                 </div>
-                <Menu className="w-4 h-4 opacity-50" />
+                <Menu className="w-5 h-5 opacity-60" />
               </motion.button>
             </div>
 
