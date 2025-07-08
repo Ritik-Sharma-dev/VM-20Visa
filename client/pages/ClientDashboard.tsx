@@ -212,7 +212,7 @@ export default function ClientDashboard() {
         initial={false}
         animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-white/90 backdrop-blur-xl shadow-2xl z-50 overflow-hidden border-r border-white/20"
+        className="fixed left-0 top-0 h-screen bg-gradient-to-b from-royal-blue-900 via-royal-blue-700 to-sage-green-600 z-50 overflow-hidden border-r border-white/20"
       >
         {/* Toggle Button */}
         <div className="absolute -right-4 top-6 z-10">
