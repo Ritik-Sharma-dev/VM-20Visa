@@ -129,22 +129,20 @@ export default function ClientDashboard() {
 
   const renderContent = () => {
     switch (currentView) {
+      case "overview":
+        return <DashboardOverview />;
       case "my-requests":
-        return <PostVisaRequest />;
-      case "browse-agents":
-        return <BrowseAgents />;
+        return <MyRequests />;
       case "proposals":
         return <AgentProposals />;
-      case "track-progress":
+      case "applications":
         return <ProgressTracker />;
       case "documents":
         return <DocumentUpload />;
-      case "ratings":
-        return <RatingsReviews />;
-      case "ai-assistant":
-        return <AIAssistant />;
+      case "chat":
+        return <MessagingPanel />;
       default:
-        return <PostVisaRequest />;
+        return <DashboardOverview />;
     }
   };
 
