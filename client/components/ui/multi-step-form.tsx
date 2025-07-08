@@ -4,6 +4,7 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Checkbox } from "./checkbox";
+import { useAuth } from "@/components/auth/auth-context";
 import {
   ArrowRight,
   ArrowLeft,
