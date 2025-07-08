@@ -132,6 +132,12 @@ export default function ClientDashboard() {
       badge: null,
     },
     {
+      id: "browse-agents",
+      label: "Browse Agents",
+      icon: Users,
+      badge: "New",
+    },
+    {
       id: "chat",
       label: "Chat",
       icon: MessageCircle,
