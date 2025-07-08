@@ -167,6 +167,43 @@ export function MyRequests() {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   });
 
+  // Mock proposals data
+  const mockProposals = [
+    {
+      id: "prop_001",
+      requestId: "req_001",
+      agentName: "Sarah Johnson",
+      agentRating: 4.9,
+      agentExperience: "8+ years",
+      agentLocation: "Toronto, Canada",
+      price: "$2,800",
+      timeline: "3-4 months",
+      description:
+        "I specialize in Canadian immigration and have successfully processed over 200 Express Entry applications with a 98% success rate.",
+      status: "pending",
+      createdAt: "2024-01-16",
+    },
+    {
+      id: "prop_002",
+      requestId: "req_001",
+      agentName: "Michael Chen",
+      agentRating: 4.8,
+      agentExperience: "12+ years",
+      agentLocation: "Vancouver, Canada",
+      price: "$3,200",
+      timeline: "2-3 months",
+      description:
+        "Expert in Express Entry with government connections. I can expedite your application and ensure all documents are perfect.",
+      status: "pending",
+      createdAt: "2024-01-17",
+    },
+  ];
+
+  const handleViewProposals = (requestId: string) => {
+    setSelectedRequestId(requestId);
+    setShowProposals(true);
+  };
+
   if (showPostRequest) {
     return (
       <div>
