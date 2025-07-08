@@ -206,7 +206,7 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-green-50 via-sky-blue-50 to-creamy-beige-50 flex">
+    <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex">
       {/* Digital ID Card Sidebar */}
       <motion.div
         initial={false}
