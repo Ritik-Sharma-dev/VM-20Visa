@@ -393,8 +393,7 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
             </div>
             <Button
               size="sm"
-              className="bg-blue-500 hover:bg-blue-600"
-              style={{ backgroundColor: "#326dee" }}
+              style={{ backgroundColor: "#1F3A93", color: "white" }}
             >
               <Plus className="w-4 h-4 mr-2" />
               New Task
