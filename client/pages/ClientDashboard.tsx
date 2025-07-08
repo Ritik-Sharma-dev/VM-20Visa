@@ -28,8 +28,7 @@ import {
 import { cn } from "@/lib/utils";
 
 // Import dashboard components
-import { PostVisaRequest } from "@/components/dashboard/post-visa-request";
-import { BrowseAgents } from "@/components/dashboard/browse-agents";
+import { MyRequests } from "@/components/dashboard/my-requests";
 import { AgentProposals } from "@/components/dashboard/agent-proposals";
 import { ProgressTracker } from "@/components/dashboard/progress-tracker";
 import { DocumentUpload } from "@/components/dashboard/document-upload";
@@ -37,15 +36,15 @@ import { MessagingPanel } from "@/components/dashboard/messaging-panel";
 import { AIAssistant } from "@/components/dashboard/ai-assistant";
 import { DashboardOverview } from "@/components/dashboard/dashboard-overview";
 import { FloatingAIAssistant } from "@/components/dashboard/floating-ai-assistant";
+import { RatingsReviews } from "@/components/dashboard/ratings-reviews";
 
 type DashboardView =
+  | "overview"
   | "my-requests"
-  | "browse-agents"
   | "proposals"
-  | "track-progress"
+  | "applications"
   | "documents"
-  | "ratings"
-  | "ai-assistant";
+  | "chat";
 
 export default function ClientDashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
