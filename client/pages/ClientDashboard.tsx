@@ -453,6 +453,153 @@ export default function ClientDashboard() {
               <div className="relative profile-dropdown">
                 <button
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                  className="flex items-center space-x-2 p-2 rounded-xl hover:bg-white/50 transition-colors"
+                >
+                  <div className="w-8 h-8 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">JD</span>
+                  </div>
+                  <ChevronLeft
+                    className={cn(
+                      "w-4 h-4 text-cool-gray-400 transition-transform",
+                      showProfileDropdown ? "rotate-180" : "rotate-90",
+                    )}
+                  />
+                </button>
+
+                {/* Dropdown Menu */}
+                {showProfileDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-white/20 z-50 backdrop-blur-xl"
+                  >
+                    {/* User Info */}
+                    <div className="p-4 border-b border-white/20">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-full flex items-center justify-center">
+                          <span className="text-white text-lg font-medium">
+                            JD
+                          </span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-cool-gray-800">
+                            John Doe
+                          </h3>
+                          <p className="text-sm text-cool-gray-600">
+                            Premium Member
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Menu Items */}
+                    <div className="p-2">
+                      <button
+                        onClick={() => {
+                          setCurrentView("profile");
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sage-green-50 transition-colors text-left"
+                      >
+                        <User className="w-5 h-5 text-sage-green-600" />
+                        <span className="font-medium text-cool-gray-700">
+                          View Profile
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={() => setShowProfileDropdown(false)}
+                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sky-blue-50 transition-colors text-left"
+                      >
+                        <Bell className="w-5 h-5 text-sky-blue-600" />
+                        <span className="font-medium text-cool-gray-700">
+                          Notifications
+                        </span>
+                        <Badge className="bg-red-500 text-white text-xs ml-auto">
+                          3
+                        </Badge>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          setCurrentView("settings");
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-mint-green-50 transition-colors text-left"
+                      >
+                        <Settings className="w-5 h-5 text-mint-green-600" />
+                        <span className="font-medium text-cool-gray-700">
+                          Settings
+                        </span>
+                      </button>
+
+                      <div className="border-t border-white/20 mt-2 pt-2">
+                        <button
+                          onClick={() => {
+                            logout();
+                            setShowProfileDropdown(false);
+                          }}
+                          className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-red-50 transition-colors text-left group"
+                        >
+                          <LogOut className="w-5 h-5 text-red-500" />
+                          <span className="font-medium text-red-600">
+                            Logout
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Enhanced Pill Navigation */}
+          <div className="flex items-center justify-between bg-white/60 backdrop-blur-lg rounded-2xl p-2 shadow-lg border border-white/20">
+            {tabItems.map((tab) => (
+              <motion.button
+                key={tab.id}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView(tab.id as DashboardView)}
+                className={cn(
+                  "flex items-center justify-center space-x-2 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex-1 relative",
+                  currentView === tab.id
+                    ? "bg-white text-cool-gray-900 shadow-md"
+                    : "text-cool-gray-600 hover:text-cool-gray-900 hover:bg-white/50",
+                )}
+              >
+                <tab.icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{tab.label}</span>
+                {tab.badge && (
+                  <Badge
+                    className={cn(
+                      "text-xs ml-1",
+                      currentView === tab.id
+                        ? "bg-gradient-to-r from-sage-green-500 to-sky-blue-500 text-white"
+                        : "bg-gradient-to-r from-sage-green-400 to-sky-blue-400 text-white",
+                    )}
+                  >
+                    {tab.badge}
+                  </Badge>
+                )}
+              </motion.button>
+            ))}
+          </div>
+        </div>
+              {/* Notifications */}
+              <Button variant="outline" size="sm" className="relative">
+                <Bell className="w-4 h-4" />
+                <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs min-w-5 h-5 rounded-full flex items-center justify-center">
+                  3
+                </Badge>
+              </Button>
+
+              {/* Profile Dropdown */}
+              <div className="relative profile-dropdown">
+                <button
+                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                   className="flex items-center space-x-2 p-2 rounded-xl hover:bg-cool-gray-50 transition-colors"
                 >
                   <div className="w-8 h-8 bg-royal-blue-500 rounded-full flex items-center justify-center">
