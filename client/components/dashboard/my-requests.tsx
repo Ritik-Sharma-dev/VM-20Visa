@@ -221,6 +221,103 @@ export function MyRequests() {
     );
   }
 
+  if (showProposals) {
+    const currentRequest = mockRequests.find(
+      (req) => req.id === selectedRequestId,
+    );
+    const requestProposals = mockProposals.filter(
+      (prop) => prop.requestId === selectedRequestId,
+    );
+
+    return (
+      <div className="max-w-7xl">
+        <div className="flex items-center justify-between mb-6">
+          <Button
+            variant="outline"
+            onClick={() => setShowProposals(false)}
+            className="group"
+          >
+            ← Back to My Requests
+          </Button>
+        </div>
+
+        <div className="mb-8">
+          <h1 className="text-3xl font-heading font-bold text-cool-gray-800 mb-2">
+            Proposals for: {currentRequest?.title}
+          </h1>
+          <p className="text-lg text-cool-gray-600">
+            {requestProposals.length} agents have submitted proposals for this
+            request
+          </p>
+        </div>
+
+        <div className="space-y-6">
+          {requestProposals.map((proposal, index) => (
+            <motion.div
+              key={proposal.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="glass-card rounded-2xl p-6 border-2 border-transparent hover:border-royal-blue-200 transition-all duration-300"
+            >
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Agent Info */}
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-royal-blue-500 to-royal-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                    {proposal.agentName
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-cool-gray-800">
+                      {proposal.agentName}
+                    </h3>
+                    <div className="flex items-center gap-4 text-sm text-cool-gray-600 mb-2">
+                      <span>⭐ {proposal.agentRating} Rating</span>
+                      <span>📍 {proposal.agentLocation}</span>
+                      <span>💼 {proposal.agentExperience}</span>
+                    </div>
+                    <p className="text-cool-gray-700">{proposal.description}</p>
+                  </div>
+                </div>
+
+                {/* Proposal Details */}
+                <div className="lg:w-80 bg-royal-blue-50 rounded-xl p-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-cool-gray-600">Price:</span>
+                      <span className="font-bold text-royal-blue-700 text-xl">
+                        {proposal.price}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-cool-gray-600">Timeline:</span>
+                      <span className="font-semibold">{proposal.timeline}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-cool-gray-600">Submitted:</span>
+                      <span className="text-sm">{proposal.createdAt}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2 mt-4">
+                    <Button className="flex-1 bg-sage-green-500 hover:bg-sage-green-600">
+                      Accept
+                    </Button>
+                    <Button variant="outline" className="flex-1">
+                      Message
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl">
       {/* Header */}
