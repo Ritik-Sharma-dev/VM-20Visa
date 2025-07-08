@@ -288,9 +288,18 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     }
   };
 
-  const handleSubmit = () => {
-    localStorage.removeItem(`vm-visa-signup-${type}`);
-    onSubmit(formData);
+  const handleSubmit = async () => {
+    try {
+      localStorage.removeItem(`vm-visa-signup-${type}`);
+      if (onSubmit) {
+        onSubmit(formData);
+      } else {
+        await signup(formData, type);
+      }
+    } catch (error) {
+      console.error("Signup failed:", error);
+      alert("Signup failed. Please try again.");
+    }
   };
 
   const updateFormData = (field: keyof FormData, value: any) => {
