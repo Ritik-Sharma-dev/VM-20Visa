@@ -262,7 +262,7 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onNavigate("track-progress")}
+                onClick={() => handleNavigation("applications")}
               >
                 View All
               </Button>
