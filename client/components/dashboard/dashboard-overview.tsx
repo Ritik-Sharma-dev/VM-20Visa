@@ -24,6 +24,14 @@ interface DashboardOverviewProps {
 }
 
 export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
+  const handleNavigation = (view: string) => {
+    if (onNavigate) {
+      onNavigate(view);
+    } else {
+      console.log(`Navigate to: ${view}`);
+      // Default navigation behavior - you could implement this differently
+    }
+  };
   const stats = [
     {
       label: "Active Requests",
