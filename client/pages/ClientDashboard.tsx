@@ -475,14 +475,12 @@ export default function ClientDashboard() {
         {/* Header */}
         <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 px-6 py-2">
           <div className="flex items-center justify-between mb-2">
-            {/* Left: Hello Message */}
+            {/* Left: Page Title */}
             <div>
               <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
-                Hello, John Doe! 👋
+                {tabItems.find((tab) => tab.id === currentView)?.label ||
+                  "Dashboard"}
               </h1>
-              <p className="text-sm text-cool-gray-600">
-                Welcome back to your immigration dashboard
-              </p>
             </div>
 
             {/* Right: Actions */}
