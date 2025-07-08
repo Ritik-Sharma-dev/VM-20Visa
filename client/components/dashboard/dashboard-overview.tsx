@@ -183,7 +183,7 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
             <Button
               variant="premium"
               size="lg"
-              onClick={() => handleNavigation("my-requests")}
+              onClick={() => onNavigate("my-requests")}
               className="group"
             >
               <Plus className="w-5 h-5 mr-2" />
