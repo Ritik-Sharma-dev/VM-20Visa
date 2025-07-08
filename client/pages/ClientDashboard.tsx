@@ -238,10 +238,10 @@ export default function ClientDashboard() {
               {/* Profile Picture */}
               <div className="text-center mb-4">
                 <div className="relative inline-block">
-                  <div className="w-20 h-20 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                  <div className="w-20 h-20 bg-gradient-sage rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
                     JD
                   </div>
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-mint-green-500 rounded-full border-3 border-white shadow-md"></div>
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-3 border-white shadow-md"></div>
                 </div>
               </div>
 
