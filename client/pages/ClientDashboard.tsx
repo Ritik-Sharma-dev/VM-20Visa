@@ -228,7 +228,7 @@ export default function ClientDashboard() {
         </div>
 
         {!sidebarCollapsed ? (
-          /* Expanded Sidebar - Exact Image Match */}
+          /* Expanded Sidebar - Exact Image Match */
           <div className="flex flex-col h-full py-8 px-6">
             {/* Main Navigation - Exact spacing and layout */}
             <div className="space-y-1">
@@ -333,8 +333,12 @@ export default function ClientDashboard() {
                       JD
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-gray-900">John Doe</div>
-                      <div className="text-xs text-gray-500">john.doe@email.com</div>
+                      <div className="text-sm font-medium text-gray-900">
+                        John Doe
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        john.doe@email.com
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -365,28 +369,28 @@ export default function ClientDashboard() {
                   action: () => setCurrentView("overview"),
                   tooltip: "Dashboard",
                   isActive: currentView === "overview",
-                  bgColor: "bg-blue-500"
+                  bgColor: "bg-blue-500",
                 },
                 {
                   icon: Calendar,
                   action: () => setCurrentView("my-bio"),
                   tooltip: "My Bio",
                   isActive: currentView === "my-bio",
-                  bgColor: "bg-orange-500"
+                  bgColor: "bg-orange-500",
                 },
                 {
                   icon: FileText,
                   action: () => setCurrentView("request-history"),
                   tooltip: "Request History",
                   isActive: currentView === "request-history",
-                  bgColor: "bg-green-500"
+                  bgColor: "bg-green-500",
                 },
                 {
                   icon: Settings,
                   action: () => setCurrentView("settings"),
                   tooltip: "Settings",
                   isActive: currentView === "settings",
-                  bgColor: "bg-cyan-500"
+                  bgColor: "bg-cyan-500",
                 },
                 {
                   icon: MessageCircle,
@@ -394,7 +398,7 @@ export default function ClientDashboard() {
                   tooltip: "Messages",
                   isActive: currentView === "messages",
                   bgColor: "bg-red-500",
-                  badge: true
+                  badge: true,
                 },
               ].map((item, index) => (
                 <motion.button
@@ -410,7 +414,9 @@ export default function ClientDashboard() {
                   {item.isActive ? (
                     <item.icon className="w-5 h-5 text-white" />
                   ) : (
-                    <div className={`w-5 h-5 ${item.bgColor} rounded flex items-center justify-center`}>
+                    <div
+                      className={`w-5 h-5 ${item.bgColor} rounded flex items-center justify-center`}
+                    >
                       <item.icon className="w-3 h-3 text-white" />
                     </div>
                   )}
