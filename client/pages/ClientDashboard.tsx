@@ -68,7 +68,6 @@ export default function ClientDashboard() {
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
   const [notifications, setNotifications] = useState(3);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { logout } = useAuth();
 
   const handleLogout = () => {
