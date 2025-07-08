@@ -228,23 +228,25 @@ export default function ClientDashboard() {
         </div>
 
         {!sidebarCollapsed ? (
-          /* Expanded Sidebar */
-          <div className="flex flex-col h-full pl-6 pr-4 py-8">
-            {/* Main Navigation */}
-            <div className="space-y-2 mb-8">
+          /* Expanded Sidebar - Exact Image Match */}
+          <div className="flex flex-col h-full py-8 px-6">
+            {/* Main Navigation - Exact spacing and layout */}
+            <div className="space-y-1">
               {/* Dashboard - Active State */}
               <motion.button
                 whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("overview")}
-                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
                   currentView === "overview"
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-blue-100 text-blue-600 rounded-lg"
+                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
                 }`}
               >
-                <BarChart3 className="w-5 h-5" />
-                <span className="font-medium">Dashboard</span>
+                <div className="w-6 h-6 bg-blue-500 rounded-sm flex items-center justify-center">
+                  <BarChart3 className="w-4 h-4 text-white" />
+                </div>
+                <span className="font-normal text-base">Dashboard</span>
               </motion.button>
 
               {/* My Bio */}
@@ -252,16 +254,16 @@ export default function ClientDashboard() {
                 whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("my-bio")}
-                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
                   currentView === "my-bio"
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-blue-100 text-blue-600 rounded-lg"
+                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
                 }`}
               >
-                <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center">
-                  <Calendar className="w-3 h-3 text-white" />
+                <div className="w-6 h-6 bg-orange-500 rounded-sm flex items-center justify-center">
+                  <User className="w-4 h-4 text-white" />
                 </div>
-                <span className="font-medium">My Bio</span>
+                <span className="font-normal text-base">My Bio</span>
               </motion.button>
 
               {/* Request History */}
@@ -269,16 +271,16 @@ export default function ClientDashboard() {
                 whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("request-history")}
-                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
                   currentView === "request-history"
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-blue-100 text-blue-600 rounded-lg"
+                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
                 }`}
               >
-                <div className="w-5 h-5 bg-green-500 rounded flex items-center justify-center">
-                  <FileText className="w-3 h-3 text-white" />
+                <div className="w-6 h-6 bg-green-500 rounded-sm flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-white" />
                 </div>
-                <span className="font-medium">Request History</span>
+                <span className="font-normal text-base">Request History</span>
               </motion.button>
 
               {/* Settings */}
@@ -286,89 +288,70 @@ export default function ClientDashboard() {
                 whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("settings")}
-                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
                   currentView === "settings"
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-blue-100 text-blue-600 rounded-lg"
+                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
                 }`}
               >
-                <div className="w-5 h-5 bg-cyan-500 rounded flex items-center justify-center">
-                  <Settings className="w-3 h-3 text-white" />
+                <div className="w-6 h-6 bg-cyan-500 rounded-sm flex items-center justify-center">
+                  <Settings className="w-4 h-4 text-white" />
                 </div>
-                <span className="font-medium">Settings</span>
-              </motion.button>
-
-              {/* Messages */}
-              <motion.button
-                whileHover={{ x: 2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setCurrentView("messages")}
-                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                  currentView === "messages"
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                <div className="w-5 h-5 bg-red-500 rounded flex items-center justify-center">
-                  <MessageCircle className="w-3 h-3 text-white" />
-                </div>
-                <span className="font-medium">Messages</span>
-                <Badge className="bg-red-500 text-white text-xs ml-auto">
-                  5
-                </Badge>
+                <span className="font-normal text-base">Settings</span>
               </motion.button>
             </div>
 
+            {/* Spacer */}
+            <div className="flex-1"></div>
+
             {/* Account Pages Section */}
-            <div className="border-t border-gray-100 pt-6">
-              <div className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-4 px-4">
-                Account Pages
+            <div className="mt-12">
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-6 px-4">
+                ACCOUNT PAGES
               </div>
 
-              {/* Profile */}
-              <motion.button
-                whileHover={{ x: 2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setCurrentView("profile")}
-                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                  currentView === "profile"
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                <User className="w-5 h-5 text-gray-700" />
-                <span className="font-medium">Profile</span>
-              </motion.button>
+              <div className="space-y-1">
+                {/* Profile */}
+                <motion.button
+                  whileHover={{ x: 2 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setCurrentView("profile")}
+                  className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
+                    currentView === "profile"
+                      ? "bg-blue-100 text-blue-600 rounded-lg"
+                      : "text-gray-600 hover:bg-gray-50 rounded-lg"
+                  }`}
+                >
+                  <User className="w-6 h-6 text-gray-700" />
+                  <span className="font-normal text-base">Profile</span>
+                </motion.button>
 
-              {/* User Email Display */}
-              <div className="px-4 py-3 mt-4 bg-gray-50 rounded-xl">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-sm font-medium">
-                    JD
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-gray-900">
-                      John Doe
+                {/* User Email Display */}
+                <div className="px-4 py-4 mt-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-sm font-medium">
+                      JD
                     </div>
-                    <div className="text-xs text-gray-500">
-                      john.doe@email.com
+                    <div>
+                      <div className="text-sm font-medium text-gray-900">John Doe</div>
+                      <div className="text-xs text-gray-500">john.doe@email.com</div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Logout */}
-              <motion.button
-                whileHover={{ x: 2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={logout}
-                className="w-full flex items-center space-x-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-200 text-left mt-4"
-              >
-                <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center">
-                  <LogOut className="w-3 h-3 text-white" />
-                </div>
-                <span className="font-medium">Sign Out</span>
-              </motion.button>
+                {/* Sign Out */}
+                <motion.button
+                  whileHover={{ x: 2 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={logout}
+                  className="w-full flex items-center space-x-4 px-4 py-4 text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200 text-left"
+                >
+                  <div className="w-6 h-6 bg-orange-500 rounded-sm flex items-center justify-center">
+                    <LogOut className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="font-normal text-base">Sign Out</span>
+                </motion.button>
+              </div>
             </div>
           </div>
         ) : (
@@ -382,28 +365,28 @@ export default function ClientDashboard() {
                   action: () => setCurrentView("overview"),
                   tooltip: "Dashboard",
                   isActive: currentView === "overview",
-                  bgColor: "bg-blue-500",
+                  bgColor: "bg-blue-500"
                 },
                 {
                   icon: Calendar,
                   action: () => setCurrentView("my-bio"),
                   tooltip: "My Bio",
                   isActive: currentView === "my-bio",
-                  bgColor: "bg-orange-500",
+                  bgColor: "bg-orange-500"
                 },
                 {
                   icon: FileText,
                   action: () => setCurrentView("request-history"),
                   tooltip: "Request History",
                   isActive: currentView === "request-history",
-                  bgColor: "bg-green-500",
+                  bgColor: "bg-green-500"
                 },
                 {
                   icon: Settings,
                   action: () => setCurrentView("settings"),
                   tooltip: "Settings",
                   isActive: currentView === "settings",
-                  bgColor: "bg-cyan-500",
+                  bgColor: "bg-cyan-500"
                 },
                 {
                   icon: MessageCircle,
@@ -411,7 +394,7 @@ export default function ClientDashboard() {
                   tooltip: "Messages",
                   isActive: currentView === "messages",
                   bgColor: "bg-red-500",
-                  badge: true,
+                  badge: true
                 },
               ].map((item, index) => (
                 <motion.button
@@ -427,9 +410,7 @@ export default function ClientDashboard() {
                   {item.isActive ? (
                     <item.icon className="w-5 h-5 text-white" />
                   ) : (
-                    <div
-                      className={`w-5 h-5 ${item.bgColor} rounded flex items-center justify-center`}
-                    >
+                    <div className={`w-5 h-5 ${item.bgColor} rounded flex items-center justify-center`}>
                       <item.icon className="w-3 h-3 text-white" />
                     </div>
                   )}
