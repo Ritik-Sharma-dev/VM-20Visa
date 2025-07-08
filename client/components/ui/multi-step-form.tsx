@@ -972,10 +972,17 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
               {currentStep === 0 ? "Back to Selection" : "Previous"}
             </Button>
 
-            <Button variant="premium" onClick={handleNext} className="group">
-              {currentStep === steps.length - 1
-                ? "Complete Signup"
-                : "Next Step"}
+            <Button
+              variant="premium"
+              onClick={handleNext}
+              className="group"
+              disabled={isLoading}
+            >
+              {isLoading
+                ? "Creating Account..."
+                : currentStep === steps.length - 1
+                  ? "Complete Signup"
+                  : "Next Step"}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
