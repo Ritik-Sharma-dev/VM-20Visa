@@ -49,19 +49,11 @@ function AppContent() {
               </ProtectedRoute>
             }
           />
-          {/* Placeholder routes for agent and org dashboards */}
           <Route
             path="/agent-dashboard"
             element={
               <ProtectedRoute allowedRoles={["agent"]}>
-                <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20">
-                  <div className="text-center">
-                    <h1 className="text-3xl font-heading font-bold text-cool-gray-800 mb-4">
-                      Agent Dashboard
-                    </h1>
-                    <p className="text-cool-gray-600">Coming soon...</p>
-                  </div>
-                </div>
+                <AgentDashboard />
               </ProtectedRoute>
             }
           />
