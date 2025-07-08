@@ -48,9 +48,10 @@ type DashboardView =
   | "ai-assistant";
 
 export default function ClientDashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [currentView, setCurrentView] = useState<DashboardView>("overview");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [currentView, setCurrentView] = useState<DashboardView>("my-requests");
   const [notifications, setNotifications] = useState(3);
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
   // Auto-save functionality
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function ClientDashboard() {
         "vm-visa-dashboard-state",
         JSON.stringify({
           currentView,
-          sidebarOpen,
+          sidebarCollapsed,
           timestamp: Date.now(),
         }),
       );
@@ -67,7 +68,7 @@ export default function ClientDashboard() {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [currentView, sidebarOpen]);
+  }, [currentView, sidebarCollapsed]);
 
   // Restore saved state
   useEffect(() => {
@@ -80,7 +81,7 @@ export default function ClientDashboard() {
         // Only restore if less than 24 hours old
         if (timeDiff < 24 * 60 * 60 * 1000) {
           setCurrentView(state.currentView);
-          setSidebarOpen(state.sidebarOpen);
+          setSidebarCollapsed(state.sidebarCollapsed);
         }
       } catch (error) {
         console.error("Failed to restore dashboard state:", error);
@@ -88,99 +89,54 @@ export default function ClientDashboard() {
     }
   }, []);
 
-  const sidebarItems = [
+  const tabItems = [
     {
-      id: "overview",
-      label: "Dashboard",
-      icon: Home,
-      badge: null,
-      description: "Overview & Statistics",
-    },
-    {
-      id: "post-request",
-      label: "Post Request",
-      icon: Plus,
-      badge: null,
-      description: "Create New Visa Request",
+      id: "my-requests",
+      label: "My Requests",
+      icon: FileText,
+      badge: "3",
     },
     {
       id: "browse-agents",
       label: "Browse Agents",
       icon: Users,
       badge: "New",
-      description: "Find Immigration Experts",
     },
     {
       id: "proposals",
       label: "Proposals",
-      icon: FileText,
-      badge: "3",
-      description: "Agent Proposals & Offers",
+      icon: CheckCircle,
+      badge: "5",
     },
     {
       id: "track-progress",
       label: "Track Progress",
       icon: BarChart3,
       badge: null,
-      description: "Application Status",
     },
     {
       id: "documents",
       label: "Documents",
       icon: Upload,
       badge: null,
-      description: "Upload & Manage Files",
     },
     {
-      id: "messages",
-      label: "Messages",
-      icon: MessageCircle,
-      badge: "5",
-      description: "Chat with Agents",
+      id: "ratings",
+      label: "Ratings & Reviews",
+      icon: Star,
+      badge: null,
     },
     {
       id: "ai-assistant",
-      label: "AI Assistant",
+      label: "Ask AI",
       icon: Bot,
-      badge: "AI",
-      description: "Smart Immigration Help",
-    },
-  ];
-
-  const quickActions = [
-    {
-      label: "Post Request",
-      icon: Plus,
-      action: () => setCurrentView("post-request"),
-      color: "from-royal-blue-500 to-sky-blue-400",
-    },
-    {
-      label: "Smart Write",
-      icon: Bot,
-      action: () => setCurrentView("ai-assistant"),
-      color: "from-sage-green-500 to-mint-green-400",
-    },
-    {
-      label: "Upload Docs",
-      icon: Upload,
-      action: () => setCurrentView("documents"),
-      color: "from-gold-500 to-sandstone-400",
-    },
-    {
-      label: "Schedule Call",
-      icon: Calendar,
-      action: () => {
-        /* Open calendar modal */
-      },
-      color: "from-royal-blue-600 to-royal-blue-500",
+      badge: "🤖",
     },
   ];
 
   const renderContent = () => {
     switch (currentView) {
-      case "overview":
-        return <DashboardOverview onNavigate={setCurrentView} />;
-      case "post-request":
+      case "my-requests":
         return <PostVisaRequest />;
       case "browse-agents":
         return <BrowseAgents />;
@@ -190,12 +146,12 @@ export default function ClientDashboard() {
         return <ProgressTracker />;
       case "documents":
         return <DocumentUpload />;
-      case "messages":
-        return <MessagingPanel />;
+      case "ratings":
+        return <RatingsReviews />;
       case "ai-assistant":
         return <AIAssistant />;
       default:
-        return <DashboardOverview onNavigate={setCurrentView} />;
+        return <PostVisaRequest />;
     }
   };
 
