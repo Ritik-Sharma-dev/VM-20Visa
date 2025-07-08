@@ -40,6 +40,12 @@ import { FloatingAIAssistant } from "@/components/dashboard/floating-ai-assistan
 import { RatingsReviews } from "@/components/dashboard/ratings-reviews";
 import { BrowseAgentsFiltered } from "@/components/dashboard/browse-agents-filtered";
 import { UserProfile } from "@/components/dashboard/user-profile";
+import {
+  MyBio,
+  DocumentCenter,
+  RequestHistory,
+  SettingsPage,
+} from "@/components/dashboard/sidebar-components";
 import { useAuth } from "@/components/auth/auth-context";
 
 type DashboardView =
@@ -50,7 +56,12 @@ type DashboardView =
   | "documents"
   | "chat"
   | "browse-agents"
-  | "profile";
+  | "profile"
+  | "my-bio"
+  | "document-center"
+  | "request-history"
+  | "settings"
+  | "messages";
 
 export default function ClientDashboard() {
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
