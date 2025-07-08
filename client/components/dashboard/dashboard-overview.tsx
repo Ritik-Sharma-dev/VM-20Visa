@@ -325,18 +325,30 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
                   className="w-full p-4 bg-white/20 hover:bg-white/30 rounded-2xl border border-white/20 transition-all duration-200 group"
                 >
                   <div className="flex items-center space-x-4">
-                    <div
-                      className={`w-10 h-10 bg-gradient-to-br ${action.color} rounded-xl flex items-center justify-center`}
-                    >
-                      <action.icon className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 bg-cool-gray-100 rounded-xl flex items-center justify-center">
+                      <action.icon className="w-5 h-5 text-cool-gray-600" />
                     </div>
-                    <div className="text-left">
+                    <div className="text-left flex-1">
                       <h3 className="font-semibold text-cool-gray-800">
                         {action.title}
                       </h3>
                       <p className="text-sm text-cool-gray-600">
                         {action.description}
                       </p>
+                    </div>
+                    {/* Themed Badge */}
+                    <div
+                      className={`w-8 h-8 bg-gradient-to-br ${action.color} rounded-lg flex items-center justify-center shadow-md`}
+                    >
+                      <span className="text-white font-bold text-xs">
+                        {index === 0
+                          ? "3"
+                          : index === 1
+                            ? "AI"
+                            : index === 2
+                              ? "24"
+                              : "📅"}
+                      </span>
                     </div>
                   </div>
                 </motion.button>
