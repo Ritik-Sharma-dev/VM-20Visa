@@ -171,8 +171,6 @@ export default function ClientDashboard() {
         return <DashboardOverview onNavigate={setCurrentView} />;
       case "my-requests":
         return <MyRequests />;
-      case "proposals":
-        return <AgentProposals />;
       case "applications":
         return <ProgressTracker />;
       case "documents":
