@@ -608,7 +608,7 @@ export default function AgentDashboard() {
               <div className="flex space-x-3 mt-6">
                 <Button
                   className="flex-1"
-                  style={{ backgroundColor: "#326dee" }}
+                  style={{ backgroundColor: "#1F3A93", color: "white" }}
                 >
                   Edit Profile
                 </Button>
