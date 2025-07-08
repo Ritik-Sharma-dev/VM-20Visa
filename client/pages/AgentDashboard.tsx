@@ -493,11 +493,12 @@ export default function AgentDashboard() {
                       "px-4 py-2 text-sm font-medium rounded-md transition-all duration-200",
                       filterPeriod === tab.id
                         ? "text-white shadow-sm"
-                        : "text-gray-600 hover:text-gray-800",
+                        : "hover:text-gray-800",
                     )}
                     style={{
                       backgroundColor:
-                        filterPeriod === tab.id ? "#326dee" : "transparent",
+                        filterPeriod === tab.id ? "#1F3A93" : "transparent",
+                      color: filterPeriod === tab.id ? "white" : "#4A4A4A",
                     }}
                   >
                     {tab.label}
