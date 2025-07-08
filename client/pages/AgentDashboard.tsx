@@ -289,7 +289,10 @@ export default function AgentDashboard() {
                       <UserCheck className="w-4 h-4 mr-2" />
                       <span className="font-medium">Verified Agent</span>
                     </div>
-                    <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
+                    <Badge
+                      className="hover:bg-blue-100"
+                      style={{ backgroundColor: "#61A5FF", color: "white" }}
+                    >
                       Active
                     </Badge>
                   </div>
