@@ -364,7 +364,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Page Content */}
-        <div className="p-8">
+        <div className="p-6">
           <motion.div
             key={currentView}
             initial={{ opacity: 0, y: 20 }}
