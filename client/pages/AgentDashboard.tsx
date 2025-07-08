@@ -383,8 +383,8 @@ export default function AgentDashboard() {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 onClick={() => setShowProfileCard(true)}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold cursor-pointer shadow-lg"
-                style={{ backgroundColor: "#326dee" }}
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold cursor-pointer shadow-lg"
+                style={{ backgroundColor: "#1F3A93" }}
               >
                 SA
               </motion.div>
