@@ -699,38 +699,7 @@ export default function ClientDashboard() {
             </div>
           </div>
 
-          {/* Enhanced Pill Navigation */}
-          <div className="flex items-center justify-between bg-cool-gray-50 rounded-2xl p-2">
-            {tabItems.map((tab) => (
-              <motion.button
-                key={tab.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setCurrentView(tab.id as DashboardView)}
-                className={cn(
-                  "flex items-center justify-center space-x-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex-1 relative",
-                  currentView === tab.id
-                    ? "bg-royal-blue-500 text-white shadow-md"
-                    : "text-cool-gray-600 hover:text-cool-gray-900 hover:bg-white/50",
-                )}
-              >
-                <tab.icon className="w-4 h-4" />
-                <span className="hidden sm:inline">{tab.label}</span>
-                {tab.badge && (
-                  <Badge
-                    className={cn(
-                      "text-xs",
-                      currentView === tab.id
-                        ? "bg-white/20 text-white"
-                        : "bg-cool-gray-200 text-cool-gray-700",
-                    )}
-                  >
-                    {tab.badge}
-                  </Badge>
-                )}
-              </motion.button>
-            ))}
-          </div>
+
         </div>
 
         {/* Page Content */}
