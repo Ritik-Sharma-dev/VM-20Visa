@@ -402,11 +402,12 @@ export default function AgentDashboard() {
                     "w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-200 relative group",
                     currentView === item.id
                       ? "text-white shadow-lg"
-                      : "text-gray-600 hover:bg-gray-100",
+                      : "hover:bg-white/60",
                   )}
                   style={{
                     backgroundColor:
-                      currentView === item.id ? "#326dee" : "transparent",
+                      currentView === item.id ? "#1F3A93" : "transparent",
+                    color: currentView === item.id ? "white" : "#4A4A4A",
                   }}
                   title={item.label}
                 >
