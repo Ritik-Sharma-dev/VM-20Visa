@@ -558,8 +558,8 @@ export default function AgentDashboard() {
             >
               <div className="text-center mb-6">
                 <div
-                  className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl mb-4"
-                  style={{ backgroundColor: "#326dee" }}
+                  className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-white font-bold text-2xl mb-4"
+                  style={{ backgroundColor: "#1F3A93" }}
                 >
                   SA
                 </div>
