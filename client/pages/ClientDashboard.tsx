@@ -370,7 +370,7 @@ export default function ClientDashboard() {
           /* Collapsed Sidebar - Mini Icons */
           <div className="p-4 h-full overflow-y-auto">
             <div className="text-center mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-xl flex items-center justify-center text-white text-lg font-bold mx-auto">
+              <div className="w-12 h-12 bg-gradient-sage rounded-full flex items-center justify-center text-white text-lg font-bold mx-auto">
                 JD
               </div>
             </div>
