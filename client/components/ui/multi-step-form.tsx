@@ -49,7 +49,7 @@ interface FormData {
 
 interface MultiStepFormProps {
   type: "client" | "agent" | "organization";
-  onSubmit: (data: FormData) => void;
+  onSubmit?: (data: FormData) => void;
   onBack?: () => void;
 }
 
