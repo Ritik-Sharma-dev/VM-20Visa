@@ -166,8 +166,8 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
               <Badge className="bg-sage-green-100 text-sage-green-700">
                 Premium Member
               </Badge>
-              <Badge className="bg-gold-100 text-gold-700">
-                Success Rate: 98%
+              <Badge className="bg-royal-blue-100 text-royal-blue-700">
+                Verified Client
               </Badge>
             </div>
           </div>
