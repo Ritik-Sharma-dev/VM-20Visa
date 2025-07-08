@@ -220,13 +220,14 @@ export default function AgentDashboard() {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: "#f0f4ff" }}>
+    <div className="min-h-screen flex" style={{ backgroundColor: "#F4F6F8" }}>
       {/* Sidebar */}
       <motion.div
         initial={false}
         animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-white shadow-xl z-50 overflow-hidden border-r border-gray-200"
+        className="fixed left-0 top-0 h-screen shadow-xl z-50 overflow-hidden border-r border-gray-200"
+        style={{ backgroundColor: "#F4F6F8" }}
       >
         {/* Toggle Button */}
         <div className="absolute -right-4 top-8 z-10">
