@@ -259,8 +259,8 @@ export default function AgentDashboard() {
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
                       <div
-                        className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg"
-                        style={{ backgroundColor: "#326dee" }}
+                        className="w-full h-full flex items-center justify-center text-white font-bold text-lg"
+                        style={{ backgroundColor: "#1F3A93" }}
                       >
                         SA
                       </div>
