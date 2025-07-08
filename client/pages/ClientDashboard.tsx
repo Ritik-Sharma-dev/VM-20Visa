@@ -187,14 +187,9 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-cool-gray-50 flex">
-      {/* Enhanced Sidebar */}
-      <motion.div
-        initial={false}
-        animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-white shadow-2xl z-50 overflow-hidden border-r border-cool-gray-200"
-      >
+    <div className="min-h-screen bg-cool-gray-50">
+      {/* Main Content */}
+      <div className="w-full">
         {/* Toggle Button */}
         <div className="absolute -right-4 top-6 z-10">
           <motion.button
