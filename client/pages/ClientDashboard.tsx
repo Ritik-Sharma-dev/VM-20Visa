@@ -156,173 +156,223 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20">
-      {/* Sidebar */}
-      <AnimatePresence>
-        <motion.div
-          initial={{ x: sidebarOpen ? 0 : -320 }}
-          animate={{ x: sidebarOpen ? 0 : -320 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed top-0 left-0 h-screen w-80 glass-card border-r border-white/20 z-50 overflow-y-auto"
-        >
-          {/* Sidebar Header */}
-          <div className="p-6 border-b border-white/10">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-royal rounded-xl flex items-center justify-center">
-                  <Globe className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-heading font-bold gradient-text">
-                    VM Visa
-                  </h1>
-                  <p className="text-xs text-cool-gray-600">Client Dashboard</p>
-                </div>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSidebarOpen(false)}
-                className="lg:hidden"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex">
+      {/* Streamlined Sidebar */}
+      <motion.div
+        initial={false}
+        animate={{ width: sidebarCollapsed ? "80px" : "280px" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed left-0 top-0 h-screen bg-gradient-to-b from-royal-blue-900 via-royal-blue-700 to-sage-green-600 z-50 overflow-hidden border-r border-white/20"
+      >
+        {/* Toggle Button */}
+        <div className="absolute -right-4 top-6 z-10">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="w-8 h-8 bg-gradient-royal rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-all duration-200"
+          >
+            {sidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4" />
+            ) : (
+              <ChevronLeft className="w-4 h-4" />
+            )}
+          </motion.button>
+        </div>
 
-            {/* User Profile */}
-            <div className="mt-6 p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-sage rounded-full flex items-center justify-center">
-                  <User className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-cool-gray-800">John Doe</h3>
-                  <p className="text-sm text-cool-gray-600">Premium Client</p>
-                </div>
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden p-4">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+            className="text-white"
+          >
+            <Menu className="w-5 h-5" />
+          </Button>
+        </div>
+
+        {/* Sidebar Content */}
+        <div className="p-6 text-white">
+          {/* Logo */}
+          <div className="flex items-center space-x-3 mb-8">
+            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+              <Globe className="w-5 h-5 text-white" />
+            </div>
+            {!sidebarCollapsed && (
+              <div>
+                <h1 className="text-xl font-heading font-bold text-white">
+                  VM Visa
+                </h1>
+                <p className="text-xs text-sky-blue-200">Client Portal</p>
               </div>
+            )}
+          </div>
+
+          {/* User Profile */}
+          <div className="mb-8">
+            <div className="flex items-center space-x-3 p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
+              <div className="w-12 h-12 bg-gradient-sage rounded-full flex items-center justify-center">
+                <User className="w-6 h-6 text-white" />
+              </div>
+              {!sidebarCollapsed && (
+                <div>
+                  <h3 className="font-semibold text-white">John Doe</h3>
+                  <p className="text-sm text-sky-blue-200">Premium Client</p>
+                  <Badge className="bg-gold-500 text-white text-xs mt-1">
+                    Verified
+                  </Badge>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Navigation */}
-          <div className="p-6">
-            <nav className="space-y-2">
-              {sidebarItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  whileHover={{ x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setCurrentView(item.id as DashboardView)}
-                  className={cn(
-                    "w-full flex items-center justify-between p-4 rounded-xl transition-all duration-200 group",
-                    currentView === item.id
-                      ? "bg-white/30 text-royal-blue-700 shadow-sm"
-                      : "hover:bg-white/20 text-cool-gray-700 hover:text-royal-blue-700",
-                  )}
-                >
-                  <div className="flex items-center space-x-3">
-                    <item.icon className="w-5 h-5" />
-                    <div className="text-left">
-                      <div className="font-medium">{item.label}</div>
-                      <div className="text-xs text-cool-gray-500">
-                        {item.description}
-                      </div>
-                    </div>
-                  </div>
-                  {item.badge && (
-                    <Badge
-                      variant={item.badge === "AI" ? "default" : "secondary"}
-                      className="text-xs"
-                    >
-                      {item.badge}
-                    </Badge>
-                  )}
-                </motion.button>
-              ))}
-            </nav>
-
-            {/* Quick Actions */}
-            <div className="mt-8">
-              <h4 className="text-sm font-semibold text-cool-gray-600 mb-4 uppercase tracking-wide">
-                Quick Actions
-              </h4>
-              <div className="grid grid-cols-2 gap-3">
-                {quickActions.map((action, index) => (
-                  <motion.button
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={action.action}
-                    className={`p-4 rounded-xl bg-gradient-to-br ${action.color} text-white shadow-lg hover:shadow-xl transition-all duration-200`}
-                  >
-                    <action.icon className="w-5 h-5 mx-auto mb-2" />
-                    <div className="text-xs font-medium">{action.label}</div>
-                  </motion.button>
-                ))}
+          {/* Quick Actions */}
+          <div className="space-y-3">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setCurrentView("my-requests")}
+              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200 group"
+              title={sidebarCollapsed ? "New Request" : undefined}
+            >
+              <div className="flex items-center space-x-3">
+                <Plus className="w-5 h-5 text-gold-400" />
+                {!sidebarCollapsed && (
+                  <span className="font-medium">New Request</span>
+                )}
               </div>
-            </div>
+            </motion.button>
 
-            {/* Logout */}
-            <div className="mt-8 pt-6 border-t border-white/10">
-              <Button variant="ghost" className="w-full justify-start group">
-                <LogOut className="w-4 h-4 mr-3 group-hover:text-red-500" />
-                <span className="group-hover:text-red-500">Logout</span>
-              </Button>
-            </div>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200 relative group"
+              title={sidebarCollapsed ? "Messages" : undefined}
+            >
+              <div className="flex items-center space-x-3">
+                <MessageCircle className="w-5 h-5 text-mint-green-400" />
+                {!sidebarCollapsed && (
+                  <span className="font-medium">Messages</span>
+                )}
+                <Badge className="bg-red-500 text-white text-xs ml-auto">
+                  5
+                </Badge>
+              </div>
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200 relative group"
+              title={sidebarCollapsed ? "Notifications" : undefined}
+            >
+              <div className="flex items-center space-x-3">
+                <Bell className="w-5 h-5 text-sky-blue-400" />
+                {!sidebarCollapsed && (
+                  <span className="font-medium">Notifications</span>
+                )}
+                <Badge className="bg-red-500 text-white text-xs ml-auto">
+                  3
+                </Badge>
+              </div>
+            </motion.button>
           </div>
-        </motion.div>
-      </AnimatePresence>
+
+          {/* Settings & Logout */}
+          <div className="absolute bottom-6 left-6 right-6 space-y-3">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200"
+              title={sidebarCollapsed ? "Settings" : undefined}
+            >
+              <div className="flex items-center space-x-3">
+                <Settings className="w-5 h-5 text-creamy-beige-300" />
+                {!sidebarCollapsed && (
+                  <span className="font-medium">Settings</span>
+                )}
+              </div>
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full p-3 bg-white/10 hover:bg-red-500/20 rounded-xl backdrop-blur-sm transition-all duration-200 group"
+              title={sidebarCollapsed ? "Logout" : undefined}
+            >
+              <div className="flex items-center space-x-3">
+                <LogOut className="w-5 h-5 text-red-400 group-hover:text-red-300" />
+                {!sidebarCollapsed && (
+                  <span className="font-medium group-hover:text-red-300">
+                    Logout
+                  </span>
+                )}
+              </div>
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Main Content */}
       <div
         className={cn(
-          "transition-all duration-300",
-          sidebarOpen ? "ml-80" : "ml-0",
+          "flex-1 transition-all duration-300",
+          sidebarCollapsed ? "ml-20" : "ml-70",
         )}
+        style={{ marginLeft: sidebarCollapsed ? "80px" : "280px" }}
       >
-        {/* Top Bar */}
-        <div className="h-16 glass-card border-b border-white/20 flex items-center justify-between px-6">
-          <div className="flex items-center space-x-4">
-            {!sidebarOpen && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setSidebarOpen(true)}
-              >
-                <Menu className="w-5 h-5" />
-              </Button>
-            )}
+        {/* Top Navigation Pills */}
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
+              User Dashboard
+            </h1>
 
-            <h2 className="text-2xl font-heading font-bold text-cool-gray-800">
-              {sidebarItems.find((item) => item.id === currentView)?.label ||
-                "Dashboard"}
-            </h2>
+            <div className="flex items-center space-x-4">
+              {/* Search */}
+              <div className="relative">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-cool-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="pl-10 pr-4 py-2 bg-white/60 border border-white/30 rounded-xl focus:ring-2 focus:ring-royal-blue-500 focus:border-royal-blue-500 text-sm backdrop-blur-sm"
+                />
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-4">
-            {/* Search */}
-            <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-cool-gray-500" />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="pl-10 pr-4 py-2 bg-white/20 border border-white/30 rounded-xl focus:ring-2 focus:ring-royal-blue-500 focus:border-royal-blue-500 text-sm"
-              />
-            </div>
-
-            {/* Notifications */}
-            <Button variant="ghost" size="sm" className="relative">
-              <Bell className="w-5 h-5" />
-              {notifications > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                  {notifications}
-                </span>
-              )}
-            </Button>
-
-            {/* Settings */}
-            <Button variant="ghost" size="sm">
-              <Settings className="w-5 h-5" />
-            </Button>
+          {/* Pill Navigation */}
+          <div className="flex items-center space-x-2 overflow-x-auto pb-2">
+            {tabItems.map((tab) => (
+              <motion.button
+                key={tab.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setCurrentView(tab.id as DashboardView)}
+                className={cn(
+                  "flex items-center space-x-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 whitespace-nowrap relative",
+                  currentView === tab.id
+                    ? "bg-gradient-royal text-white shadow-lg"
+                    : "bg-white/60 text-cool-gray-700 hover:bg-white/80 hover:text-royal-blue-700 backdrop-blur-sm",
+                )}
+              >
+                <tab.icon className="w-4 h-4" />
+                <span>{tab.label}</span>
+                {tab.badge && (
+                  <Badge
+                    className={cn(
+                      "text-xs ml-2",
+                      currentView === tab.id
+                        ? "bg-white/20 text-white"
+                        : "bg-royal-blue-100 text-royal-blue-700",
+                    )}
+                  >
+                    {tab.badge}
+                  </Badge>
+                )}
+              </motion.button>
+            ))}
           </div>
         </div>
 
@@ -339,6 +389,9 @@ export default function ClientDashboard() {
           </motion.div>
         </div>
       </div>
+
+      {/* Floating AI Assistant */}
+      <FloatingAIAssistant />
     </div>
   );
 }
