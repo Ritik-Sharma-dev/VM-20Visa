@@ -71,6 +71,7 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     website: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { signup, isLoading } = useAuth();
 
   // Load saved form data from localStorage
   useEffect(() => {
