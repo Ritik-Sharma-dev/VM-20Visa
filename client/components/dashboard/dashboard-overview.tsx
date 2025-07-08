@@ -24,6 +24,7 @@ interface DashboardOverviewProps {
 }
 
 export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
+  const [clickedAction, setClickedAction] = useState<number | null>(null);
   const stats = [
     {
       label: "Active Requests",
