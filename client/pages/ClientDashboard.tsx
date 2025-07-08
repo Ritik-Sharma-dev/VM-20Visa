@@ -48,7 +48,7 @@ type DashboardView =
 
 export default function ClientDashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [currentView, setCurrentView] = useState<DashboardView>("my-requests");
+  const [currentView, setCurrentView] = useState<DashboardView>("overview");
   const [notifications, setNotifications] = useState(3);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
