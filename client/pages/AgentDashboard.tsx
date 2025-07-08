@@ -314,12 +314,13 @@ export default function AgentDashboard() {
                     className={cn(
                       "w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 group",
                       currentView === item.id
-                        ? "text-white shadow-lg shadow-blue-500/25"
-                        : "text-gray-700 hover:bg-gray-50",
+                        ? "text-white shadow-lg"
+                        : "hover:bg-white/60",
                     )}
                     style={{
                       backgroundColor:
-                        currentView === item.id ? "#326dee" : "transparent",
+                        currentView === item.id ? "#1F3A93" : "transparent",
+                      color: currentView === item.id ? "white" : "#4A4A4A",
                     }}
                   >
                     <div className="flex items-center space-x-3">
