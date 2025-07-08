@@ -141,12 +141,6 @@ export default function ClientDashboard() {
       badge: "3",
     },
     {
-      id: "proposals",
-      label: "Proposals",
-      icon: CheckCircle,
-      badge: "5",
-    },
-    {
       id: "applications",
       label: "Applications",
       icon: Clock,
@@ -162,7 +156,7 @@ export default function ClientDashboard() {
       id: "browse-agents",
       label: "Browse Agents",
       icon: Users,
-      badge: "New",
+      badge: null,
     },
     {
       id: "chat",
