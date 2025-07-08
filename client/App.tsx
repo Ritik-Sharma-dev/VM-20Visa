@@ -20,7 +20,9 @@ const queryClient = new QueryClient();
 
 function AppContent() {
   const location = useLocation();
-  const hideNavigation = ["/signup", "/login"].includes(location.pathname);
+  const hideNavigation = ["/signup", "/login", "/dashboard"].includes(
+    location.pathname,
+  );
 
   return (
     <>
@@ -33,6 +35,7 @@ function AppContent() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<ClientDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
