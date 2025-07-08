@@ -53,10 +53,8 @@ type DashboardView =
   | "profile";
 
 export default function ClientDashboard() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
   const [notifications, setNotifications] = useState(3);
-  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const { logout } = useAuth();
 
