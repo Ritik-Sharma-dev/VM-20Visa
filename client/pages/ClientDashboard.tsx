@@ -201,161 +201,205 @@ export default function ClientDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex">
-      {/* Clean Minimal Sidebar - Matching Image Design */}
+      {/* Modern Sidebar - Matching Image Design */}
       <motion.div
         initial={false}
-        animate={{ width: sidebarCollapsed ? "64px" : "280px" }}
+        animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-white shadow-lg z-50 overflow-hidden border-r border-gray-100"
+        className="fixed left-0 top-0 h-screen bg-gray-50 shadow-xl z-50 overflow-hidden"
       >
-        {/* Cyan Accent Border */}
-        <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-cyan-400 to-cyan-500"></div>
-
         {/* Toggle Button */}
-        <div className="absolute -right-3 top-6 z-10">
+        <div className="absolute -right-4 top-8 z-10">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center text-gray-600 hover:text-gray-800 border border-gray-200 hover:border-gray-300 transition-all duration-200"
+            className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-800 border border-gray-200 transition-all duration-200"
           >
             {sidebarCollapsed ? (
-              <ChevronRight className="w-3 h-3" />
+              <ChevronRight className="w-4 h-4" />
             ) : (
-              <ChevronLeft className="w-3 h-3" />
+              <ChevronLeft className="w-4 h-4" />
             )}
           </motion.button>
         </div>
 
         {!sidebarCollapsed ? (
           /* Expanded Sidebar - Exact Image Match */
-          <div className="flex flex-col h-full py-8 px-6">
-            {/* Main Navigation - Exact spacing and layout */}
-            <div className="space-y-1">
-              {/* Dashboard - Active State */}
+          <div className="flex flex-col h-full p-6">
+            {/* Profile Header */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Fcc6a575b231f4eceba6352aba1db9aab%2Fcff98cdd3e5e474daeb0720c5c3dab88?format=webp&width=800"
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                        e.currentTarget.nextElementSibling.style.display =
+                          "flex";
+                      }}
+                    />
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold hidden">
+                      JD
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-sm">Welcome back,</p>
+                    <h2 className="text-gray-900 font-semibold text-lg">
+                      John Doe
+                    </h2>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                    99+
+                  </div>
+                  <button className="w-8 h-8 bg-white rounded-lg shadow-sm flex items-center justify-center text-gray-400 hover:text-gray-600">
+                    <Settings className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Search Bar */}
+              <div className="relative mb-6">
+                <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border-0 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700"
+                />
+              </div>
+            </div>
+
+            {/* Navigation Items */}
+            <div className="space-y-2 flex-1">
+              {/* Data Table - Active */}
               <motion.button
-                whileHover={{ x: 2 }}
+                whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("overview")}
-                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
                   currentView === "overview"
-                    ? "bg-blue-100 text-blue-600 rounded-lg"
-                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "text-gray-600 hover:bg-white/60"
                 }`}
               >
-                <div className="w-6 h-6 bg-blue-500 rounded-sm flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4 text-white" />
+                <div className="flex items-center space-x-3">
+                  <BarChart3 className="w-5 h-5" />
+                  <span className="font-medium">Data Table</span>
                 </div>
-                <span className="font-normal text-base">Dashboard</span>
-              </motion.button>
-
-              {/* My Bio */}
-              <motion.button
-                whileHover={{ x: 2 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setCurrentView("my-bio")}
-                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
-                  currentView === "my-bio"
-                    ? "bg-blue-100 text-blue-600 rounded-lg"
-                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
-                }`}
-              >
-                <div className="w-6 h-6 bg-orange-500 rounded-sm flex items-center justify-center">
-                  <User className="w-4 h-4 text-white" />
-                </div>
-                <span className="font-normal text-base">My Bio</span>
+                <Menu className="w-4 h-4 opacity-50" />
               </motion.button>
 
               {/* Request History */}
               <motion.button
-                whileHover={{ x: 2 }}
+                whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("request-history")}
-                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
                   currentView === "request-history"
-                    ? "bg-blue-100 text-blue-600 rounded-lg"
-                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "text-gray-600 hover:bg-white/60"
                 }`}
               >
-                <div className="w-6 h-6 bg-green-500 rounded-sm flex items-center justify-center">
-                  <FileText className="w-4 h-4 text-white" />
+                <div className="flex items-center space-x-3">
+                  <FileText className="w-5 h-5" />
+                  <span className="font-medium">Request History</span>
                 </div>
-                <span className="font-normal text-base">Request History</span>
+                <Menu className="w-4 h-4 opacity-50" />
               </motion.button>
 
-              {/* Settings */}
+              {/* Security */}
               <motion.button
-                whileHover={{ x: 2 }}
+                whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("settings")}
-                className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
                   currentView === "settings"
-                    ? "bg-blue-100 text-blue-600 rounded-lg"
-                    : "text-gray-600 hover:bg-gray-50 rounded-lg"
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "text-gray-600 hover:bg-white/60"
                 }`}
               >
-                <div className="w-6 h-6 bg-cyan-500 rounded-sm flex items-center justify-center">
-                  <Settings className="w-4 h-4 text-white" />
+                <div className="flex items-center space-x-3">
+                  <Shield className="w-5 h-5" />
+                  <span className="font-medium">Security</span>
                 </div>
-                <span className="font-normal text-base">Settings</span>
+                <Menu className="w-4 h-4 opacity-50" />
+              </motion.button>
+
+              {/* Calendar */}
+              <motion.button
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("my-bio")}
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                  currentView === "my-bio"
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "text-gray-600 hover:bg-white/60"
+                }`}
+              >
+                <div className="flex items-center space-x-3">
+                  <Calendar className="w-5 h-5" />
+                  <span className="font-medium">Calendar</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                    14 Events
+                  </div>
+                  <Menu className="w-4 h-4 opacity-50" />
+                </div>
+              </motion.button>
+
+              {/* Messages */}
+              <motion.button
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("messages")}
+                className={`w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 ${
+                  currentView === "messages"
+                    ? "bg-blue-500 text-white shadow-lg"
+                    : "text-gray-600 hover:bg-white/60"
+                }`}
+              >
+                <div className="flex items-center space-x-3">
+                  <MessageCircle className="w-5 h-5" />
+                  <span className="font-medium">Messages</span>
+                </div>
+                <Menu className="w-4 h-4 opacity-50" />
               </motion.button>
             </div>
 
-            {/* Spacer */}
-            <div className="flex-1"></div>
-
-            {/* Account Pages Section */}
-            <div className="mt-12">
-              <div className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-6 px-4">
-                ACCOUNT PAGES
-              </div>
-
-              <div className="space-y-1">
-                {/* Profile */}
-                <motion.button
-                  whileHover={{ x: 2 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setCurrentView("profile")}
-                  className={`w-full flex items-center space-x-4 px-4 py-4 transition-all duration-200 text-left ${
-                    currentView === "profile"
-                      ? "bg-blue-100 text-blue-600 rounded-lg"
-                      : "text-gray-600 hover:bg-gray-50 rounded-lg"
-                  }`}
-                >
-                  <User className="w-6 h-6 text-gray-700" />
-                  <span className="font-normal text-base">Profile</span>
-                </motion.button>
-
-                {/* User Email Display */}
-                <div className="px-4 py-4 mt-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-sm font-medium">
-                      JD
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium text-gray-900">
-                        John Doe
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        john.doe@email.com
-                      </div>
-                    </div>
-                  </div>
+            {/* Bottom Section */}
+            <div className="mt-auto space-y-2">
+              {/* Support */}
+              <motion.button
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full flex items-center justify-between px-4 py-4 rounded-xl text-gray-600 hover:bg-white/60 transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <MessageCircle className="w-5 h-5" />
+                  <span className="font-medium">Support</span>
                 </div>
+                <Menu className="w-4 h-4 opacity-50" />
+              </motion.button>
 
-                {/* Sign Out */}
-                <motion.button
-                  whileHover={{ x: 2 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={logout}
-                  className="w-full flex items-center space-x-4 px-4 py-4 text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200 text-left"
-                >
-                  <div className="w-6 h-6 bg-orange-500 rounded-sm flex items-center justify-center">
-                    <LogOut className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="font-normal text-base">Sign Out</span>
-                </motion.button>
-              </div>
+              {/* Sign Out */}
+              <motion.button
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={logout}
+                className="w-full flex items-center justify-between px-4 py-4 rounded-xl text-gray-600 hover:bg-white/60 transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <LogOut className="w-5 h-5" />
+                  <span className="font-medium">Sign Out</span>
+                </div>
+                <Menu className="w-4 h-4 opacity-50" />
+              </motion.button>
             </div>
           </div>
         ) : (
