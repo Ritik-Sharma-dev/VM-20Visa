@@ -433,7 +433,8 @@ export default function AgentDashboard() {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 transition-all duration-200 group"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/60 transition-all duration-200 group"
+                style={{ color: "#4A4A4A" }}
                 title="Help Center"
               >
                 <HelpCircle className="w-5 h-5" />
@@ -446,7 +447,8 @@ export default function AgentDashboard() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handleLogout}
-                className="w-10 h-10 flex items-center justify-center rounded-lg text-gray-600 hover:bg-red-100 hover:text-red-600 transition-all duration-200 group"
+                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-red-100 hover:text-red-600 transition-all duration-200 group"
+                style={{ color: "#4A4A4A" }}
                 title="Logout"
               >
                 <LogOut className="w-5 h-5" />
