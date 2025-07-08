@@ -205,54 +205,238 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-cool-gray-50">
-      {/* Main Content */}
-      <div className="w-full">
-        {/* Header with Profile */}
-        <div className="sticky top-0 z-40 bg-white border-b border-cool-gray-200 px-8 py-4">
-          <div className="flex items-center justify-between mb-4">
-            {/* Left: Compact Profile */}
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
-                <div className="relative">
-                  <div className="w-10 h-10 bg-royal-blue-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">JD</span>
+    <div className="min-h-screen bg-gradient-to-br from-sage-green-50 via-sky-blue-50 to-creamy-beige-50 flex">
+      {/* Digital ID Card Sidebar */}
+      <motion.div
+        initial={false}
+        animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed left-0 top-0 h-screen bg-white/90 backdrop-blur-xl shadow-2xl z-50 overflow-hidden border-r border-white/20"
+      >
+        {/* Toggle Button */}
+        <div className="absolute -right-4 top-6 z-10">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-cool-gray-600 hover:shadow-xl transition-all duration-200 border border-white/20"
+          >
+            {sidebarCollapsed ? (
+              <ChevronRight className="w-4 h-4" />
+            ) : (
+              <ChevronLeft className="w-4 h-4" />
+            )}
+          </motion.button>
+        </div>
+
+        {!sidebarCollapsed ? (
+          /* Expanded Sidebar - Digital ID Card */
+          <div className="p-6 h-full overflow-y-auto">
+            {/* ID Card Block */}
+            <div className="glass-card p-6 rounded-2xl mb-6 bg-gradient-to-br from-sage-green-500/10 to-sky-blue-500/10">
+              {/* Profile Picture */}
+              <div className="text-center mb-4">
+                <div className="relative inline-block">
+                  <div className="w-20 h-20 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    JD
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-cool-gray-800">
-                    John Doe
-                  </h3>
-                  <p className="text-xs text-cool-gray-600">
-                    #VM2024001 • Premium
-                  </p>
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-mint-green-500 rounded-full border-3 border-white shadow-md"></div>
                 </div>
               </div>
 
-              {/* Quick Stats */}
-              <div className="hidden lg:flex items-center space-x-4 text-xs text-cool-gray-600 bg-cool-gray-50 rounded-lg px-3 py-2">
-                <div className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-royal-blue-500 rounded-full"></div>
-                  <span>2 Active</span>
+              {/* User Info */}
+              <div className="text-center mb-4">
+                <h3 className="text-lg font-bold text-cool-gray-800 mb-1">
+                  John Doe
+                </h3>
+                <p className="text-sm text-cool-gray-600 mb-2">
+                  john.doe@email.com
+                </p>
+                <p className="text-sm text-cool-gray-600 mb-2">
+                  +1 (555) 123-4567
+                </p>
+                <p className="text-sm text-cool-gray-600 mb-3">United States</p>
+
+                {/* Visa Goal */}
+                <div className="inline-flex items-center px-3 py-1 bg-sage-green-100 text-sage-green-700 rounded-full text-sm font-medium mb-3">
+                  🎯 Permanent Residence
                 </div>
-                <div className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>20 Proposals</span>
+
+                {/* Status Badge */}
+                <div className="inline-flex items-center px-3 py-1 bg-mint-green-100 text-mint-green-700 rounded-full text-sm font-medium">
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Verified
                 </div>
-                <div className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                  <span>2 In Progress</span>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between text-sm mb-2">
+                  <span className="text-cool-gray-600">Profile Completion</span>
+                  <span className="font-semibold text-sage-green-600">85%</span>
                 </div>
+                <div className="w-full bg-cool-gray-200 rounded-full h-2">
+                  <div
+                    className="bg-gradient-to-r from-sage-green-500 to-mint-green-500 h-2 rounded-full transition-all duration-500"
+                    style={{ width: "85%" }}
+                  />
+                </div>
+              </div>
+
+              {/* Edit Profile Button */}
+              <Button
+                onClick={() => setCurrentView("profile")}
+                variant="outline"
+                size="sm"
+                className="w-full text-sage-green-700 border-sage-green-200 hover:bg-sage-green-50"
+              >
+                <Edit className="w-4 h-4 mr-2" />
+                Edit Profile
+              </Button>
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="space-y-2">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("my-bio")}
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sage-green-50 transition-all duration-200 text-left group"
+              >
+                <User className="w-5 h-5 text-sage-green-600" />
+                <span className="font-medium text-cool-gray-700">
+                  My Bio / About Me
+                </span>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("document-center")}
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sky-blue-50 transition-all duration-200 text-left group"
+              >
+                <Upload className="w-5 h-5 text-sky-blue-600" />
+                <span className="font-medium text-cool-gray-700">
+                  Uploaded Documents
+                </span>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("request-history")}
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-creamy-beige-50 transition-all duration-200 text-left group"
+              >
+                <FileText className="w-5 h-5 text-cool-gray-600" />
+                <span className="font-medium text-cool-gray-700">
+                  Request History
+                </span>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("settings")}
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-mint-green-50 transition-all duration-200 text-left group"
+              >
+                <Settings className="w-5 h-5 text-mint-green-600" />
+                <span className="font-medium text-cool-gray-700">Settings</span>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("messages")}
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sky-blue-50 transition-all duration-200 text-left group relative"
+              >
+                <MessageCircle className="w-5 h-5 text-sky-blue-600" />
+                <span className="font-medium text-cool-gray-700">Messages</span>
+                <Badge className="bg-red-500 text-white text-xs ml-auto">
+                  5
+                </Badge>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={logout}
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-red-50 transition-all duration-200 text-left group"
+              >
+                <LogOut className="w-5 h-5 text-red-500" />
+                <span className="font-medium text-red-600">Logout</span>
+              </motion.button>
+            </div>
+          </div>
+        ) : (
+          /* Collapsed Sidebar - Mini Icons */
+          <div className="p-4 h-full overflow-y-auto">
+            <div className="text-center mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-xl flex items-center justify-center text-white text-lg font-bold mx-auto">
+                JD
               </div>
             </div>
 
-            {/* Center: Page Title */}
-            <div className="flex-1 text-center">
-              <h1 className="text-xl font-heading font-bold text-cool-gray-800">
-                {tabItems.find((tab) => tab.id === currentView)?.label ||
-                  "Dashboard"}
+            <div className="space-y-3">
+              {[
+                {
+                  icon: User,
+                  action: () => setCurrentView("my-bio"),
+                  tooltip: "My Bio",
+                },
+                {
+                  icon: Upload,
+                  action: () => setCurrentView("document-center"),
+                  tooltip: "Documents",
+                },
+                {
+                  icon: FileText,
+                  action: () => setCurrentView("request-history"),
+                  tooltip: "History",
+                },
+                {
+                  icon: Settings,
+                  action: () => setCurrentView("settings"),
+                  tooltip: "Settings",
+                },
+                {
+                  icon: MessageCircle,
+                  action: () => setCurrentView("messages"),
+                  tooltip: "Messages",
+                },
+                { icon: LogOut, action: logout, tooltip: "Logout" },
+              ].map((item, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={item.action}
+                  className="w-full h-12 flex items-center justify-center rounded-xl hover:bg-white/50 transition-all duration-200 group relative"
+                  title={item.tooltip}
+                >
+                  <item.icon className="w-5 h-5 text-cool-gray-600" />
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        )}
+      </motion.div>
+
+      {/* Main Content */}
+      <div
+        className="flex-1 transition-all duration-300"
+        style={{ marginLeft: sidebarCollapsed ? "80px" : "320px" }}
+      >
+        {/* Header */}
+        <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-white/20 px-8 py-4">
+          <div className="flex items-center justify-between mb-4">
+            {/* Left: Hello Message */}
+            <div>
+              <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
+                Hello, John Doe! 👋
               </h1>
+              <p className="text-sm text-cool-gray-600">
+                Welcome back to your immigration dashboard
+              </p>
             </div>
 
             {/* Right: Actions */}
