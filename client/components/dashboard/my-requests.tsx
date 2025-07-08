@@ -522,6 +522,17 @@ export function MyRequests() {
                   <Eye className="w-4 h-4 mr-2" />
                   View
                 </Button>
+                {request.proposalCount > 0 && (
+                  <Button
+                    onClick={() => handleViewProposals(request.id)}
+                    variant="outline"
+                    size="sm"
+                    className="group bg-royal-blue-50 border-royal-blue-200 text-royal-blue-700 hover:bg-royal-blue-100"
+                  >
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    View Proposals ({request.proposalCount})
+                  </Button>
+                )}
                 <Button variant="outline" size="sm" className="group">
                   <Edit className="w-4 h-4 mr-2" />
                   Edit
