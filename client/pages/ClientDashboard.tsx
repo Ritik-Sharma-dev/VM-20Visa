@@ -89,7 +89,6 @@ export default function ClientDashboard() {
         // Only restore if less than 24 hours old
         if (timeDiff < 24 * 60 * 60 * 1000) {
           setCurrentView(state.currentView);
-          setSidebarCollapsed(state.sidebarCollapsed);
         }
       } catch (error) {
         console.error("Failed to restore dashboard state:", error);
