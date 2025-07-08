@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import {
   Star,
   ThumbsUp,
-  ThumbsDown,
   MessageCircle,
-  Calendar,
   CheckCircle,
   Award,
-  TrendingUp,
   Edit3,
   Send,
 } from "lucide-react";
@@ -26,7 +22,6 @@ interface Review {
   reviewText: string;
   agentResponse?: string;
   completedDate: Date;
-  status: "pending" | "completed";
   helpful: number;
   categories: {
     communication: number;
@@ -37,9 +32,7 @@ interface Review {
 }
 
 export function RatingsReviews() {
-  const [selectedReview, setSelectedReview] = useState<number | null>(null);
   const [newReview, setNewReview] = useState({
-    agentId: null,
     rating: 0,
     text: "",
     categories: {
@@ -63,7 +56,6 @@ export function RatingsReviews() {
       agentResponse:
         "Thank you John! It was a pleasure working with you on your Canadian PR application. Congratulations on your successful approval!",
       completedDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-      status: "completed",
       helpful: 12,
       categories: {
         communication: 5,
@@ -81,33 +73,12 @@ export function RatingsReviews() {
       reviewText:
         "James was very knowledgeable about UK immigration policies. The process took a bit longer than expected, but he kept me informed throughout. Great expertise in student visas.",
       completedDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
-      status: "completed",
       helpful: 8,
       categories: {
         communication: 4,
         expertise: 5,
         timeliness: 3,
         professionalism: 4,
-      },
-    },
-    {
-      id: 3,
-      agentName: "Maria Rodriguez",
-      agentAvatar: "👩‍⚖️",
-      project: "US Investment Visa",
-      rating: 5,
-      reviewText:
-        "Outstanding legal expertise! Maria's deep knowledge of EB-5 requirements and her strategic approach helped secure my investment visa successfully. Worth every penny!",
-      agentResponse:
-        "Thank you for the wonderful review! Your investment project was well-prepared, which made the process smooth. Best wishes for your new venture in the US!",
-      completedDate: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
-      status: "completed",
-      helpful: 15,
-      categories: {
-        communication: 5,
-        expertise: 5,
-        timeliness: 4,
-        professionalism: 5,
       },
     },
   ];
@@ -119,29 +90,8 @@ export function RatingsReviews() {
       agentAvatar: "👨‍💻",
       project: "Australia Work Visa",
       completedDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-      status: "pending" as const,
     },
   ];
-
-  const averageRating =
-    reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
-
-  const categoryAverages = {
-    communication:
-      reviews.reduce((acc, review) => acc + review.categories.communication, 0) /
-      reviews.length,
-    expertise:
-      reviews.reduce((acc, review) => acc + review.categories.expertise, 0) /
-      reviews.length,
-    timeliness:
-      reviews.reduce((acc, review) => acc + review.categories.timeliness, 0) /
-      reviews.length,
-    professionalism:
-      reviews.reduce(
-        (acc, review) => acc + review.categories.professionalism,
-        0,
-      ) / reviews.length,
-  };
 
   const StarRating = ({ rating, onRate, readonly = true, size = "sm" }) => {
     return (
@@ -168,22 +118,6 @@ export function RatingsReviews() {
         ))}
       </div>
     );
-  };
-
-  const submitNewReview = () => {
-    console.log("Submitting review:", newReview);
-    setShowNewReview(false);
-    setNewReview({
-      agentId: null,
-      rating: 0,
-      text: "",
-      categories: {
-        communication: 0,
-        expertise: 0,
-        timeliness: 0,
-        professionalism: 0,
-      },
-    });
   };
 
   return (
@@ -214,53 +148,6 @@ export function RatingsReviews() {
             </Badge>
           )}
         </div>
-      </motion.div>
-
-      {/* Overview Stats */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.6 }}
-        className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-      >
-        {/* Average Rating */}
-        <div className="glass-card p-6 rounded-2xl text-center">
-          <div className="w-16 h-16 bg-gradient-royal rounded-full flex items-center justify-center mx-auto mb-4">
-            <Star className="w-8 h-8 text-white fill-current" />
-          </div>
-          <div className="text-3xl font-heading font-bold text-cool-gray-800 mb-1">
-            {averageRating.toFixed(1)}
-          </div>
-          <p className="text-sm text-cool-gray-600">Average Rating</p>
-          <StarRating rating={Math.round(averageRating)} readonly />
-        </div>
-
-        {/* Category Averages */}
-        {Object.entries(categoryAverages).map(([category, avg], index) => (
-          <div
-            key={category}
-            className="glass-card p-6 rounded-2xl text-center"
-          >
-            <div className="w-16 h-16 bg-gradient-sage rounded-full flex items-center justify-center mx-auto mb-4">
-              {category === "communication" && (
-                <MessageCircle className="w-8 h-8 text-white" />
-              )}
-              {category === "expertise" && (
-                <Award className="w-8 h-8 text-white" />
-              )}
-              {category === "timeliness" && (
-                <Calendar className="w-8 h-8 text-white" />
-              )}
-              {category === "professionalism" && (
-                <CheckCircle className="w-8 h-8 text-white" />
-              )}
-            </div>
-            <div className="text-2xl font-heading font-bold text-cool-gray-800 mb-1">
-              {avg.toFixed(1)}
-            </div>
-            <p className="text-sm text-cool-gray-600 capitalize">{category}</p>
-          </div>
-        ))}
       </motion.div>
 
       {/* Pending Reviews */}
@@ -403,10 +290,6 @@ export function RatingsReviews() {
                   <ThumbsUp className="w-4 h-4" />
                   <span>Helpful ({review.helpful})</span>
                 </button>
-                <button className="flex items-center space-x-1 hover:text-cool-gray-800 transition-colors">
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Reply</span>
-                </button>
               </div>
 
               <Badge className="bg-sage-green-100 text-sage-green-700">
@@ -415,7 +298,7 @@ export function RatingsReviews() {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* New Review Modal */}
       {showNewReview && (
@@ -456,37 +339,6 @@ export function RatingsReviews() {
                 </div>
               </div>
 
-              {/* Category Ratings */}
-              <div>
-                <label className="block text-sm font-medium text-cool-gray-700 mb-3">
-                  Rate by Category
-                </label>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {Object.entries(newReview.categories).map(
-                    ([category, rating]) => (
-                      <div key={category}>
-                        <p className="text-sm text-cool-gray-600 capitalize mb-2">
-                          {category}
-                        </p>
-                        <StarRating
-                          rating={rating}
-                          onRate={(newRating) =>
-                            setNewReview((prev) => ({
-                              ...prev,
-                              categories: {
-                                ...prev.categories,
-                                [category]: newRating,
-                              },
-                            }))
-                          }
-                          readonly={false}
-                        />
-                      </div>
-                    ),
-                  )}
-                </div>
-              </div>
-
               {/* Review Text */}
               <div>
                 <label className="block text-sm font-medium text-cool-gray-700 mb-3">
@@ -507,7 +359,7 @@ export function RatingsReviews() {
               <div className="flex space-x-4 pt-6">
                 <Button
                   variant="premium"
-                  onClick={submitNewReview}
+                  onClick={() => setShowNewReview(false)}
                   disabled={newReview.rating === 0}
                   className="flex-1"
                 >
