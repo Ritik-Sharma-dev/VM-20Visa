@@ -56,23 +56,11 @@ export default function Login() {
 
     if (!validateForm()) return;
 
-    setIsLoading(true);
-
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Handle successful login based on user type
-      console.log("Login successful:", { ...formData, userType });
-
-      // Redirect logic would go here
-      alert(
-        `Login successful as ${userType}! Redirecting to ${userType} dashboard...`,
-      );
+      await login(formData.email, formData.password, userType);
     } catch (error) {
       console.error("Login failed:", error);
-    } finally {
-      setIsLoading(false);
+      alert("Login failed. Please check your credentials and try again.");
     }
   };
 
