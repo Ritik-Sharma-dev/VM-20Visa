@@ -368,7 +368,7 @@ export default function ClientDashboard() {
               </Button>
 
               {/* Profile Dropdown */}
-              <div className="relative">
+              <div className="relative profile-dropdown">
                 <button
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                   className="flex items-center space-x-2 p-2 rounded-xl hover:bg-cool-gray-50 transition-colors"
