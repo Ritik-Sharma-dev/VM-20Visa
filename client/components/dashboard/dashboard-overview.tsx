@@ -254,7 +254,7 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => handleNavigation("applications")}
+                onClick={() => onNavigate("applications")}
               >
                 View All
               </Button>
