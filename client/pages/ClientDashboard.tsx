@@ -157,8 +157,12 @@ export default function ClientDashboard() {
         return <ProgressTracker />;
       case "documents":
         return <DocumentUpload />;
+      case "browse-agents":
+        return <BrowseAgentsFiltered />;
       case "chat":
         return <MessagingPanel />;
+      case "profile":
+        return <UserProfile />;
       default:
         return <DashboardOverview onNavigate={setCurrentView} />;
     }
