@@ -27,7 +27,7 @@ export default function Login() {
     password: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(false);
+  const { login, isLoading } = useAuth();
 
   const userTypes = [
     { value: "client", label: "Client", icon: Users },
