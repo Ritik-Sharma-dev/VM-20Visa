@@ -389,56 +389,76 @@ export default function ClientDashboard() {
 
       {/* Main Content */}
       <div
-        className={cn(
-          "flex-1 transition-all duration-300",
-          sidebarCollapsed ? "ml-20" : "ml-70",
-        )}
-        style={{ marginLeft: sidebarCollapsed ? "80px" : "280px" }}
+        className="flex-1 transition-all duration-300"
+        style={{ marginLeft: sidebarCollapsed ? "80px" : "320px" }}
       >
         {/* Top Navigation Pills */}
-        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
-              User Dashboard
-            </h1>
+        <div className="sticky top-0 z-40 bg-white border-b border-cool-gray-200 px-8 py-6">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-2xl font-heading font-bold text-cool-gray-800 mb-1">
+                {tabItems.find((tab) => tab.id === currentView)?.label ||
+                  "Dashboard"}
+              </h1>
+              <p className="text-cool-gray-600">
+                {currentView === "overview" &&
+                  "Dashboard with stats, recent activity, and upcoming deadlines"}
+                {currentView === "my-requests" &&
+                  "Shows all visa requests with status tracking"}
+                {currentView === "proposals" &&
+                  "Displays received proposals with accept/decline options"}
+                {currentView === "applications" &&
+                  "Shows pending applications with progress tracking"}
+                {currentView === "documents" &&
+                  "Document management with upload functionality"}
+                {currentView === "chat" &&
+                  "Real-time chat interface with agents"}
+              </p>
+            </div>
 
             <div className="flex items-center space-x-4">
-              {/* Search */}
-              <div className="relative">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-cool-gray-500" />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="pl-10 pr-4 py-2 bg-white/60 border border-white/30 rounded-xl focus:ring-2 focus:ring-royal-blue-500 focus:border-royal-blue-500 text-sm backdrop-blur-sm"
-                />
+              {/* Notifications */}
+              <Button variant="outline" size="sm" className="relative">
+                <Bell className="w-4 h-4" />
+                <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs min-w-5 h-5 rounded-full flex items-center justify-center">
+                  3
+                </Badge>
+              </Button>
+
+              {/* Profile Menu */}
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">JD</span>
+                </div>
+                <ChevronLeft className="w-4 h-4 text-cool-gray-400 rotate-90" />
               </div>
             </div>
           </div>
 
-          {/* Pill Navigation */}
-          <div className="flex items-center space-x-2 overflow-x-auto pb-2">
+          {/* Enhanced Pill Navigation */}
+          <div className="flex items-center justify-between bg-cool-gray-50 rounded-2xl p-2">
             {tabItems.map((tab) => (
               <motion.button
                 key={tab.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView(tab.id as DashboardView)}
                 className={cn(
-                  "flex items-center space-x-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200 whitespace-nowrap relative",
+                  "flex items-center justify-center space-x-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex-1 relative",
                   currentView === tab.id
-                    ? "bg-gradient-royal text-white shadow-lg"
-                    : "bg-white/60 text-cool-gray-700 hover:bg-white/80 hover:text-royal-blue-700 backdrop-blur-sm",
+                    ? "bg-white text-cool-gray-900 shadow-md"
+                    : "text-cool-gray-600 hover:text-cool-gray-900 hover:bg-white/50",
                 )}
               >
                 <tab.icon className="w-4 h-4" />
-                <span>{tab.label}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
                 {tab.badge && (
                   <Badge
                     className={cn(
-                      "text-xs ml-2",
+                      "text-xs",
                       currentView === tab.id
-                        ? "bg-white/20 text-white"
-                        : "bg-royal-blue-100 text-royal-blue-700",
+                        ? "bg-green-500 text-white"
+                        : "bg-cool-gray-200 text-cool-gray-700",
                     )}
                   >
                     {tab.badge}
