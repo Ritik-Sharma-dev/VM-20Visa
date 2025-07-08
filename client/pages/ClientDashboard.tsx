@@ -131,7 +131,7 @@ export default function ClientDashboard() {
   const renderContent = () => {
     switch (currentView) {
       case "overview":
-        return <DashboardOverview />;
+        return <DashboardOverview onNavigate={setCurrentView} />;
       case "my-requests":
         return <MyRequests />;
       case "proposals":
@@ -143,7 +143,7 @@ export default function ClientDashboard() {
       case "chat":
         return <MessagingPanel />;
       default:
-        return <DashboardOverview />;
+        return <DashboardOverview onNavigate={setCurrentView} />;
     }
   };
 
