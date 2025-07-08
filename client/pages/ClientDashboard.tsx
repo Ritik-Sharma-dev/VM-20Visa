@@ -100,6 +100,24 @@ export default function ClientDashboard() {
     }
   }, []);
 
+  // Click outside handler for profile dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".profile-dropdown")) {
+        setShowProfileDropdown(false);
+      }
+    };
+
+    if (showProfileDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showProfileDropdown]);
+
   const tabItems = [
     {
       id: "overview",
