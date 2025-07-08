@@ -148,12 +148,12 @@ export default function ClientDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex">
-      {/* Streamlined Sidebar */}
+      {/* Enhanced Sidebar */}
       <motion.div
         initial={false}
-        animate={{ width: sidebarCollapsed ? "80px" : "280px" }}
+        animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-gradient-to-b from-royal-blue-900 via-royal-blue-700 to-sage-green-600 z-50 overflow-hidden border-r border-white/20"
+        className="fixed left-0 top-0 h-screen bg-white shadow-2xl z-50 overflow-hidden border-r border-cool-gray-200"
       >
         {/* Toggle Button */}
         <div className="absolute -right-4 top-6 z-10">
@@ -161,7 +161,7 @@ export default function ClientDashboard() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="w-8 h-8 bg-gradient-royal rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-all duration-200"
+            className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-cool-gray-600 hover:shadow-xl transition-all duration-200 border border-cool-gray-200"
           >
             {sidebarCollapsed ? (
               <ChevronRight className="w-4 h-4" />
@@ -171,136 +171,218 @@ export default function ClientDashboard() {
           </motion.button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden p-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowMobileSidebar(!showMobileSidebar)}
-            className="text-white"
-          >
-            <Menu className="w-5 h-5" />
-          </Button>
-        </div>
-
-        {/* Sidebar Content */}
-        <div className="p-6 text-white">
-          {/* Logo */}
-          <div className="flex items-center space-x-3 mb-8">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-              <Globe className="w-5 h-5 text-white" />
+        {/* Sidebar Header */}
+        <div className="p-6 border-b border-cool-gray-100">
+          <div className="flex items-center space-x-3 mb-4">
+            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+              <Users className="w-5 h-5 text-white" />
             </div>
             {!sidebarCollapsed && (
               <div>
-                <h1 className="text-xl font-heading font-bold text-white">
-                  VM Visa
-                </h1>
-                <p className="text-xs text-sky-blue-200">Client Portal</p>
+                <h1 className="text-lg font-bold text-cool-gray-800">Client</h1>
+                <p className="text-sm text-cool-gray-600">Dashboard</p>
               </div>
             )}
           </div>
+        </div>
 
-          {/* User Profile */}
-          <div className="mb-8">
-            <div className="flex items-center space-x-3 p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
-              <div className="w-12 h-12 bg-gradient-sage rounded-full flex items-center justify-center">
-                <User className="w-6 h-6 text-white" />
-              </div>
-              {!sidebarCollapsed && (
-                <div>
-                  <h3 className="font-semibold text-white">John Doe</h3>
-                  <p className="text-sm text-sky-blue-200">Premium Client</p>
-                  <Badge className="bg-gold-500 text-white text-xs mt-1">
-                    Verified
-                  </Badge>
+        {/* User Profile Section */}
+        <div className="p-6 border-b border-cool-gray-100">
+          {!sidebarCollapsed ? (
+            <div className="text-center">
+              {/* Profile Image */}
+              <div className="relative inline-block mb-4">
+                <div className="w-20 h-20 bg-cool-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+                  <User className="w-8 h-8 text-cool-gray-500" />
                 </div>
-              )}
-            </div>
-          </div>
+                <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
+              </div>
 
-          {/* Quick Actions */}
-          <div className="space-y-3">
+              {/* User Info */}
+              <h3 className="text-xl font-bold text-cool-gray-800 mb-1">
+                John Doe
+              </h3>
+              <p className="text-sm text-cool-gray-600 mb-3">
+                Client ID: #VM2024001
+              </p>
+              <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+                <CheckCircle className="w-4 h-4 mr-1" />
+                Verified Member
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-cool-gray-800">2</div>
+                  <div className="text-sm text-cool-gray-600">
+                    Active Requests
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">20</div>
+                  <div className="text-sm text-cool-gray-600">Proposals</div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">2</div>
+                  <div className="text-sm text-cool-gray-600">In Progress</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-amber-600">1</div>
+                  <div className="text-sm text-cool-gray-600">Completed</div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center">
+              <div className="w-12 h-12 bg-cool-gray-200 rounded-full flex items-center justify-center mx-auto">
+                <User className="w-6 h-6 text-cool-gray-500" />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Dashboard Sections */}
+        <div className="p-6">
+          {!sidebarCollapsed && (
+            <h4 className="text-sm font-semibold text-cool-gray-800 mb-4 uppercase tracking-wide">
+              Dashboard Sections
+            </h4>
+          )}
+
+          <div className="space-y-2">
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setCurrentView("overview")}
+              className={cn(
+                "w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200",
+                currentView === "overview"
+                  ? "bg-green-500 text-white shadow-lg"
+                  : "text-cool-gray-700 hover:bg-cool-gray-50",
+              )}
+              title={sidebarCollapsed ? "Overview" : undefined}
+            >
+              <BarChart3 className="w-5 h-5" />
+              {!sidebarCollapsed && (
+                <span className="font-medium">Overview</span>
+              )}
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setCurrentView("my-requests")}
-              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200 group"
-              title={sidebarCollapsed ? "New Request" : undefined}
+              className={cn(
+                "w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200",
+                currentView === "my-requests"
+                  ? "bg-green-500 text-white shadow-lg"
+                  : "text-cool-gray-700 hover:bg-cool-gray-50",
+              )}
+              title={sidebarCollapsed ? "My Requests" : undefined}
             >
-              <div className="flex items-center space-x-3">
-                <Plus className="w-5 h-5 text-gold-400" />
-                {!sidebarCollapsed && (
-                  <span className="font-medium">New Request</span>
-                )}
-              </div>
+              <FileText className="w-5 h-5" />
+              {!sidebarCollapsed && (
+                <span className="font-medium">My Requests</span>
+              )}
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200 relative group"
-              title={sidebarCollapsed ? "Messages" : undefined}
+              onClick={() => setCurrentView("proposals")}
+              className={cn(
+                "w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200",
+                currentView === "proposals"
+                  ? "bg-green-500 text-white shadow-lg"
+                  : "text-cool-gray-700 hover:bg-cool-gray-50",
+              )}
+              title={sidebarCollapsed ? "Proposals" : undefined}
             >
-              <div className="flex items-center space-x-3">
-                <MessageCircle className="w-5 h-5 text-mint-green-400" />
-                {!sidebarCollapsed && (
-                  <span className="font-medium">Messages</span>
-                )}
-                <Badge className="bg-red-500 text-white text-xs ml-auto">
-                  5
-                </Badge>
-              </div>
+              <MessageCircle className="w-5 h-5" />
+              {!sidebarCollapsed && (
+                <span className="font-medium">Proposals</span>
+              )}
             </motion.button>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200 relative group"
-              title={sidebarCollapsed ? "Notifications" : undefined}
+              onClick={() => setCurrentView("applications")}
+              className={cn(
+                "w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200",
+                currentView === "applications"
+                  ? "bg-green-500 text-white shadow-lg"
+                  : "text-cool-gray-700 hover:bg-cool-gray-50",
+              )}
+              title={sidebarCollapsed ? "Applications" : undefined}
             >
-              <div className="flex items-center space-x-3">
-                <Bell className="w-5 h-5 text-sky-blue-400" />
-                {!sidebarCollapsed && (
-                  <span className="font-medium">Notifications</span>
-                )}
-                <Badge className="bg-red-500 text-white text-xs ml-auto">
-                  3
-                </Badge>
-              </div>
+              <CheckCircle className="w-5 h-5" />
+              {!sidebarCollapsed && (
+                <span className="font-medium">Applications</span>
+              )}
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setCurrentView("documents")}
+              className={cn(
+                "w-full flex items-center space-x-3 p-3 rounded-xl transition-all duration-200",
+                currentView === "documents"
+                  ? "bg-green-500 text-white shadow-lg"
+                  : "text-cool-gray-700 hover:bg-cool-gray-50",
+              )}
+              title={sidebarCollapsed ? "Documents" : undefined}
+            >
+              <Upload className="w-5 h-5" />
+              {!sidebarCollapsed && (
+                <span className="font-medium">Documents</span>
+              )}
             </motion.button>
           </div>
 
-          {/* Settings & Logout */}
-          <div className="absolute bottom-6 left-6 right-6 space-y-3">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl backdrop-blur-sm transition-all duration-200"
-              title={sidebarCollapsed ? "Settings" : undefined}
-            >
+          {/* Contact Information */}
+          {!sidebarCollapsed && (
+            <div className="mt-8 pt-6 border-t border-cool-gray-100 space-y-3 text-sm text-cool-gray-600">
               <div className="flex items-center space-x-3">
-                <Settings className="w-5 h-5 text-creamy-beige-300" />
-                {!sidebarCollapsed && (
-                  <span className="font-medium">Settings</span>
-                )}
+                <MessageCircle className="w-4 h-4" />
+                <span>john.doe@email.com</span>
               </div>
-            </motion.button>
+              <div className="flex items-center space-x-3">
+                <User className="w-4 h-4" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Globe className="w-4 h-4" />
+                <span>United States</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Calendar className="w-4 h-4" />
+                <span>Member since Jan 2024</span>
+              </div>
+            </div>
+          )}
 
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full p-3 bg-white/10 hover:bg-red-500/20 rounded-xl backdrop-blur-sm transition-all duration-200 group"
-              title={sidebarCollapsed ? "Logout" : undefined}
+          {/* Action Buttons */}
+          <div className="mt-8 space-y-3">
+            {!sidebarCollapsed && (
+              <Button className="w-full bg-cool-gray-100 text-cool-gray-700 hover:bg-cool-gray-200">
+                <Eye className="w-4 h-4 mr-2" />
+                View Documents
+              </Button>
+            )}
+
+            <Button
+              onClick={() => setCurrentView("my-requests")}
+              className="w-full bg-green-500 hover:bg-green-600 text-white"
+              title={sidebarCollapsed ? "Post New Request" : undefined}
             >
-              <div className="flex items-center space-x-3">
-                <LogOut className="w-5 h-5 text-red-400 group-hover:text-red-300" />
-                {!sidebarCollapsed && (
-                  <span className="font-medium group-hover:text-red-300">
-                    Logout
-                  </span>
-                )}
-              </div>
-            </motion.button>
+              <Plus className="w-4 h-4 mr-2" />
+              {!sidebarCollapsed && "Post New Request"}
+            </Button>
           </div>
         </div>
       </motion.div>
