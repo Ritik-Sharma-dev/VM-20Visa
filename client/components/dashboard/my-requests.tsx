@@ -41,6 +41,10 @@ export function MyRequests() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showProposals, setShowProposals] = useState(false);
+  const [selectedRequestId, setSelectedRequestId] = useState<string | null>(
+    null,
+  );
 
   // Mock data for pending requests
   const mockRequests: VisaRequest[] = [
