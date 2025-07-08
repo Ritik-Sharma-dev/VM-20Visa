@@ -238,8 +238,6 @@ export default function ClientDashboard() {
             </div>
 
             {/* Right: Actions */}
-            <div className="flex items-center space-x-3">
-
             <div className="flex items-center space-x-4">
               {/* Notifications */}
               <Button variant="outline" size="sm" className="relative">
