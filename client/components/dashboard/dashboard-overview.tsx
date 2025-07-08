@@ -322,7 +322,12 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
                   key={index}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={action.action}
+                  onClick={() => {
+                    setClickedAction(index);
+                    action.action();
+                    // Reset the glow after 2 seconds
+                    setTimeout(() => setClickedAction(null), 2000);
+                  }}
                   className="w-full p-4 bg-white/20 hover:bg-white/30 rounded-2xl border border-white/20 transition-all duration-200 group"
                 >
                   <div className="flex items-center space-x-4">
@@ -337,9 +342,13 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
                         {action.description}
                       </p>
                     </div>
-                    {/* Themed Badge */}
+                    {/* Themed Badge with Blue Glow Effect */}
                     <div
-                      className={`w-8 h-8 bg-gradient-to-br ${action.color} rounded-lg flex items-center justify-center shadow-md`}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center shadow-md transition-all duration-300 ${
+                        clickedAction === index
+                          ? "bg-gradient-to-br from-royal-blue-500 to-royal-blue-600 shadow-lg shadow-royal-blue-500/50 ring-2 ring-royal-blue-400 ring-opacity-75"
+                          : `bg-gradient-to-br ${action.color}`
+                      }`}
                     >
                       <span className="text-white font-bold text-xs">
                         {index === 0
