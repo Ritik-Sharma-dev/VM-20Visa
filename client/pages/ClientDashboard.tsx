@@ -210,8 +210,8 @@ export default function ClientDashboard() {
       {/* Main Content - Full Width */}
       <div className="w-full">
         {/* Header */}
-        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 px-8 py-4">
-          <div className="flex items-center justify-between mb-4">
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 px-6 py-2">
+          <div className="flex items-center justify-between mb-2">
             {/* Left: Hello Message */}
             <div>
               <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
