@@ -426,7 +426,7 @@ export default function ClientDashboard() {
         style={{ marginLeft: sidebarCollapsed ? "80px" : "320px" }}
       >
         {/* Header */}
-        <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-white/20 px-8 py-4">
+        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 px-8 py-4">
           <div className="flex items-center justify-between mb-4">
             {/* Left: Hello Message */}
             <div>
