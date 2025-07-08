@@ -38,6 +38,9 @@ import { AIAssistant } from "@/components/dashboard/ai-assistant";
 import { DashboardOverview } from "@/components/dashboard/dashboard-overview";
 import { FloatingAIAssistant } from "@/components/dashboard/floating-ai-assistant";
 import { RatingsReviews } from "@/components/dashboard/ratings-reviews";
+import { BrowseAgentsFiltered } from "@/components/dashboard/browse-agents-filtered";
+import { UserProfile } from "@/components/dashboard/user-profile";
+import { useAuth } from "@/components/auth/auth-context";
 
 type DashboardView =
   | "overview"
@@ -45,7 +48,9 @@ type DashboardView =
   | "proposals"
   | "applications"
   | "documents"
-  | "chat";
+  | "chat"
+  | "browse-agents"
+  | "profile";
 
 export default function ClientDashboard() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
