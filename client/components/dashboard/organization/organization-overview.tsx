@@ -391,13 +391,8 @@ export function OrganizationOverview() {
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={performanceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#D9D9D9" />
-                <XAxis
-                  dataKey="month"
-                  stroke="#666666"
-                  fontSize={12}
-                  tickLine={false}
-                />
-                <YAxis stroke="#666666" fontSize={12} tickLine={false} />
+                <XAxis dataKey="month" stroke="#666666" fontSize={12} />
+                <YAxis stroke="#666666" fontSize={12} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "white",
