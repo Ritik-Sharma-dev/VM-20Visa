@@ -247,27 +247,25 @@ export default function ClientDashboard() {
 
               {/* User Info */}
               <div className="text-center mb-4">
-                <h3 className="text-lg font-bold text-cool-gray-800 mb-1">
-                  John Doe
-                </h3>
-                <p className="text-sm text-cool-gray-600 mb-2">
+                <h3 className="text-lg font-bold text-white mb-1">John Doe</h3>
+                <p className="text-sm text-sky-blue-200 mb-2">
                   john.doe@email.com
                 </p>
-                <p className="text-sm text-cool-gray-600 mb-2">
+                <p className="text-sm text-sky-blue-200 mb-2">
                   +1 (555) 123-4567
                 </p>
-                <p className="text-sm text-cool-gray-600 mb-3">United States</p>
+                <p className="text-sm text-sky-blue-200 mb-3">United States</p>
 
                 {/* Visa Goal */}
-                <div className="inline-flex items-center px-3 py-1 bg-sage-green-100 text-sage-green-700 rounded-full text-sm font-medium mb-3">
+                <div className="inline-flex items-center px-3 py-1 bg-gold-500 text-white rounded-full text-sm font-medium mb-3">
                   🎯 Permanent Residence
                 </div>
 
                 {/* Status Badge */}
-                <div className="inline-flex items-center px-3 py-1 bg-mint-green-100 text-mint-green-700 rounded-full text-sm font-medium">
+                <Badge className="bg-gold-500 text-white text-sm">
                   <CheckCircle className="w-4 h-4 mr-1" />
                   Verified
-                </div>
+                </Badge>
               </div>
 
               {/* Progress Bar */}
