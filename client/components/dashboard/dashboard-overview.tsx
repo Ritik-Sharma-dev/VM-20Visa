@@ -49,14 +49,6 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
       color: "from-gold-500 to-sandstone-400",
       trend: "neutral",
     },
-    {
-      label: "Success Rate",
-      value: "98%",
-      change: "Above average",
-      icon: Award,
-      color: "from-royal-blue-600 to-royal-blue-500",
-      trend: "up",
-    },
   ];
 
   const recentActivity = [
