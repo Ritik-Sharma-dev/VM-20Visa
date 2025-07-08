@@ -409,10 +409,10 @@ export default function ClientDashboard() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={item.action}
-                  className="w-full h-12 flex items-center justify-center rounded-xl hover:bg-white/50 transition-all duration-200 group relative"
+                  className="w-full h-12 flex items-center justify-center rounded-xl hover:bg-white/20 transition-all duration-200 group relative"
                   title={item.tooltip}
                 >
-                  <item.icon className="w-5 h-5 text-cool-gray-600" />
+                  <item.icon className="w-5 h-5 text-white" />
                 </motion.button>
               ))}
             </div>
