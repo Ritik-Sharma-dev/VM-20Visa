@@ -82,6 +82,7 @@ export default function ClientDashboard() {
         "vm-visa-dashboard-state",
         JSON.stringify({
           currentView,
+          sidebarCollapsed,
           timestamp: Date.now(),
         }),
       );
@@ -89,7 +90,7 @@ export default function ClientDashboard() {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [currentView]);
+  }, [currentView, sidebarCollapsed]);
 
   // Restore saved state
   useEffect(() => {
@@ -102,6 +103,7 @@ export default function ClientDashboard() {
         // Only restore if less than 24 hours old
         if (timeDiff < 24 * 60 * 60 * 1000) {
           setCurrentView(state.currentView);
+          setSidebarCollapsed(state.sidebarCollapsed || false);
         }
       } catch (error) {
         console.error("Failed to restore dashboard state:", error);
