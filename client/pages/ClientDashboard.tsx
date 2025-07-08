@@ -25,6 +25,7 @@ import {
   MessageCircle,
   Menu,
   Eye,
+  Edit,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
