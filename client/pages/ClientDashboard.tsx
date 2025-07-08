@@ -300,10 +300,10 @@ export default function ClientDashboard() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("my-bio")}
-                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sage-green-50 transition-all duration-200 text-left group"
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 text-left group"
               >
-                <User className="w-5 h-5 text-sage-green-600" />
-                <span className="font-medium text-cool-gray-700">
+                <User className="w-5 h-5 text-gold-400" />
+                <span className="font-medium text-white">
                   My Bio / About Me
                 </span>
               </motion.button>
@@ -312,10 +312,10 @@ export default function ClientDashboard() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("document-center")}
-                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sky-blue-50 transition-all duration-200 text-left group"
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 text-left group"
               >
-                <Upload className="w-5 h-5 text-sky-blue-600" />
-                <span className="font-medium text-cool-gray-700">
+                <Upload className="w-5 h-5 text-mint-green-400" />
+                <span className="font-medium text-white">
                   Uploaded Documents
                 </span>
               </motion.button>
@@ -324,32 +324,30 @@ export default function ClientDashboard() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("request-history")}
-                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-creamy-beige-50 transition-all duration-200 text-left group"
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 text-left group"
               >
-                <FileText className="w-5 h-5 text-cool-gray-600" />
-                <span className="font-medium text-cool-gray-700">
-                  Request History
-                </span>
+                <FileText className="w-5 h-5 text-sky-blue-400" />
+                <span className="font-medium text-white">Request History</span>
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("settings")}
-                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-mint-green-50 transition-all duration-200 text-left group"
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 text-left group"
               >
-                <Settings className="w-5 h-5 text-mint-green-600" />
-                <span className="font-medium text-cool-gray-700">Settings</span>
+                <Settings className="w-5 h-5 text-creamy-beige-300" />
+                <span className="font-medium text-white">Settings</span>
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("messages")}
-                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sky-blue-50 transition-all duration-200 text-left group relative"
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 text-left group relative"
               >
-                <MessageCircle className="w-5 h-5 text-sky-blue-600" />
-                <span className="font-medium text-cool-gray-700">Messages</span>
+                <MessageCircle className="w-5 h-5 text-mint-green-400" />
+                <span className="font-medium text-white">Messages</span>
                 <Badge className="bg-red-500 text-white text-xs ml-auto">
                   5
                 </Badge>
@@ -359,10 +357,12 @@ export default function ClientDashboard() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={logout}
-                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-red-50 transition-all duration-200 text-left group"
+                className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-red-500/20 transition-all duration-200 text-left group"
               >
-                <LogOut className="w-5 h-5 text-red-500" />
-                <span className="font-medium text-red-600">Logout</span>
+                <LogOut className="w-5 h-5 text-red-400 group-hover:text-red-300" />
+                <span className="font-medium text-red-400 group-hover:text-red-300">
+                  Logout
+                </span>
               </motion.button>
             </div>
           </div>
