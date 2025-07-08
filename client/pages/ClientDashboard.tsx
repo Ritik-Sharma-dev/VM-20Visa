@@ -509,9 +509,9 @@ export default function ClientDashboard() {
 
                       <button
                         onClick={() => setShowProfileDropdown(false)}
-                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sky-blue-50 transition-colors text-left"
+                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sage-green-50 transition-colors text-left"
                       >
-                        <Bell className="w-5 h-5 text-sky-blue-600" />
+                        <Bell className="w-5 h-5 text-sage-green-600" />
                         <span className="font-medium text-cool-gray-700">
                           Notifications
                         </span>
@@ -525,9 +525,9 @@ export default function ClientDashboard() {
                           setCurrentView("settings");
                           setShowProfileDropdown(false);
                         }}
-                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-mint-green-50 transition-colors text-left"
+                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-gold-50 transition-colors text-left"
                       >
-                        <Settings className="w-5 h-5 text-mint-green-600" />
+                        <Settings className="w-5 h-5 text-gold-600" />
                         <span className="font-medium text-cool-gray-700">
                           Settings
                         </span>
