@@ -1,6 +1,20 @@
 import "./global.css";
 
 import { Toaster } from "@/components/ui/toaster";
+
+// Suppress Recharts defaultProps warnings
+const originalWarn = console.warn;
+console.warn = (...args) => {
+  if (
+    args[0]?.includes?.("defaultProps will be removed from function components")
+  ) {
+    return;
+  }
+  if (args[0]?.includes?.("XAxis") || args[0]?.includes?.("YAxis")) {
+    return;
+  }
+  originalWarn.apply(console, args);
+};
 import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
