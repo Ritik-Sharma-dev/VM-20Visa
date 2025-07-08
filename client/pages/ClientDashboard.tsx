@@ -454,7 +454,7 @@ export default function ClientDashboard() {
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                   className="flex items-center space-x-2 p-2 rounded-xl hover:bg-white/50 transition-colors"
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-sage-green-500 to-sky-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-royal rounded-full flex items-center justify-center">
                     <span className="text-white text-sm font-medium">JD</span>
                   </div>
                   <ChevronLeft
