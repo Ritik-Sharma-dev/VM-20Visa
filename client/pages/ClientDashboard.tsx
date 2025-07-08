@@ -190,29 +190,55 @@ export default function ClientDashboard() {
     <div className="min-h-screen bg-cool-gray-50">
       {/* Main Content */}
       <div className="w-full">
-        {/* Top Navigation Pills */}
-        <div className="sticky top-0 z-40 bg-white border-b border-cool-gray-200 px-8 py-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-2xl font-heading font-bold text-cool-gray-800 mb-1">
+        {/* Header with Profile */}
+        <div className="sticky top-0 z-40 bg-white border-b border-cool-gray-200 px-8 py-4">
+          <div className="flex items-center justify-between mb-4">
+            {/* Left: Compact Profile */}
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <div className="w-10 h-10 bg-royal-blue-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">JD</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-cool-gray-800">
+                    John Doe
+                  </h3>
+                  <p className="text-xs text-cool-gray-600">
+                    #VM2024001 • Premium
+                  </p>
+                </div>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="hidden lg:flex items-center space-x-4 text-xs text-cool-gray-600 bg-cool-gray-50 rounded-lg px-3 py-2">
+                <div className="flex items-center space-x-1">
+                  <div className="w-2 h-2 bg-royal-blue-500 rounded-full"></div>
+                  <span>2 Active</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span>20 Proposals</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                  <span>2 In Progress</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Center: Page Title */}
+            <div className="flex-1 text-center">
+              <h1 className="text-xl font-heading font-bold text-cool-gray-800">
                 {tabItems.find((tab) => tab.id === currentView)?.label ||
                   "Dashboard"}
               </h1>
-              <p className="text-cool-gray-600">
-                {currentView === "overview" &&
-                  "Dashboard with stats, recent activity, and upcoming deadlines"}
-                {currentView === "my-requests" &&
-                  "Shows all visa requests with status tracking"}
-                {currentView === "proposals" &&
-                  "Displays received proposals with accept/decline options"}
-                {currentView === "applications" &&
-                  "Shows pending applications with progress tracking"}
-                {currentView === "documents" &&
-                  "Document management with upload functionality"}
-                {currentView === "chat" &&
-                  "Real-time chat interface with agents"}
-              </p>
             </div>
+
+            {/* Right: Actions */}
+            <div className="flex items-center space-x-3">
 
             <div className="flex items-center space-x-4">
               {/* Notifications */}
