@@ -90,16 +90,16 @@ export default function ClientDashboard() {
 
   const tabItems = [
     {
+      id: "overview",
+      label: "Overview",
+      icon: BarChart3,
+      badge: null,
+    },
+    {
       id: "my-requests",
       label: "My Requests",
       icon: FileText,
       badge: "3",
-    },
-    {
-      id: "browse-agents",
-      label: "Browse Agents",
-      icon: Users,
-      badge: "New",
     },
     {
       id: "proposals",
@@ -108,10 +108,10 @@ export default function ClientDashboard() {
       badge: "5",
     },
     {
-      id: "track-progress",
-      label: "Track Progress",
-      icon: BarChart3,
-      badge: null,
+      id: "applications",
+      label: "Applications",
+      icon: Clock,
+      badge: "2",
     },
     {
       id: "documents",
@@ -120,16 +120,10 @@ export default function ClientDashboard() {
       badge: null,
     },
     {
-      id: "ratings",
-      label: "Ratings & Reviews",
-      icon: Star,
-      badge: null,
-    },
-    {
-      id: "ai-assistant",
-      label: "Ask AI",
-      icon: Bot,
-      badge: "🤖",
+      id: "chat",
+      label: "Chat",
+      icon: MessageCircle,
+      badge: "8",
     },
   ];
 
