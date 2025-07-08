@@ -463,7 +463,7 @@ export default function ClientDashboard() {
                 className={cn(
                   "flex items-center justify-center space-x-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex-1 relative",
                   currentView === tab.id
-                    ? "bg-white text-cool-gray-900 shadow-md"
+                    ? "bg-royal-blue-500 text-white shadow-md"
                     : "text-cool-gray-600 hover:text-cool-gray-900 hover:bg-white/50",
                 )}
               >
@@ -474,7 +474,7 @@ export default function ClientDashboard() {
                     className={cn(
                       "text-xs",
                       currentView === tab.id
-                        ? "bg-green-500 text-white"
+                        ? "bg-white/20 text-white"
                         : "bg-cool-gray-200 text-cool-gray-700",
                     )}
                   >
