@@ -201,20 +201,23 @@ export default function ClientDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex">
-      {/* Professional Web Sidebar */}
+      {/* Clean Minimal Sidebar - Matching Image Design */}
       <motion.div
         initial={false}
-        animate={{ width: sidebarCollapsed ? "72px" : "300px" }}
+        animate={{ width: sidebarCollapsed ? "64px" : "280px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-slate-900 shadow-xl z-50 overflow-hidden border-r border-slate-700"
+        className="fixed left-0 top-0 h-screen bg-white shadow-lg z-50 overflow-hidden border-r border-gray-100"
       >
+        {/* Cyan Accent Border */}
+        <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-cyan-400 to-cyan-500"></div>
+
         {/* Toggle Button */}
         <div className="absolute -right-3 top-6 z-10">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="w-6 h-6 bg-slate-800 rounded-full shadow-md flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition-all duration-200 border border-slate-600"
+            className="w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center text-gray-600 hover:text-gray-800 border border-gray-200 hover:border-gray-300 transition-all duration-200"
           >
             {sidebarCollapsed ? (
               <ChevronRight className="w-3 h-3" />
@@ -225,214 +228,189 @@ export default function ClientDashboard() {
         </div>
 
         {!sidebarCollapsed ? (
-          /* Expanded Sidebar - Professional Layout */
-          <div className="flex flex-col h-full">
-            {/* Header Section */}
-            <div className="p-6 border-b border-slate-700">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Globe className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-white font-semibold text-lg">VM Visa</h2>
-                  <p className="text-slate-400 text-sm">Client Portal</p>
-                </div>
-              </div>
-            </div>
-
-            {/* User Profile Section */}
-            <div className="p-6 border-b border-slate-700">
-              <div className="flex items-center space-x-4">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center text-white text-xl font-bold">
-                    JD
-                  </div>
-                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
-                    <CheckCircle className="w-3 h-3 text-white" />
-                  </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-semibold truncate">
-                    John Doe
-                  </h3>
-                  <p className="text-slate-400 text-sm truncate">
-                    john.doe@email.com
-                  </p>
-                  <p className="text-slate-400 text-xs">+1 (555) 123-4567</p>
-                </div>
-              </div>
-
-              {/* Status and Goal */}
-              <div className="mt-4 space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-400 text-sm">
-                    🇺🇸 United States
-                  </span>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-xs">
-                    Verified
-                  </Badge>
-                </div>
-                <div className="text-slate-300 text-sm">
-                  <span className="text-slate-400">Goal:</span> Permanent
-                  Residence
-                </div>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="mt-4">
-                <div className="flex items-center justify-between text-sm mb-2">
-                  <span className="text-slate-400">Profile Completion</span>
-                  <span className="text-slate-300 font-medium">85%</span>
-                </div>
-                <div className="w-full bg-slate-800 rounded-full h-2">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: "85%" }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full"
-                  />
-                </div>
-              </div>
-
-              {/* Edit Profile Button */}
+          /* Expanded Sidebar */
+          <div className="flex flex-col h-full pl-6 pr-4 py-8">
+            {/* Main Navigation */}
+            <div className="space-y-2 mb-8">
+              {/* Dashboard - Active State */}
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => setCurrentView("profile")}
-                className="w-full mt-4 p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 hover:text-white font-medium transition-all duration-200 flex items-center justify-center gap-2 border border-slate-700 hover:border-slate-600"
+                onClick={() => setCurrentView("overview")}
+                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                  currentView === "overview"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
               >
-                <Edit className="w-4 h-4" />
-                Edit Profile
+                <BarChart3 className="w-5 h-5" />
+                <span className="font-medium">Dashboard</span>
+              </motion.button>
+
+              {/* My Bio */}
+              <motion.button
+                whileHover={{ x: 2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("my-bio")}
+                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                  currentView === "my-bio"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center">
+                  <Calendar className="w-3 h-3 text-white" />
+                </div>
+                <span className="font-medium">My Bio</span>
+              </motion.button>
+
+              {/* Request History */}
+              <motion.button
+                whileHover={{ x: 2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("request-history")}
+                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                  currentView === "request-history"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                <div className="w-5 h-5 bg-green-500 rounded flex items-center justify-center">
+                  <FileText className="w-3 h-3 text-white" />
+                </div>
+                <span className="font-medium">Request History</span>
+              </motion.button>
+
+              {/* Settings */}
+              <motion.button
+                whileHover={{ x: 2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("settings")}
+                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                  currentView === "settings"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                <div className="w-5 h-5 bg-cyan-500 rounded flex items-center justify-center">
+                  <Settings className="w-3 h-3 text-white" />
+                </div>
+                <span className="font-medium">Settings</span>
+              </motion.button>
+
+              {/* Messages */}
+              <motion.button
+                whileHover={{ x: 2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setCurrentView("messages")}
+                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                  currentView === "messages"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                <div className="w-5 h-5 bg-red-500 rounded flex items-center justify-center">
+                  <MessageCircle className="w-3 h-3 text-white" />
+                </div>
+                <span className="font-medium">Messages</span>
+                <Badge className="bg-red-500 text-white text-xs ml-auto">
+                  5
+                </Badge>
               </motion.button>
             </div>
 
-            {/* Navigation Section */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-2">
-              <div className="text-slate-400 text-xs font-medium uppercase tracking-wider mb-3 px-2">
-                Navigation
+            {/* Account Pages Section */}
+            <div className="border-t border-gray-100 pt-6">
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-4 px-4">
+                Account Pages
               </div>
 
-              {[
-                {
-                  icon: User,
-                  label: "My Bio",
-                  sublabel: "Personal information",
-                  action: () => setCurrentView("my-bio"),
-                  color: "text-blue-400",
-                },
-                {
-                  icon: FileText,
-                  label: "Request History",
-                  sublabel: "Past applications",
-                  action: () => setCurrentView("request-history"),
-                  color: "text-emerald-400",
-                },
-                {
-                  icon: Settings,
-                  label: "Settings",
-                  sublabel: "Preferences & security",
-                  action: () => setCurrentView("settings"),
-                  color: "text-amber-400",
-                },
-                {
-                  icon: MessageCircle,
-                  label: "Messages",
-                  sublabel: "Chat with agents",
-                  action: () => setCurrentView("messages"),
-                  color: "text-cyan-400",
-                  badge: "5",
-                },
-              ].map((item, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={item.action}
-                  className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-slate-800 transition-all duration-200 text-left group"
-                >
-                  <item.icon className={`w-5 h-5 ${item.color}`} />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-slate-200 font-medium text-sm">
-                      {item.label}
-                    </div>
-                    <div className="text-slate-400 text-xs">
-                      {item.sublabel}
-                    </div>
-                  </div>
-                  {item.badge && (
-                    <Badge className="bg-red-500 text-white text-xs">
-                      {item.badge}
-                    </Badge>
-                  )}
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Logout Section */}
-            <div className="p-4 border-t border-slate-700">
+              {/* Profile */}
               <motion.button
-                whileHover={{ x: 4 }}
+                whileHover={{ x: 2 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={logout}
-                className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-red-900/20 transition-all duration-200 text-left group"
+                onClick={() => setCurrentView("profile")}
+                className={`w-full flex items-center space-x-4 px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                  currentView === "profile"
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-50"
+                }`}
               >
-                <LogOut className="w-5 h-5 text-red-400" />
-                <div>
-                  <div className="text-red-400 font-medium text-sm">Logout</div>
-                  <div className="text-red-500/70 text-xs">
-                    Sign out of account
+                <User className="w-5 h-5 text-gray-700" />
+                <span className="font-medium">Profile</span>
+              </motion.button>
+
+              {/* User Email Display */}
+              <div className="px-4 py-3 mt-4 bg-gray-50 rounded-xl">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-sm font-medium">
+                    JD
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">
+                      John Doe
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      john.doe@email.com
+                    </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Logout */}
+              <motion.button
+                whileHover={{ x: 2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={logout}
+                className="w-full flex items-center space-x-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all duration-200 text-left mt-4"
+              >
+                <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center">
+                  <LogOut className="w-3 h-3 text-white" />
+                </div>
+                <span className="font-medium">Sign Out</span>
               </motion.button>
             </div>
           </div>
         ) : (
-          /* Collapsed Sidebar - Clean Icons */
-          <div className="flex flex-col h-full items-center py-4">
-            {/* Mini Logo */}
-            <div className="mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Globe className="w-5 h-5 text-white" />
-              </div>
-            </div>
-
-            {/* Mini Profile */}
-            <div className="mb-6">
-              <div
-                className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center text-white text-sm font-bold relative group cursor-pointer"
-                title="John Doe - Verified"
-              >
-                JD
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border border-slate-900"></div>
-              </div>
-            </div>
-
-            {/* Navigation Icons */}
-            <div className="flex-1 space-y-3">
+          /* Collapsed Sidebar */
+          <div className="flex flex-col h-full items-center py-6 pl-2">
+            {/* Collapsed Navigation Icons */}
+            <div className="space-y-4 mb-8">
               {[
                 {
-                  icon: User,
+                  icon: BarChart3,
+                  action: () => setCurrentView("overview"),
+                  tooltip: "Dashboard",
+                  isActive: currentView === "overview",
+                  bgColor: "bg-blue-500",
+                },
+                {
+                  icon: Calendar,
                   action: () => setCurrentView("my-bio"),
                   tooltip: "My Bio",
-                  color: "text-blue-400",
+                  isActive: currentView === "my-bio",
+                  bgColor: "bg-orange-500",
                 },
                 {
                   icon: FileText,
                   action: () => setCurrentView("request-history"),
                   tooltip: "Request History",
-                  color: "text-emerald-400",
+                  isActive: currentView === "request-history",
+                  bgColor: "bg-green-500",
                 },
                 {
                   icon: Settings,
                   action: () => setCurrentView("settings"),
                   tooltip: "Settings",
-                  color: "text-amber-400",
+                  isActive: currentView === "settings",
+                  bgColor: "bg-cyan-500",
                 },
                 {
                   icon: MessageCircle,
                   action: () => setCurrentView("messages"),
                   tooltip: "Messages",
-                  color: "text-cyan-400",
+                  isActive: currentView === "messages",
+                  bgColor: "bg-red-500",
                   badge: true,
                 },
               ].map((item, index) => (
@@ -441,22 +419,46 @@ export default function ClientDashboard() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={item.action}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-800 transition-all duration-200 relative group"
+                  className={`w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-200 relative group ${
+                    item.isActive ? "bg-blue-500" : "hover:bg-gray-100"
+                  }`}
                   title={item.tooltip}
                 >
-                  <item.icon className={`w-5 h-5 ${item.color}`} />
+                  {item.isActive ? (
+                    <item.icon className="w-5 h-5 text-white" />
+                  ) : (
+                    <div
+                      className={`w-5 h-5 ${item.bgColor} rounded flex items-center justify-center`}
+                    >
+                      <item.icon className="w-3 h-3 text-white" />
+                    </div>
+                  )}
+
                   {item.badge && (
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs flex items-center justify-center">
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">5</span>
                     </div>
                   )}
 
                   {/* Tooltip */}
-                  <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none border border-slate-700">
+                  <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none">
                     {item.tooltip}
                   </div>
                 </motion.button>
               ))}
+            </div>
+
+            {/* Mini Profile */}
+            <div className="mb-4">
+              <div
+                className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-xs font-medium group cursor-pointer"
+                title="John Doe"
+              >
+                JD
+                <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none">
+                  John Doe
+                </div>
+              </div>
             </div>
 
             {/* Logout Icon */}
@@ -464,12 +466,14 @@ export default function ClientDashboard() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={logout}
-              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-red-900/20 transition-all duration-200 group"
-              title="Logout"
+              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-red-50 transition-all duration-200 group"
+              title="Sign Out"
             >
-              <LogOut className="w-5 h-5 text-red-400" />
-              <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none border border-slate-700">
-                Logout
+              <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center">
+                <LogOut className="w-3 h-3 text-white" />
+              </div>
+              <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none">
+                Sign Out
               </div>
             </motion.button>
           </div>
