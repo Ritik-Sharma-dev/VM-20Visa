@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 interface DashboardOverviewProps {
-  onNavigate: (view: string) => void;
+  onNavigate?: (view: string) => void;
 }
 
 export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
