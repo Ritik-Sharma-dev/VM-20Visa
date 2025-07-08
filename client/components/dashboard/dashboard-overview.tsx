@@ -18,6 +18,7 @@ import {
   Globe,
   Award,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface DashboardOverviewProps {
   onNavigate: (view: string) => void;
