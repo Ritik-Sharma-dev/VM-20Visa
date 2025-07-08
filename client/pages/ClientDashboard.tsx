@@ -271,12 +271,12 @@ export default function ClientDashboard() {
               {/* Progress Bar */}
               <div className="mb-4">
                 <div className="flex items-center justify-between text-sm mb-2">
-                  <span className="text-cool-gray-600">Profile Completion</span>
-                  <span className="font-semibold text-sage-green-600">85%</span>
+                  <span className="text-sky-blue-200">Profile Completion</span>
+                  <span className="font-semibold text-white">85%</span>
                 </div>
-                <div className="w-full bg-cool-gray-200 rounded-full h-2">
+                <div className="w-full bg-white/20 rounded-full h-2">
                   <div
-                    className="bg-gradient-to-r from-sage-green-500 to-mint-green-500 h-2 rounded-full transition-all duration-500"
+                    className="bg-gradient-royal h-2 rounded-full transition-all duration-500"
                     style={{ width: "85%" }}
                   />
                 </div>
@@ -287,7 +287,7 @@ export default function ClientDashboard() {
                 onClick={() => setCurrentView("profile")}
                 variant="outline"
                 size="sm"
-                className="w-full text-sage-green-700 border-sage-green-200 hover:bg-sage-green-50"
+                className="w-full text-white border-white/30 hover:bg-white/20"
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Edit Profile
