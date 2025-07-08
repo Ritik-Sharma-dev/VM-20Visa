@@ -3,14 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Menu,
-  X,
-  Home,
-  FileText,
-  Users,
-  MessageCircle,
-  Upload,
-  Star,
+  ChevronLeft,
+  ChevronRight,
   Settings,
   Bell,
   Search,
@@ -24,6 +18,12 @@ import {
   Globe,
   User,
   LogOut,
+  FileText,
+  Users,
+  Upload,
+  Star,
+  MessageCircle,
+  Menu,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -36,15 +36,15 @@ import { DocumentUpload } from "@/components/dashboard/document-upload";
 import { MessagingPanel } from "@/components/dashboard/messaging-panel";
 import { AIAssistant } from "@/components/dashboard/ai-assistant";
 import { DashboardOverview } from "@/components/dashboard/dashboard-overview";
+import { FloatingAIAssistant } from "@/components/dashboard/floating-ai-assistant";
 
 type DashboardView =
-  | "overview"
-  | "post-request"
+  | "my-requests"
   | "browse-agents"
   | "proposals"
   | "track-progress"
   | "documents"
-  | "messages"
+  | "ratings"
   | "ai-assistant";
 
 export default function ClientDashboard() {
