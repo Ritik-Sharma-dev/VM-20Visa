@@ -281,7 +281,7 @@ export default function AgentDashboard() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            onClick={handleSidebarToggle}
             className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-800 border border-gray-200 transition-all duration-200"
           >
             {sidebarCollapsed ? (
