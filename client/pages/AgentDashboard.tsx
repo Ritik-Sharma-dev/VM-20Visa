@@ -573,6 +573,66 @@ export default function AgentDashboard() {
           </AnimatePresence>
         </main>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      <AnimatePresence>
+        {showLogoutConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            onClick={() => setShowLogoutConfirm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-lg p-6 max-w-sm w-full mx-4 shadow-xl"
+            >
+              <div className="text-center">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: "#FFF5F5" }}
+                >
+                  <LogOut className="w-6 h-6 text-red-500" />
+                </div>
+                <h3
+                  className="text-lg font-semibold mb-2"
+                  style={{ color: "#455A64" }}
+                >
+                  Confirm Logout
+                </h3>
+                <p
+                  className="text-sm mb-6"
+                  style={{ color: "#455A64", opacity: 0.7 }}
+                >
+                  Are you sure you want to logout? You will need to sign in
+                  again to access your dashboard.
+                </p>
+                <div className="flex space-x-3">
+                  <Button
+                    onClick={() => setShowLogoutConfirm(false)}
+                    variant="outline"
+                    className="flex-1 border-gray-300"
+                    style={{ color: "#455A64" }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={proceedLogout}
+                    className="flex-1 bg-red-500 hover:bg-red-600 text-white"
+                  >
+                    Logout
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
