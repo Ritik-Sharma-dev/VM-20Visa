@@ -61,9 +61,11 @@ type OrganizationDashboardView =
 export default function OrganizationDashboard() {
   const [currentView, setCurrentView] =
     useState<OrganizationDashboardView>("dashboard");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Start collapsed
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [notifications, setNotifications] = useState(8);
+  const [autoCollapseTimer, setAutoCollapseTimer] =
+    useState<NodeJS.Timeout | null>(null);
   const { logout } = useAuth();
 
   // Auto-save functionality
