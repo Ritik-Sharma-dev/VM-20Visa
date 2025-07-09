@@ -263,7 +263,7 @@ export default function OrganizationDashboard() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            onClick={handleSidebarToggle}
             className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:text-gray-800 transition-all duration-200"
             style={{
               color: "#1A1A1A",
