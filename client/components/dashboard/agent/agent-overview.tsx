@@ -322,17 +322,17 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
                 <Line
                   type="monotone"
                   dataKey="sent"
-                  stroke="#326dee"
+                  stroke="#0288D1"
                   strokeWidth={3}
-                  dot={{ fill: "#326dee", strokeWidth: 2, r: 4 }}
+                  dot={{ fill: "#0288D1", strokeWidth: 2, r: 4 }}
                   name="Proposals Sent"
                 />
                 <Line
                   type="monotone"
                   dataKey="accepted"
-                  stroke="#10b981"
+                  stroke="#E0F2E7"
                   strokeWidth={3}
-                  dot={{ fill: "#10b981", strokeWidth: 2, r: 4 }}
+                  dot={{ fill: "#E0F2E7", strokeWidth: 2, r: 4 }}
                   name="Proposals Accepted"
                 />
               </LineChart>
