@@ -15,6 +15,7 @@ export const BackButton: React.FC<BackButtonProps> = ({
   customPath,
   label = "Back to Dashboard",
   showBreadcrumb = true,
+  dashboardType = "client",
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
