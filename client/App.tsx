@@ -71,6 +71,7 @@ function AppContent() {
     "/calendar",
     "/support",
     "/settings",
+    "/profile",
   ].includes(location.pathname);
 
   return (
