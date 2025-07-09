@@ -41,12 +41,7 @@ import { FloatingAIAssistant } from "@/components/dashboard/floating-ai-assistan
 import { RatingsReviews } from "@/components/dashboard/ratings-reviews";
 import { BrowseAgentsFiltered } from "@/components/dashboard/browse-agents-filtered";
 import { UserProfile } from "@/components/dashboard/user-profile";
-import {
-  MyBio,
-  DocumentCenter,
-  RequestHistory,
-  SettingsPage,
-} from "@/components/dashboard/sidebar-components";
+import { ProfessionalSidebar } from "@/components/dashboard/shared/ProfessionalSidebar";
 import { useAuth } from "@/components/auth/auth-context";
 
 type DashboardView =
