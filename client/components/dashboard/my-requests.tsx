@@ -650,6 +650,66 @@ export function MyRequests() {
           ))}
         </div>
       )}
+
+      {/* Delete Confirmation Modal */}
+      <AnimatePresence>
+        {showDeleteConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            onClick={() => setShowDeleteConfirm(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-lg p-6 max-w-sm w-full mx-4 shadow-xl"
+            >
+              <div className="text-center">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: "#FFF5F5" }}
+                >
+                  <Trash2 className="w-6 h-6 text-red-500" />
+                </div>
+                <h3
+                  className="text-lg font-semibold mb-2"
+                  style={{ color: "#455A64" }}
+                >
+                  Delete Request
+                </h3>
+                <p
+                  className="text-sm mb-6"
+                  style={{ color: "#455A64", opacity: 0.7 }}
+                >
+                  Are you sure you want to delete this visa request? This action
+                  cannot be undone and all associated proposals will be lost.
+                </p>
+                <div className="flex space-x-3">
+                  <Button
+                    onClick={() => setShowDeleteConfirm(null)}
+                    variant="outline"
+                    className="flex-1 border-gray-300"
+                    style={{ color: "#455A64" }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => confirmDelete(showDeleteConfirm)}
+                    className="flex-1 bg-red-500 hover:bg-red-600 text-white"
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
