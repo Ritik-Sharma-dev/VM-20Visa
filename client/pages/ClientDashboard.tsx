@@ -26,6 +26,8 @@ import {
   Eye,
   Edit,
   Shield,
+  ChevronDown,
+  UserCog,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
