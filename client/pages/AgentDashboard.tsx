@@ -526,7 +526,13 @@ export default function AgentDashboard() {
         }}
       >
         {/* Top Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 px-8 py-4">
+        <header
+          className="shadow-sm px-8 py-4"
+          style={{
+            background: "linear-gradient(90deg, #F7F3E9 0%, #FFF9E6 100%)",
+            borderBottom: "1px solid #E0E0E0",
+          }}
+        >
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
