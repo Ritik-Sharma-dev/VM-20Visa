@@ -245,7 +245,7 @@ export default function AgentDashboard() {
 
   const getPageTitle = () => {
     switch (currentView) {
-      case "home":
+      case "overview":
         return "Dashboard Overview";
       case "incoming-requests":
         return "Incoming Requests";
@@ -253,14 +253,10 @@ export default function AgentDashboard() {
         return "My Proposals";
       case "active-projects":
         return "Active Projects";
-      case "chat":
-        return "Client Communications";
       case "documents":
         return "Document Center";
       case "analytics":
         return "Analytics & Reports";
-      case "settings":
-        return "Settings";
       default:
         return "Dashboard";
     }
