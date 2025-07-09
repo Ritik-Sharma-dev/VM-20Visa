@@ -5,14 +5,30 @@ import { Toaster } from "@/components/ui/toaster";
 // Suppress Recharts defaultProps warnings
 const originalWarn = console.warn;
 console.warn = (...args) => {
+  const message = args[0]?.toString?.() || "";
+
+  // Suppress all Recharts defaultProps warnings
   if (
-    args[0]?.includes?.("defaultProps will be removed from function components")
+    message.includes("defaultProps will be removed from function components")
   ) {
     return;
   }
-  if (args[0]?.includes?.("XAxis") || args[0]?.includes?.("YAxis")) {
+
+  // Suppress specific Recharts component warnings
+  if (
+    message.includes("XAxis") ||
+    message.includes("YAxis") ||
+    message.includes("CartesianGrid") ||
+    message.includes("Tooltip") ||
+    message.includes("Area") ||
+    message.includes("Line") ||
+    message.includes("Bar") ||
+    message.includes("Pie") ||
+    message.includes("Cell")
+  ) {
     return;
   }
+
   originalWarn.apply(console, args);
 };
 import { createRoot } from "react-dom/client";
