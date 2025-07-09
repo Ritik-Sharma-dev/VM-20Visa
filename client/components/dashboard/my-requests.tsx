@@ -46,6 +46,10 @@ export function MyRequests() {
   const [selectedRequestId, setSelectedRequestId] = useState<string | null>(
     null,
   );
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(
+    null,
+  );
 
   // Mock data for pending requests
   const mockRequests: VisaRequest[] = [
