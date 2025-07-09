@@ -296,12 +296,12 @@ export default function ClientDashboard() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm" style={{ color: "#455A64" }}>
+                    <p className="text-sm" style={{ color: "#37474F" }}>
                       Welcome back,
                     </p>
                     <h2
                       className="font-semibold text-lg"
-                      style={{ color: "#455A64" }}
+                      style={{ color: "#37474F" }}
                     >
                       John Doe
                     </h2>
