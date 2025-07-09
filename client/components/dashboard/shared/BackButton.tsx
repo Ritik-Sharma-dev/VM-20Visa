@@ -8,6 +8,7 @@ interface BackButtonProps {
   customPath?: string;
   label?: string;
   showBreadcrumb?: boolean;
+  dashboardType?: "client" | "agent" | "organization";
 }
 
 export const BackButton: React.FC<BackButtonProps> = ({
