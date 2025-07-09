@@ -424,7 +424,10 @@ export default function AgentDashboard() {
           </div>
         ) : (
           /* Collapsed Sidebar */
-          <div className="flex flex-col h-full items-center py-6">
+          <div
+            className="flex flex-col h-full items-center py-6"
+            onMouseEnter={handleSidebarExpand}
+          >
             {/* Collapsed Profile */}
             <div className="mb-6">
               <motion.div
