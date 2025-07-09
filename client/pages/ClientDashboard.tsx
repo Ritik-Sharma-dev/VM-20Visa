@@ -50,23 +50,18 @@ type DashboardView =
   | "proposals"
   | "applications"
   | "documents"
-  | "chat"
   | "browse-agents"
-  | "profile"
-  | "my-bio"
-  | "document-center"
-  | "request-history"
-  | "settings"
-  | "messages";
+  | "profile";
 
 export default function ClientDashboard() {
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
   const [notifications, setNotifications] = useState(3);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Start collapsed
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [autoCollapseTimer, setAutoCollapseTimer] =
     useState<NodeJS.Timeout | null>(null);
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
