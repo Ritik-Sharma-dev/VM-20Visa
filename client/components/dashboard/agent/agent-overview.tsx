@@ -255,13 +255,16 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
                 <span className="text-sm font-medium">{card.growth}</span>
               </div>
             </div>
-            <h3 className="text-gray-600 text-sm font-medium mb-1">
+            <h3
+              className="text-sm font-medium mb-1"
+              style={{ color: "#455A64" }}
+            >
               {card.title}
             </h3>
-            <p className="text-2xl font-bold text-gray-900 mb-2">
+            <p className="text-2xl font-bold mb-2" style={{ color: "#455A64" }}>
               {card.value}
             </p>
-            <p className="text-xs text-gray-500 capitalize">
+            <p className="text-xs capitalize" style={{ color: "#455A64" }}>
               {card.period === "7days" ? "This week" : `This ${card.period}`}
             </p>
           </motion.div>
