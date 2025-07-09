@@ -10,7 +10,6 @@ import {
   Calendar,
   HelpCircle,
   Settings,
-  LogOut,
   Bot,
   Edit,
   MapPin,
