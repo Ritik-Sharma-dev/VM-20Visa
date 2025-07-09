@@ -209,6 +209,47 @@ export function MyRequests() {
     setShowProposals(true);
   };
 
+  const handleView = (requestId: string) => {
+    console.log("Viewing request:", requestId);
+    // Navigate to full application view
+    setOpenDropdown(null);
+  };
+
+  const handleEdit = (requestId: string) => {
+    console.log("Editing request:", requestId);
+    // Open edit form
+    setOpenDropdown(null);
+  };
+
+  const handleDelete = (requestId: string) => {
+    setShowDeleteConfirm(requestId);
+    setOpenDropdown(null);
+  };
+
+  const confirmDelete = (requestId: string) => {
+    console.log("Deleting request:", requestId);
+    // Perform delete action
+    setShowDeleteConfirm(null);
+  };
+
+  // Click outside handler for dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".dropdown-container")) {
+        setOpenDropdown(null);
+      }
+    };
+
+    if (openDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
+
   if (showPostRequest) {
     return (
       <div>
