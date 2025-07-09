@@ -67,6 +67,17 @@ export default function ClientDashboard() {
     logout();
   };
 
+  // Navigation handler for sidebar
+  const handleSidebarNavigation = (page: string) => {
+    if (page === "overview") {
+      setCurrentView("overview");
+    } else if (
+      ["chat", "messages", "calendar", "support", "settings"].includes(page)
+    ) {
+      navigate(`/${page}`);
+    }
+  };
+
   // Auto-collapse functionality
   const startAutoCollapseTimer = () => {
     if (autoCollapseTimer) {
@@ -74,7 +85,7 @@ export default function ClientDashboard() {
     }
     const timer = setTimeout(() => {
       setSidebarCollapsed(true);
-    }, 10000); // 10 seconds
+    }, 10000);
     setAutoCollapseTimer(timer);
   };
 
