@@ -148,13 +148,6 @@ export default function AgentDashboard() {
     }
   };
 
-  const handleSidebarExpand = () => {
-    if (sidebarCollapsed) {
-      setSidebarCollapsed(false);
-      startAutoCollapseTimer();
-    }
-  };
-
   // Cleanup timer on unmount
   useEffect(() => {
     return () => {
