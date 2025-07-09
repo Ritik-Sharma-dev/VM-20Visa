@@ -6,25 +6,52 @@ import { Toaster } from "@/components/ui/toaster";
 const originalWarn = console.warn;
 console.warn = (...args) => {
   const message = args[0]?.toString?.() || "";
+  const fullMessage = args.join(" ");
 
-  // Suppress all Recharts defaultProps warnings
+  // Suppress all defaultProps warnings (includes template string patterns)
   if (
-    message.includes("defaultProps will be removed from function components")
+    message.includes("defaultProps will be removed from function components") ||
+    fullMessage.includes(
+      "defaultProps will be removed from function components",
+    ) ||
+    message.includes("Support for defaultProps will be removed")
   ) {
     return;
   }
 
-  // Suppress specific Recharts component warnings
+  // Suppress specific Recharts component warnings by name
   if (
-    message.includes("XAxis") ||
-    message.includes("YAxis") ||
-    message.includes("CartesianGrid") ||
-    message.includes("Tooltip") ||
-    message.includes("Area") ||
-    message.includes("Line") ||
-    message.includes("Bar") ||
-    message.includes("Pie") ||
-    message.includes("Cell")
+    fullMessage.includes("XAxis") ||
+    fullMessage.includes("YAxis") ||
+    fullMessage.includes("CartesianGrid") ||
+    fullMessage.includes("Tooltip") ||
+    fullMessage.includes("Area") ||
+    fullMessage.includes("Line") ||
+    fullMessage.includes("Bar") ||
+    fullMessage.includes("Pie") ||
+    fullMessage.includes("Cell") ||
+    fullMessage.includes("ResponsiveContainer") ||
+    fullMessage.includes("Legend") ||
+    fullMessage.includes("ReferenceLine") ||
+    fullMessage.includes("ReferenceArea") ||
+    fullMessage.includes("Brush")
+  ) {
+    return;
+  }
+
+  // Suppress any warning that contains Recharts-related keywords
+  if (
+    fullMessage.includes("recharts") ||
+    fullMessage.includes("Recharts") ||
+    (message.includes("%s") &&
+      args.some(
+        (arg) =>
+          typeof arg === "string" &&
+          (arg.includes("Axis") ||
+            arg.includes("Chart") ||
+            arg.includes("Grid") ||
+            arg.includes("Tooltip")),
+      ))
   ) {
     return;
   }
