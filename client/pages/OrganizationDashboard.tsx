@@ -37,6 +37,8 @@ import {
   Phone,
   Globe,
   HelpCircle,
+  ChevronDown,
+  UserCog,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
