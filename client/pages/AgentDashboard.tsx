@@ -55,19 +55,19 @@ import { ProfessionalSidebar } from "@/components/dashboard/shared/ProfessionalS
 import { useAuth } from "@/components/auth/auth-context";
 
 type AgentDashboardView =
-  | "home"
+  | "overview"
   | "incoming-requests"
   | "my-proposals"
   | "active-projects"
-  | "chat"
   | "documents"
-  | "analytics"
-  | "settings";
+  | "analytics";
 
 type FilterPeriod = "today" | "7days" | "month" | "year";
 
 export default function AgentDashboard() {
-  const [currentView, setCurrentView] = useState<AgentDashboardView>("home");
+  const [currentView, setCurrentView] =
+    useState<AgentDashboardView>("overview");
+  const navigate = useNavigate();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Start collapsed
   const [filterPeriod, setFilterPeriod] = useState<FilterPeriod>("month");
   const [showProfileCard, setShowProfileCard] = useState(false);
