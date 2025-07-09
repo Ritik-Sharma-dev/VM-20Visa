@@ -902,44 +902,12 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
-        {/* Progress Steps */}
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
-            {steps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center relative">
-                <motion.div
-                  className={cn(
-                    "w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300",
-                    index <= currentStep
-                      ? "bg-gradient-royal text-white border-royal-blue-500"
-                      : "bg-white text-cool-gray-500 border-cool-gray-300",
-                  )}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <step.icon className="w-5 h-5" />
-                </motion.div>
-
-                {index < steps.length - 1 && (
-                  <div
-                    className={cn(
-                      "absolute top-6 left-12 w-full h-0.5 transition-colors duration-300",
-                      index < currentStep
-                        ? "bg-royal-blue-500"
-                        : "bg-cool-gray-300",
-                    )}
-                    style={{ width: "calc(100% + 3rem)" }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <h2 className="text-2xl font-heading font-bold text-cool-gray-800 mb-2">
-              {steps[currentStep].title}
-            </h2>
-            <p className="text-cool-gray-600">{steps[currentStep].subtitle}</p>
-          </div>
+        {/* Form Header */}
+        <div className="mb-8 text-center">
+          <h2 className="text-2xl font-heading font-bold text-cool-gray-800 mb-2">
+            {steps[currentStep].title}
+          </h2>
+          <p className="text-cool-gray-600">{steps[currentStep].subtitle}</p>
         </div>
 
         {/* Form Content */}
