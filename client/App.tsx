@@ -64,6 +64,11 @@ function AppContent() {
     "/dashboard",
     "/agent-dashboard",
     "/org-dashboard",
+    "/chat",
+    "/messages",
+    "/calendar",
+    "/support",
+    "/settings",
   ].includes(location.pathname);
 
   return (
