@@ -347,7 +347,7 @@ export default function AgentDashboard() {
                     </div>
                     <Badge
                       className="hover:opacity-80"
-                      style={{ backgroundColor: "#F3E5F5", color: "#455A64" }}
+                      style={{ backgroundColor: "#E0F2E7", color: "#37474F" }}
                     >
                       Active
                     </Badge>
