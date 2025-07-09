@@ -212,6 +212,11 @@ const CalendarPage: React.FC = () => {
       className="h-screen flex flex-col"
       style={{ backgroundColor: "#FEFEFE" }}
     >
+      {/* Back Button */}
+      <div className="p-6 pb-0">
+        <BackButton />
+      </div>
+
       {/* Header */}
       <div
         className="p-6 border-b border-gray-200"
