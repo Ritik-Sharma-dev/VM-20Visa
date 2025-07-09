@@ -288,11 +288,11 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
             <div>
               <h3
                 className="text-lg font-semibold"
-                style={{ color: "#455A64" }}
+                style={{ color: "#37474F" }}
               >
                 Proposals vs Acceptance
               </h3>
-              <p className="text-sm" style={{ color: "#455A64" }}>
+              <p className="text-sm" style={{ color: "#37474F" }}>
                 Track your proposal success over time
               </p>
             </div>
