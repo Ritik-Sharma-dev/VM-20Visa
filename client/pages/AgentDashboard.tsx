@@ -559,8 +559,8 @@ export default function AgentDashboard() {
                     )}
                     style={{
                       backgroundColor:
-                        filterPeriod === tab.id ? "#455A64" : "transparent",
-                      color: filterPeriod === tab.id ? "white" : "#455A64",
+                        filterPeriod === tab.id ? "#0288D1" : "transparent",
+                      color: filterPeriod === tab.id ? "white" : "#37474F",
                     }}
                   >
                     {tab.label}
