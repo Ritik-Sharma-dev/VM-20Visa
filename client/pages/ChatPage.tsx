@@ -158,9 +158,16 @@ const ChatPage: React.FC = () => {
   const chatMessages = messages[selectedChat] || [];
 
   return (
-    <div className="h-screen flex" style={{ backgroundColor: "#FEFEFE" }}>
-      {/* Chat List */}
-      <div
+    <div className="h-screen flex flex-col" style={{ backgroundColor: "#FEFEFE" }}>
+      {/* Back Button */}
+      <div className="p-6 pb-0">
+        <BackButton />
+      </div>
+
+      {/* Chat Content */}
+      <div className="flex-1 flex">
+        {/* Chat List */}
+        <div
         className="w-80 border-r border-gray-200 flex flex-col"
         style={{ backgroundColor: "#F5FAFE" }}
       >
