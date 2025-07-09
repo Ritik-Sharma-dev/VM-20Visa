@@ -89,11 +89,11 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
   ];
 
   const visaTypesData = [
-    { name: "Work Visa", value: 35, color: "#326dee" },
-    { name: "Study Visa", value: 25, color: "#c3dafe" },
-    { name: "PR Applications", value: 20, color: "#e6f2ff" },
-    { name: "Visitor Visa", value: 15, color: "#f0f4ff" },
-    { name: "Other", value: 5, color: "#ddd6fe" },
+    { name: "Work Visa", value: 35, color: "#0288D1" },
+    { name: "Study Visa", value: 25, color: "#F5FAFE" },
+    { name: "PR Applications", value: 20, color: "#E0F2E7" },
+    { name: "Visitor Visa", value: 15, color: "#B3E5FC" },
+    { name: "Other", value: 5, color: "#E1E8ED" },
   ];
 
   const recentTasks = [
