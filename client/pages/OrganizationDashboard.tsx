@@ -110,6 +110,31 @@ export default function OrganizationDashboard() {
     logout();
   };
 
+  const handleViewProfile = () => {
+    navigate("/profile");
+    setShowProfileDropdown(false);
+  };
+
+  const handleEditProfile = () => {
+    navigate("/profile/edit");
+    setShowProfileDropdown(false);
+  };
+
+  const handleAccountSettings = () => {
+    navigate("/settings");
+    setShowProfileDropdown(false);
+  };
+
+  const confirmLogout = () => {
+    setShowLogoutConfirm(true);
+    setShowProfileDropdown(false);
+  };
+
+  const proceedLogout = () => {
+    setShowLogoutConfirm(false);
+    logout();
+  };
+
   // Navigation handler for sidebar
   const handleSidebarNavigation = (page: string) => {
     if (page === "overview") {
