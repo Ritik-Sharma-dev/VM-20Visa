@@ -59,6 +59,7 @@ export default function ClientDashboard() {
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
   const [notifications, setNotifications] = useState(3);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [autoCollapseTimer, setAutoCollapseTimer] =
     useState<NodeJS.Timeout | null>(null);
