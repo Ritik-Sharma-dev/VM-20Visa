@@ -247,8 +247,8 @@ export default function ClientDashboard() {
         return <DocumentUpload />;
       case "browse-agents":
         return <BrowseAgentsFiltered />;
-      case "profile":
-        return <UserProfile />;
+      case "chat":
+        return <MessagingPanel />;
       default:
         return <DashboardOverview onNavigate={setCurrentView} />;
     }
