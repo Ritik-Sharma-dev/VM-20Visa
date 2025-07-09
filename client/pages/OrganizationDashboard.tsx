@@ -323,20 +323,135 @@ export default function OrganizationDashboard() {
                 </Badge>
               </Button>
 
-              {/* Organization Profile */}
-              <div className="flex items-center space-x-2">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-semibold"
-                  style={{ backgroundColor: "#0288D1" }}
+              {/* Organization Profile Dropdown */}
+              <div className="relative profile-dropdown">
+                <button
+                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-white/50 transition-colors"
                 >
-                  VM
-                </div>
-                <span
-                  className="text-sm font-medium"
-                  style={{ color: "#455A64" }}
-                >
-                  VM Visa Corp
-                </span>
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-semibold"
+                    style={{ backgroundColor: "#0288D1" }}
+                  >
+                    VM
+                  </div>
+                  <span
+                    className="text-sm font-medium"
+                    style={{ color: "#455A64" }}
+                  >
+                    VM Visa Corp
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "w-4 h-4 transition-transform",
+                      showProfileDropdown ? "rotate-180" : "",
+                    )}
+                    style={{ color: "#455A64" }}
+                  />
+                </button>
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {showProfileDropdown && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border border-gray-200 z-50"
+                      style={{ backgroundColor: "#FEFEFE" }}
+                    >
+                      {/* User Info Header */}
+                      <div className="p-4 border-b border-gray-100">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold"
+                            style={{ backgroundColor: "#0288D1" }}
+                          >
+                            VM
+                          </div>
+                          <div>
+                            <p
+                              className="font-semibold text-sm"
+                              style={{ color: "#455A64" }}
+                            >
+                              VM Visa Corp
+                            </p>
+                            <p
+                              className="text-xs"
+                              style={{ color: "#455A64", opacity: 0.7 }}
+                            >
+                              contact@vmvisa.com
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Menu Items */}
+                      <div className="p-2">
+                        <button
+                          onClick={handleViewProfile}
+                          className="w-full flex items-center space-x-3 p-3 rounded-md hover:bg-gray-50 transition-colors text-left group"
+                        >
+                          <Building
+                            className="w-4 h-4"
+                            style={{ color: "#0288D1" }}
+                          />
+                          <span
+                            className="text-sm font-medium"
+                            style={{ color: "#455A64" }}
+                          >
+                            Organization Profile
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={handleEditProfile}
+                          className="w-full flex items-center space-x-3 p-3 rounded-md hover:bg-gray-50 transition-colors text-left group"
+                        >
+                          <Edit
+                            className="w-4 h-4"
+                            style={{ color: "#0288D1" }}
+                          />
+                          <span
+                            className="text-sm font-medium"
+                            style={{ color: "#455A64" }}
+                          >
+                            Edit Profile
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={handleAccountSettings}
+                          className="w-full flex items-center space-x-3 p-3 rounded-md hover:bg-gray-50 transition-colors text-left group"
+                        >
+                          <UserCog
+                            className="w-4 h-4"
+                            style={{ color: "#0288D1" }}
+                          />
+                          <span
+                            className="text-sm font-medium"
+                            style={{ color: "#455A64" }}
+                          >
+                            Account Settings
+                          </span>
+                        </button>
+
+                        <div className="border-t border-gray-100 mt-2 pt-2">
+                          <button
+                            onClick={confirmLogout}
+                            className="w-full flex items-center space-x-3 p-3 rounded-md hover:bg-red-50 transition-colors text-left group"
+                          >
+                            <LogOut className="w-4 h-4 text-red-500" />
+                            <span className="text-sm font-medium text-red-600">
+                              Logout
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>
