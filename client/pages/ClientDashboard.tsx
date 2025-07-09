@@ -241,17 +241,21 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-royal-blue-50/30 to-sage-green-50/20 flex">
+    <div className="min-h-screen flex" style={{ backgroundColor: "#F7F3E9" }}>
       {/* Modern Sidebar - Matching Image Design */}
       <motion.div
         initial={false}
         animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`fixed left-0 top-0 h-screen bg-gray-50 shadow-xl z-50 ${
+        className={`fixed left-0 top-0 h-screen shadow-xl z-50 ${
           sidebarCollapsed
             ? "overflow-hidden"
             : "overflow-x-hidden overflow-y-auto"
         }`}
+        style={{
+          backgroundColor: "#FFF9E6",
+          borderRight: "1px solid #E0E0E0",
+        }}
       >
         {/* Toggle Button */}
         <div className="absolute -right-4 top-8 z-10">
