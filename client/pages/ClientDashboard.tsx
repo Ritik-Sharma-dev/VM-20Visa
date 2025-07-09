@@ -296,8 +296,13 @@ export default function ClientDashboard() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Welcome back,</p>
-                    <h2 className="text-gray-900 font-semibold text-lg">
+                    <p className="text-sm" style={{ color: "#455A64" }}>
+                      Welcome back,
+                    </p>
+                    <h2
+                      className="font-semibold text-lg"
+                      style={{ color: "#455A64" }}
+                    >
                       John Doe
                     </h2>
                   </div>
