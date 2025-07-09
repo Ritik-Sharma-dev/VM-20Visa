@@ -392,8 +392,11 @@ export default function AgentDashboard() {
                             : "hover:bg-blue-100",
                         )}
                         style={{
-                          backgroundColor: "#F3E5F5",
-                          color: "#455A64",
+                          backgroundColor:
+                            currentView === item.id
+                              ? "rgba(255,255,255,0.2)"
+                              : "#E0F2E7",
+                          color: currentView === item.id ? "white" : "#37474F",
                         }}
                       >
                         {item.badge}
