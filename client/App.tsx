@@ -52,6 +52,8 @@ import MessagesPage from "./pages/MessagesPage";
 import CalendarPage from "./pages/CalendarPage";
 import SupportPage from "./pages/SupportPage";
 import SettingsPage from "./pages/SettingsPage";
+import ProfilePage from "./pages/ProfilePage";
+import ProfileEditPage from "./pages/ProfileEditPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
