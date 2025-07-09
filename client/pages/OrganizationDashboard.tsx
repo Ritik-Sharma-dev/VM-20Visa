@@ -139,13 +139,6 @@ export default function OrganizationDashboard() {
     }
   };
 
-  const handleSidebarExpand = () => {
-    if (sidebarCollapsed) {
-      setSidebarCollapsed(false);
-      startAutoCollapseTimer();
-    }
-  };
-
   // Cleanup timer on unmount
   useEffect(() => {
     return () => {
