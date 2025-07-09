@@ -192,6 +192,24 @@ export default function AgentDashboard() {
     };
   }, [autoCollapseTimer]);
 
+  // Click outside handler for profile dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(".profile-dropdown")) {
+        setShowProfileDropdown(false);
+      }
+    };
+
+    if (showProfileDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showProfileDropdown]);
+
   const filterTabs = [
     { id: "today", label: "Today" },
     { id: "7days", label: "7 Days" },
