@@ -51,6 +51,7 @@ import { ClientChat } from "@/components/dashboard/agent/client-chat";
 import { AgentDocuments } from "@/components/dashboard/agent/agent-documents";
 import { AgentAnalytics } from "@/components/dashboard/agent/agent-analytics";
 import { AgentSettings } from "@/components/dashboard/agent/agent-settings";
+import { ProfessionalSidebar } from "@/components/dashboard/shared/ProfessionalSidebar";
 import { useAuth } from "@/components/auth/auth-context";
 
 type AgentDashboardView =
