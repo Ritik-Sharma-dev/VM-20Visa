@@ -246,9 +246,9 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
             <div className="flex items-center justify-between mb-4">
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: "#F4F6F8" }}
+                style={{ backgroundColor: "#E3F2FD" }}
               >
-                <card.icon className="w-6 h-6" style={{ color: "#1F3A93" }} />
+                <card.icon className="w-6 h-6" style={{ color: "#455A64" }} />
               </div>
               <div className="flex items-center space-x-1 text-green-600">
                 <TrendingUp className="w-4 h-4" />
