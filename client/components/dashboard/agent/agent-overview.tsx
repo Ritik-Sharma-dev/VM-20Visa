@@ -286,10 +286,13 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3
+                className="text-lg font-semibold"
+                style={{ color: "#455A64" }}
+              >
                 Proposals vs Acceptance
               </h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm" style={{ color: "#455A64" }}>
                 Track your proposal success over time
               </p>
             </div>
