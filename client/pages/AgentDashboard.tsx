@@ -117,6 +117,17 @@ export default function AgentDashboard() {
     logout();
   };
 
+  // Navigation handler for sidebar
+  const handleSidebarNavigation = (page: string) => {
+    if (page === "overview") {
+      setCurrentView("overview");
+    } else if (
+      ["chat", "messages", "calendar", "support", "settings"].includes(page)
+    ) {
+      navigate(`/${page}`);
+    }
+  };
+
   // Auto-collapse functionality
   const startAutoCollapseTimer = () => {
     if (autoCollapseTimer) {
