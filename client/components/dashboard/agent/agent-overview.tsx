@@ -407,7 +407,8 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
             </div>
             <Button
               size="sm"
-              style={{ backgroundColor: "#1F3A93", color: "white" }}
+              style={{ backgroundColor: "#455A64", color: "white" }}
+              className="hover:opacity-90"
             >
               <Plus className="w-4 h-4 mr-2" />
               New Task
