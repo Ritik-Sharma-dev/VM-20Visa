@@ -627,43 +627,25 @@ export function MyRequests() {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div
-                className={cn(
-                  "flex gap-2 mt-4",
-                  viewMode === "list" && "mt-0 flex-col",
-                )}
-              >
-                <Button variant="outline" size="sm" className="group">
-                  <Eye className="w-4 h-4 mr-2" />
-                  View
-                </Button>
-                {request.proposalCount > 0 && (
+              {/* View Proposals Button - Centered at Bottom */}
+              {request.proposalCount > 0 && (
+                <div className="flex justify-center mt-4">
                   <Button
                     onClick={() => handleViewProposals(request.id)}
                     variant="outline"
                     size="sm"
-                    className="group bg-royal-blue-50 border-royal-blue-200 text-royal-blue-700 hover:bg-royal-blue-100"
+                    className="group"
+                    style={{
+                      backgroundColor: "#E0F2E7",
+                      borderColor: "#0288D1",
+                      color: "#0288D1",
+                    }}
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
                     View Proposals ({request.proposalCount})
                   </Button>
-                )}
-                <Button variant="outline" size="sm" className="group">
-                  <Edit className="w-4 h-4 mr-2" />
-                  Edit
-                </Button>
-                {request.status === "pending" && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="group text-red-600 hover:text-red-700"
-                  >
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Delete
-                  </Button>
-                )}
-              </div>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
