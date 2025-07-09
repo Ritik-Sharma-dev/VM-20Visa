@@ -47,15 +47,14 @@ import { CaseManagement } from "@/components/dashboard/organization/case-managem
 import { OrganizationAnalytics } from "@/components/dashboard/organization/organization-analytics";
 import { OrganizationSettings } from "@/components/dashboard/organization/organization-settings";
 import { OrganizationNotifications } from "@/components/dashboard/organization/organization-notifications";
+import { ProfessionalSidebar } from "@/components/dashboard/shared/ProfessionalSidebar";
 import { useAuth } from "@/components/auth/auth-context";
 
 type OrganizationDashboardView =
-  | "dashboard"
+  | "overview"
   | "manage-agents"
   | "case-requests"
-  | "analytics"
-  | "settings"
-  | "notifications";
+  | "analytics";
 
 export default function OrganizationDashboard() {
   const [currentView, setCurrentView] =
