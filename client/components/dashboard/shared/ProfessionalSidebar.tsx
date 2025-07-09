@@ -428,24 +428,6 @@ export const ProfessionalSidebar: React.FC<ProfessionalSidebarProps> = ({
           </div>
         </Button>
       </div>
-
-      {/* Logout Button */}
-      <div className="p-3 border-t border-gray-200">
-        <Button
-          onClick={handleLogout}
-          variant="ghost"
-          className={cn(
-            "w-full transition-all duration-200",
-            collapsed ? "px-0 justify-center h-10" : "px-3 h-10",
-          )}
-          style={{ color: "#455A64" }}
-        >
-          <div className="flex items-center space-x-3">
-            <LogOut className="h-4 w-4 flex-shrink-0" />
-            {!collapsed && <span className="text-sm">Logout</span>}
-          </div>
-        </Button>
-      </div>
     </motion.div>
   );
 };
