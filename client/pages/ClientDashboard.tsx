@@ -101,20 +101,11 @@ export default function ClientDashboard() {
     setSidebarCollapsed(newState);
 
     if (!newState) {
-      // If expanding, start the auto-collapse timer
       startAutoCollapseTimer();
     } else {
-      // If collapsing manually, clear the timer
       clearAutoCollapseTimer();
     }
   };
-
-  // Cleanup timer on unmount
-  useEffect(() => {
-    return () => {
-      clearAutoCollapseTimer();
-    };
-  }, [autoCollapseTimer]);
 
   // Auto-save functionality
   useEffect(() => {
@@ -152,23 +143,12 @@ export default function ClientDashboard() {
     }
   }, []);
 
-  // Click outside handler for profile dropdown
+  // Cleanup timer on unmount
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (!target.closest(".profile-dropdown")) {
-        setShowProfileDropdown(false);
-      }
-    };
-
-    if (showProfileDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      clearAutoCollapseTimer();
     };
-  }, [showProfileDropdown]);
+  }, [autoCollapseTimer]);
 
   const tabItems = [
     {
@@ -202,10 +182,10 @@ export default function ClientDashboard() {
       badge: null,
     },
     {
-      id: "chat",
-      label: "Chat",
-      icon: MessageCircle,
-      badge: "8",
+      id: "profile",
+      label: "Profile",
+      icon: User,
+      badge: null,
     },
   ];
 
@@ -247,182 +227,122 @@ export default function ClientDashboard() {
         style={{ marginLeft: sidebarCollapsed ? "80px" : "320px" }}
       >
         {/* Header */}
-        <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 px-6 py-2">
-          <div className="flex items-center justify-between mb-2">
+        <div
+          className="sticky top-0 z-40 px-6 py-4 border-b"
+          style={{
+            backgroundColor: "#F5FAFE",
+            borderColor: "#E1E8ED",
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
             {/* Left: Page Title */}
             <div>
-              <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
+              <h1 className="text-2xl font-bold" style={{ color: "#455A64" }}>
                 {tabItems.find((tab) => tab.id === currentView)?.label ||
                   "Dashboard"}
               </h1>
+              <p
+                className="text-sm mt-1"
+                style={{ color: "#455A64", opacity: 0.7 }}
+              >
+                Manage your immigration applications and connect with agents
+              </p>
             </div>
 
             {/* Right: Actions */}
             <div className="flex items-center space-x-4">
               {/* Notifications */}
-              <Button variant="outline" size="sm" className="relative">
+              <Button
+                variant="outline"
+                size="sm"
+                className="relative border-gray-300"
+                style={{ color: "#455A64" }}
+              >
                 <Bell className="w-4 h-4" />
                 <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs min-w-5 h-5 rounded-full flex items-center justify-center">
                   3
                 </Badge>
               </Button>
 
-              {/* Profile Dropdown */}
-              <div className="relative profile-dropdown">
-                <button
-                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                  className="flex items-center space-x-2 p-2 rounded-xl hover:bg-white/50 transition-colors"
+              {/* Profile */}
+              <div className="flex items-center space-x-2">
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold"
+                  style={{ backgroundColor: "#0288D1" }}
                 >
-                  <div className="w-8 h-8 bg-gradient-royal rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">JD</span>
-                  </div>
-                  <ChevronLeft
-                    className={cn(
-                      "w-4 h-4 text-cool-gray-400 transition-transform",
-                      showProfileDropdown ? "rotate-180" : "rotate-90",
-                    )}
-                  />
-                </button>
-
-                {/* Dropdown Menu */}
-                {showProfileDropdown && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-white/20 z-50 backdrop-blur-xl"
-                  >
-                    {/* User Info */}
-                    <div className="p-4 border-b border-white/20">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gradient-royal rounded-full flex items-center justify-center">
-                          <span className="text-white text-lg font-medium">
-                            JD
-                          </span>
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-cool-gray-800">
-                            John Doe
-                          </h3>
-                          <p className="text-sm text-cool-gray-600">
-                            Premium Member
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Menu Items */}
-                    <div className="p-2">
-                      <button
-                        onClick={() => {
-                          setCurrentView("profile");
-                          setShowProfileDropdown(false);
-                        }}
-                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-royal-blue-50 transition-colors text-left"
-                      >
-                        <User className="w-5 h-5 text-royal-blue-600" />
-                        <span className="font-medium text-cool-gray-700">
-                          View Profile
-                        </span>
-                      </button>
-
-                      <button
-                        onClick={() => setShowProfileDropdown(false)}
-                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-sage-green-50 transition-colors text-left"
-                      >
-                        <Bell className="w-5 h-5 text-sage-green-600" />
-                        <span className="font-medium text-cool-gray-700">
-                          Notifications
-                        </span>
-                        <Badge className="bg-red-500 text-white text-xs ml-auto">
-                          3
-                        </Badge>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setCurrentView("settings");
-                          setShowProfileDropdown(false);
-                        }}
-                        className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-gold-50 transition-colors text-left"
-                      >
-                        <Settings className="w-5 h-5 text-gold-600" />
-                        <span className="font-medium text-cool-gray-700">
-                          Settings
-                        </span>
-                      </button>
-
-                      <div className="border-t border-white/20 mt-2 pt-2">
-                        <button
-                          onClick={() => {
-                            logout();
-                            setShowProfileDropdown(false);
-                          }}
-                          className="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-red-50 transition-colors text-left group"
-                        >
-                          <LogOut className="w-5 h-5 text-red-500" />
-                          <span className="font-medium text-red-600">
-                            Logout
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
+                  JD
+                </div>
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: "#455A64" }}
+                >
+                  John Doe
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Enhanced Pill Navigation */}
-          <div className="flex items-center justify-between bg-cool-gray-50 rounded-2xl p-2">
-            {tabItems.map((tab) => (
-              <motion.button
-                key={tab.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setCurrentView(tab.id as DashboardView)}
-                className={cn(
-                  "flex items-center justify-center space-x-2 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex-1 relative",
-                  currentView === tab.id
-                    ? "bg-white text-cool-gray-900 shadow-md"
-                    : "text-cool-gray-600 hover:text-cool-gray-900 hover:bg-white/50",
-                )}
-              >
-                <tab.icon className="w-4 h-4" />
-                <span className="hidden sm:inline">{tab.label}</span>
-                {tab.badge && (
-                  <Badge
-                    className={cn(
-                      "text-xs ml-1",
-                      currentView === tab.id
-                        ? "bg-gradient-to-r from-sage-green-500 to-sky-blue-500 text-white"
-                        : "bg-gradient-to-r from-sage-green-400 to-sky-blue-400 text-white",
-                    )}
-                  >
-                    {tab.badge}
-                  </Badge>
-                )}
-              </motion.button>
-            ))}
+          {/* Tab Navigation */}
+          <div
+            className="flex space-x-1 p-1 rounded-lg"
+            style={{ backgroundColor: "#E0F2E7" }}
+          >
+            {tabItems.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = currentView === tab.id;
+
+              return (
+                <Button
+                  key={tab.id}
+                  onClick={() => setCurrentView(tab.id as DashboardView)}
+                  variant="ghost"
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-all ${
+                    isActive ? "shadow-sm" : ""
+                  }`}
+                  style={{
+                    backgroundColor: isActive ? "#FEFEFE" : "transparent",
+                    color: "#455A64",
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="hidden sm:inline font-medium">
+                    {tab.label}
+                  </span>
+                  {tab.badge && (
+                    <Badge
+                      className="ml-1 text-xs"
+                      style={{
+                        backgroundColor: isActive ? "#0288D1" : "#F3E5F5",
+                        color: isActive ? "white" : "#455A64",
+                      }}
+                    >
+                      {tab.badge}
+                    </Badge>
+                  )}
+                </Button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Page Content */}
-        <div className="p-6">
-          <motion.div
-            key={currentView}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {renderContent()}
-          </motion.div>
-        </div>
-      </div>
+        {/* Content Area */}
+        <main className="p-6">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentView}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+            >
+              {renderContent()}
+            </motion.div>
+          </AnimatePresence>
+        </main>
 
-      {/* Floating AI Assistant */}
-      <FloatingAIAssistant />
+        {/* Floating AI Assistant */}
+        <FloatingAIAssistant />
+      </div>
     </div>
   );
 }
