@@ -158,7 +158,10 @@ const ChatPage: React.FC = () => {
   const chatMessages = messages[selectedChat] || [];
 
   return (
-    <div className="h-screen flex flex-col" style={{ backgroundColor: "#FEFEFE" }}>
+    <div
+      className="h-screen flex flex-col"
+      style={{ backgroundColor: "#FEFEFE" }}
+    >
       {/* Back Button */}
       <div className="p-6 pb-0">
         <BackButton />
@@ -171,250 +174,251 @@ const ChatPage: React.FC = () => {
           className="w-80 border-r border-gray-200 flex flex-col"
           style={{ backgroundColor: "#F5FAFE" }}
         >
-        {/* Header */}
-        <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold" style={{ color: "#455A64" }}>
-              Chat
-            </h1>
-            <Badge style={{ backgroundColor: "#0288D1", color: "white" }}>
-              {contacts.reduce((acc, c) => acc + c.unread, 0)} new
-            </Badge>
+          {/* Header */}
+          <div className="p-4 border-b border-gray-200">
+            <div className="flex items-center justify-between mb-4">
+              <h1 className="text-xl font-bold" style={{ color: "#455A64" }}>
+                Chat
+              </h1>
+              <Badge style={{ backgroundColor: "#0288D1", color: "white" }}>
+                {contacts.reduce((acc, c) => acc + c.unread, 0)} new
+              </Badge>
+            </div>
+
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search conversations..."
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 text-sm"
+                style={{ backgroundColor: "#FEFEFE", color: "#455A64" }}
+              />
+            </div>
           </div>
 
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search conversations..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 text-sm"
-              style={{ backgroundColor: "#FEFEFE", color: "#455A64" }}
-            />
-          </div>
-        </div>
-
-        {/* Contacts List */}
-        <div className="flex-1 overflow-y-auto">
-          {contacts.map((contact) => (
-            <div
-              key={contact.id}
-              onClick={() => setSelectedChat(contact.id)}
-              className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-white transition-colors ${
-                selectedChat === contact.id ? "bg-white border-l-4" : ""
-              }`}
-              style={{
-                borderLeftColor:
-                  selectedChat === contact.id ? "#0288D1" : "transparent",
-              }}
-            >
-              <div className="flex items-start space-x-3">
-                <div className="relative">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold"
-                    style={{ backgroundColor: "#0288D1" }}
-                  >
-                    {contact.avatar}
-                  </div>
-                  {contact.online && (
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white" />
-                  )}
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <h3
-                      className="font-semibold text-sm"
-                      style={{ color: "#455A64" }}
+          {/* Contacts List */}
+          <div className="flex-1 overflow-y-auto">
+            {contacts.map((contact) => (
+              <div
+                key={contact.id}
+                onClick={() => setSelectedChat(contact.id)}
+                className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-white transition-colors ${
+                  selectedChat === contact.id ? "bg-white border-l-4" : ""
+                }`}
+                style={{
+                  borderLeftColor:
+                    selectedChat === contact.id ? "#0288D1" : "transparent",
+                }}
+              >
+                <div className="flex items-start space-x-3">
+                  <div className="relative">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold"
+                      style={{ backgroundColor: "#0288D1" }}
                     >
-                      {contact.name}
-                    </h3>
-                    <span className="text-xs" style={{ color: "#455A64" }}>
-                      {contact.timestamp}
-                    </span>
+                      {contact.avatar}
+                    </div>
+                    {contact.online && (
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white" />
+                    )}
                   </div>
 
-                  <p
-                    className="text-xs mb-1"
-                    style={{ color: "#455A64", opacity: 0.7 }}
-                  >
-                    {contact.role}
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    <p
-                      className="text-sm truncate"
-                      style={{ color: "#455A64" }}
-                    >
-                      {contact.lastMessage}
-                    </p>
-                    {contact.unread > 0 && (
-                      <Badge
-                        className="ml-2"
-                        style={{ backgroundColor: "#0288D1", color: "white" }}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <h3
+                        className="font-semibold text-sm"
+                        style={{ color: "#455A64" }}
                       >
-                        {contact.unread}
-                      </Badge>
-                    )}
+                        {contact.name}
+                      </h3>
+                      <span className="text-xs" style={{ color: "#455A64" }}>
+                        {contact.timestamp}
+                      </span>
+                    </div>
+
+                    <p
+                      className="text-xs mb-1"
+                      style={{ color: "#455A64", opacity: 0.7 }}
+                    >
+                      {contact.role}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <p
+                        className="text-sm truncate"
+                        style={{ color: "#455A64" }}
+                      >
+                        {contact.lastMessage}
+                      </p>
+                      {contact.unread > 0 && (
+                        <Badge
+                          className="ml-2"
+                          style={{ backgroundColor: "#0288D1", color: "white" }}
+                        >
+                          {contact.unread}
+                        </Badge>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Chat Area */}
-      {selectedContact ? (
-        <div className="flex-1 flex flex-col">
-          {/* Chat Header */}
-          <div
-            className="p-4 border-b border-gray-200 flex items-center justify-between"
-            style={{ backgroundColor: "#F5FAFE" }}
-          >
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
-                  style={{ backgroundColor: "#0288D1" }}
-                >
-                  {selectedContact.avatar}
-                </div>
-                {selectedContact.online && (
-                  <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white" />
-                )}
-              </div>
-              <div>
-                <h2 className="font-semibold" style={{ color: "#455A64" }}>
-                  {selectedContact.name}
-                </h2>
-                <p
-                  className="text-sm"
-                  style={{ color: "#455A64", opacity: 0.7 }}
-                >
-                  {selectedContact.role} •{" "}
-                  {selectedContact.online ? "Online" : "Offline"}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
-                <Phone className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
-                <Video className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {chatMessages.map((message) => (
-              <motion.div
-                key={message.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex ${message.isOwn ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                    message.isOwn ? "rounded-br-none" : "rounded-bl-none"
-                  }`}
-                  style={{
-                    backgroundColor: message.isOwn ? "#0288D1" : "#E0F2E7",
-                    color: message.isOwn ? "white" : "#455A64",
-                  }}
-                >
-                  <p className="text-sm">{message.message}</p>
-                  <div
-                    className={`flex items-center justify-between mt-1 text-xs ${
-                      message.isOwn ? "text-blue-100" : "text-gray-500"
-                    }`}
-                  >
-                    <span>{message.timestamp}</span>
-                    {message.isOwn && message.status && (
-                      <CheckCheck
-                        className={`h-3 w-3 ml-2 ${
-                          message.status === "read"
-                            ? "text-blue-200"
-                            : "text-blue-300"
-                        }`}
-                      />
-                    )}
-                  </div>
-                </div>
-              </motion.div>
             ))}
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* Message Input */}
-          <div
-            className="p-4 border-t border-gray-200"
-            style={{ backgroundColor: "#F5FAFE" }}
-          >
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
-                <Paperclip className="h-4 w-4" />
-              </Button>
-
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder="Type your message..."
-                  className="w-full px-4 py-2 rounded-lg border border-gray-200 text-sm pr-10"
-                  style={{ backgroundColor: "#FEFEFE", color: "#455A64" }}
-                />
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2"
-                  style={{ color: "#455A64" }}
-                >
-                  <Smile className="h-4 w-4" />
-                </Button>
-              </div>
-
-              <Button
-                onClick={handleSendMessage}
-                size="sm"
-                disabled={!newMessage.trim()}
-                style={{ backgroundColor: "#0288D1", color: "white" }}
-                className="hover:bg-blue-700"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
           </div>
         </div>
-      ) : (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
+
+        {/* Chat Area */}
+        {selectedContact ? (
+          <div className="flex-1 flex flex-col">
+            {/* Chat Header */}
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              className="p-4 border-b border-gray-200 flex items-center justify-between"
               style={{ backgroundColor: "#F5FAFE" }}
             >
-              <User className="h-8 w-8" style={{ color: "#455A64" }} />
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
+                    style={{ backgroundColor: "#0288D1" }}
+                  >
+                    {selectedContact.avatar}
+                  </div>
+                  {selectedContact.online && (
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white" />
+                  )}
+                </div>
+                <div>
+                  <h2 className="font-semibold" style={{ color: "#455A64" }}>
+                    {selectedContact.name}
+                  </h2>
+                  <p
+                    className="text-sm"
+                    style={{ color: "#455A64", opacity: 0.7 }}
+                  >
+                    {selectedContact.role} •{" "}
+                    {selectedContact.online ? "Online" : "Offline"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
+                  <Phone className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
+                  <Video className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
+                  <MoreVertical className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
-            <h3
-              className="text-lg font-semibold mb-2"
-              style={{ color: "#455A64" }}
+
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {chatMessages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex ${message.isOwn ? "justify-end" : "justify-start"}`}
+                >
+                  <div
+                    className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                      message.isOwn ? "rounded-br-none" : "rounded-bl-none"
+                    }`}
+                    style={{
+                      backgroundColor: message.isOwn ? "#0288D1" : "#E0F2E7",
+                      color: message.isOwn ? "white" : "#455A64",
+                    }}
+                  >
+                    <p className="text-sm">{message.message}</p>
+                    <div
+                      className={`flex items-center justify-between mt-1 text-xs ${
+                        message.isOwn ? "text-blue-100" : "text-gray-500"
+                      }`}
+                    >
+                      <span>{message.timestamp}</span>
+                      {message.isOwn && message.status && (
+                        <CheckCheck
+                          className={`h-3 w-3 ml-2 ${
+                            message.status === "read"
+                              ? "text-blue-200"
+                              : "text-blue-300"
+                          }`}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Message Input */}
+            <div
+              className="p-4 border-t border-gray-200"
+              style={{ backgroundColor: "#F5FAFE" }}
             >
-              Select a conversation
-            </h3>
-            <p className="text-sm" style={{ color: "#455A64", opacity: 0.7 }}>
-              Choose a contact to start chatting
-            </p>
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" style={{ color: "#455A64" }}>
+                  <Paperclip className="h-4 w-4" />
+                </Button>
+
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                    placeholder="Type your message..."
+                    className="w-full px-4 py-2 rounded-lg border border-gray-200 text-sm pr-10"
+                    style={{ backgroundColor: "#FEFEFE", color: "#455A64" }}
+                  />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                    style={{ color: "#455A64" }}
+                  >
+                    <Smile className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                <Button
+                  onClick={handleSendMessage}
+                  size="sm"
+                  disabled={!newMessage.trim()}
+                  style={{ backgroundColor: "#0288D1", color: "white" }}
+                  className="hover:bg-blue-700"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                style={{ backgroundColor: "#F5FAFE" }}
+              >
+                <User className="h-8 w-8" style={{ color: "#455A64" }} />
+              </div>
+              <h3
+                className="text-lg font-semibold mb-2"
+                style={{ color: "#455A64" }}
+              >
+                Select a conversation
+              </h3>
+              <p className="text-sm" style={{ color: "#455A64", opacity: 0.7 }}>
+                Choose a contact to start chatting
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
