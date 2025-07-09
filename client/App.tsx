@@ -47,6 +47,11 @@ import Login from "./pages/Login";
 import ClientDashboard from "./pages/ClientDashboard";
 import AgentDashboard from "./pages/AgentDashboard";
 import OrganizationDashboard from "./pages/OrganizationDashboard";
+import ChatPage from "./pages/ChatPage";
+import MessagesPage from "./pages/MessagesPage";
+import CalendarPage from "./pages/CalendarPage";
+import SupportPage from "./pages/SupportPage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
