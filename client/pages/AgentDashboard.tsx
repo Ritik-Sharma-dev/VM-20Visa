@@ -375,12 +375,8 @@ export default function AgentDashboard() {
                     )}
                     style={{
                       backgroundColor:
-                        currentView === item.id ? "#F3E5F5" : "transparent",
-                      color: "#455A64",
-                      borderLeft:
-                        currentView === item.id
-                          ? "3px solid #F3E5F5"
-                          : "3px solid transparent",
+                        currentView === item.id ? "#0288D1" : "transparent",
+                      color: currentView === item.id ? "white" : "#37474F",
                     }}
                   >
                     <div className="flex items-center space-x-3">
