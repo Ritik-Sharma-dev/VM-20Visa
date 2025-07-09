@@ -248,7 +248,11 @@ export default function OrganizationDashboard() {
         initial={false}
         animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen bg-white shadow-xl z-50 overflow-hidden"
+        className={`fixed left-0 top-0 h-screen bg-white shadow-xl z-50 ${
+          sidebarCollapsed
+            ? "overflow-hidden"
+            : "overflow-x-hidden overflow-y-auto"
+        }`}
         style={{ borderRight: "1px solid #D9D9D9" }}
       >
         {/* Toggle Button */}
