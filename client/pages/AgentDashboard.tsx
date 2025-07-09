@@ -226,7 +226,7 @@ export default function AgentDashboard() {
 
   const renderContent = () => {
     switch (currentView) {
-      case "home":
+      case "overview":
         return <AgentOverview filterPeriod={filterPeriod} />;
       case "incoming-requests":
         return <IncomingRequests />;
@@ -234,14 +234,10 @@ export default function AgentDashboard() {
         return <MyProposals />;
       case "active-projects":
         return <ActiveProjects />;
-      case "chat":
-        return <ClientChat />;
       case "documents":
         return <AgentDocuments />;
       case "analytics":
         return <AgentAnalytics filterPeriod={filterPeriod} />;
-      case "settings":
-        return <AgentSettings />;
       default:
         return <AgentOverview filterPeriod={filterPeriod} />;
     }
