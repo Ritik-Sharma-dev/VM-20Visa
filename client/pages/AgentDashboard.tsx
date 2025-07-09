@@ -534,10 +534,10 @@ export default function AgentDashboard() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold" style={{ color: "#455A64" }}>
+              <h1 className="text-2xl font-bold" style={{ color: "#37474F" }}>
                 {getPageTitle()}
               </h1>
-              <p className="text-sm mt-1" style={{ color: "#455A64" }}>
+              <p className="text-sm mt-1" style={{ color: "#37474F" }}>
                 {currentView === "home"
                   ? "Monitor your immigration business performance"
                   : `Manage your ${getPageTitle().toLowerCase()}`}
