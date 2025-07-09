@@ -445,10 +445,10 @@ export default function ClientDashboard() {
 
           {/* Tab Navigation */}
           <div
-            className="flex p-1 rounded-lg overflow-x-auto"
+            className="p-1 rounded-lg overflow-x-auto"
             style={{ backgroundColor: "#E0F2E7" }}
           >
-            <div className="flex space-x-1 min-w-full">
+            <div className="flex space-x-1">
               {tabItems.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = currentView === tab.id;
@@ -458,7 +458,7 @@ export default function ClientDashboard() {
                     key={tab.id}
                     onClick={() => setCurrentView(tab.id as DashboardView)}
                     variant="ghost"
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all flex-1 min-w-0 ${
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-all whitespace-nowrap ${
                       isActive ? "shadow-sm" : ""
                     }`}
                     style={{
@@ -467,9 +467,7 @@ export default function ClientDashboard() {
                     }}
                   >
                     <Icon className="w-4 h-4 flex-shrink-0" />
-                    <span className="font-medium text-sm truncate">
-                      {tab.label}
-                    </span>
+                    <span className="font-medium text-sm">{tab.label}</span>
                     {tab.badge && (
                       <Badge
                         className="ml-1 text-xs flex-shrink-0"
