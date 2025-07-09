@@ -528,8 +528,8 @@ export default function AgentDashboard() {
         <header
           className="shadow-sm px-8 py-4"
           style={{
-            background: "linear-gradient(90deg, #F7F3E9 0%, #FFF9E6 100%)",
-            borderBottom: "1px solid #E0E0E0",
+            backgroundColor: "#FEFEFE",
+            borderBottom: "1px solid #E1E8ED",
           }}
         >
           <div className="flex items-center justify-between">
