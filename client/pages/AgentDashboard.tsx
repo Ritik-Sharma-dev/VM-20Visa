@@ -317,10 +317,15 @@ export default function AgentDashboard() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 text-lg">
+                      <h3
+                        className="font-semibold text-lg"
+                        style={{ color: "#455A64" }}
+                      >
                         Sarah Ahmad
                       </h3>
-                      <p className="text-sm text-gray-600">Premium Agent</p>
+                      <p className="text-sm" style={{ color: "#455A64" }}>
+                        Premium Agent
+                      </p>
                     </div>
                   </div>
                   <Edit className="w-4 h-4 text-gray-400 hover:text-gray-600" />
