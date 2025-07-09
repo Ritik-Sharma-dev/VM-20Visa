@@ -228,10 +228,10 @@ export default function ClientDashboard() {
       badge: null,
     },
     {
-      id: "profile",
-      label: "Profile",
-      icon: User,
-      badge: null,
+      id: "chat",
+      label: "Chat",
+      icon: MessageCircle,
+      badge: "5",
     },
   ];
 
