@@ -241,7 +241,7 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: "#F7F3E9" }}>
+    <div className="min-h-screen flex" style={{ backgroundColor: "#FEFEFE" }}>
       {/* Modern Sidebar - Matching Image Design */}
       <motion.div
         initial={false}
@@ -253,8 +253,8 @@ export default function ClientDashboard() {
             : "overflow-x-hidden overflow-y-auto"
         }`}
         style={{
-          backgroundColor: "#FFF9E6",
-          borderRight: "1px solid #E0E0E0",
+          backgroundColor: "#F5FAFE",
+          borderRight: "1px solid #E1E8ED",
         }}
       >
         {/* Toggle Button */}
