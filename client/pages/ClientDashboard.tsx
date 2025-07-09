@@ -53,7 +53,7 @@ type DashboardView =
   | "applications"
   | "documents"
   | "browse-agents"
-  | "profile";
+  | "chat";
 
 export default function ClientDashboard() {
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
