@@ -244,19 +244,17 @@ export default function OrganizationDashboard() {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: "#F4F6FA" }}>
-      {/* Sidebar */}
-      <motion.div
-        initial={false}
-        animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`fixed left-0 top-0 h-screen bg-white shadow-xl z-50 ${
-          sidebarCollapsed
-            ? "overflow-hidden"
-            : "overflow-x-hidden overflow-y-auto"
-        }`}
-        style={{ borderRight: "1px solid #D9D9D9" }}
-      >
+    <div className="min-h-screen flex" style={{ backgroundColor: "#FEFEFE" }}>
+      {/* Professional Sidebar */}
+      <div className="fixed left-0 top-0 h-screen z-50">
+        <ProfessionalSidebar
+          userType="organization"
+          currentPage={currentView}
+          onNavigate={handleSidebarNavigation}
+          collapsed={sidebarCollapsed}
+          onToggle={handleSidebarToggle}
+        />
+      </div>
         {/* Toggle Button */}
         <div className="absolute -right-4 top-8 z-10">
           <motion.button
