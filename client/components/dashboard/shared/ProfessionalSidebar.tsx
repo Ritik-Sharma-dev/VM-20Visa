@@ -130,11 +130,6 @@ export const ProfessionalSidebar: React.FC<ProfessionalSidebarProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  const handleLogout = () => {
-    // Implement logout logic
-    console.log("Logging out...");
-  };
-
   const getInitials = (name: string) => {
     return name
       .split(" ")
