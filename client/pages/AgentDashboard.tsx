@@ -68,9 +68,11 @@ type FilterPeriod = "today" | "7days" | "month" | "year";
 
 export default function AgentDashboard() {
   const [currentView, setCurrentView] = useState<AgentDashboardView>("home");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Start collapsed
   const [filterPeriod, setFilterPeriod] = useState<FilterPeriod>("month");
   const [showProfileCard, setShowProfileCard] = useState(false);
+  const [autoCollapseTimer, setAutoCollapseTimer] =
+    useState<NodeJS.Timeout | null>(null);
   const { logout } = useAuth();
 
   // Auto-save functionality
