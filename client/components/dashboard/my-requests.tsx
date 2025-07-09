@@ -493,7 +493,7 @@ export function MyRequests() {
                 viewMode === "list" && "flex items-center gap-6",
               )}
             >
-              {/* Priority Indicator */}
+              {/* Header with Priority and Actions Dropdown */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <div
@@ -509,9 +509,79 @@ export function MyRequests() {
                     </span>
                   </Badge>
                 </div>
-                <span className="text-xs text-cool-gray-500">
-                  {new Date(request.createdAt).toLocaleDateString()}
-                </span>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-cool-gray-500">
+                    {new Date(request.createdAt).toLocaleDateString()}
+                  </span>
+
+                  {/* 3-Dot Actions Dropdown */}
+                  <div className="relative dropdown-container">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() =>
+                        setOpenDropdown(
+                          openDropdown === request.id ? null : request.id,
+                        )
+                      }
+                      className="p-1 h-8 w-8"
+                      style={{ color: "#455A64" }}
+                    >
+                      <MoreVertical className="w-4 h-4" />
+                    </Button>
+
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                      {openDropdown === request.id && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute right-0 top-full mt-1 w-36 rounded-lg shadow-lg border border-gray-200 z-50"
+                          style={{ backgroundColor: "#FEFEFE" }}
+                        >
+                          <div className="p-1">
+                            <button
+                              onClick={() => handleView(request.id)}
+                              className="w-full flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors text-left text-sm"
+                              style={{ color: "#455A64" }}
+                            >
+                              <Eye
+                                className="w-4 h-4"
+                                style={{ color: "#0288D1" }}
+                              />
+                              <span>View</span>
+                            </button>
+
+                            <button
+                              onClick={() => handleEdit(request.id)}
+                              className="w-full flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors text-left text-sm"
+                              style={{ color: "#455A64" }}
+                            >
+                              <Edit
+                                className="w-4 h-4"
+                                style={{ color: "#0288D1" }}
+                              />
+                              <span>Edit</span>
+                            </button>
+
+                            {request.status === "pending" && (
+                              <button
+                                onClick={() => handleDelete(request.id)}
+                                className="w-full flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-red-50 transition-colors text-left text-sm"
+                              >
+                                <Trash2 className="w-4 h-4 text-red-500" />
+                                <span className="text-red-600">Delete</span>
+                              </button>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
               </div>
 
               <div className={cn(viewMode === "list" && "flex-1")}>
