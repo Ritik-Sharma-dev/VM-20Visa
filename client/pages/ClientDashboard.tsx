@@ -336,10 +336,17 @@ export default function ClientDashboard() {
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setCurrentView("overview")}
                 className={`w-full flex items-center justify-between px-4 py-4 rounded-2xl transition-all duration-200 ${
-                  currentView === "overview"
-                    ? "bg-blue-500 text-white shadow-lg"
-                    : "text-gray-700 hover:bg-white/60"
+                  currentView === "overview" ? "shadow-lg" : "hover:bg-white/60"
                 }`}
+                style={{
+                  backgroundColor:
+                    currentView === "overview" ? "#F3E5F5" : "transparent",
+                  color: "#455A64",
+                  borderLeft:
+                    currentView === "overview"
+                      ? "3px solid #F3E5F5"
+                      : "3px solid transparent",
+                }}
               >
                 <div className="flex items-center space-x-4">
                   <BarChart3 className="w-6 h-6" />
