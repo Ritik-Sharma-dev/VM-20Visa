@@ -244,7 +244,7 @@ export default function ClientDashboard() {
       {/* Main Content */}
       <div
         className="flex-1 transition-all duration-300"
-        style={{ marginLeft: sidebarCollapsed ? "72px" : "300px" }}
+        style={{ marginLeft: sidebarCollapsed ? "80px" : "320px" }}
       >
         {/* Header */}
         <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-white/20 px-6 py-2">
