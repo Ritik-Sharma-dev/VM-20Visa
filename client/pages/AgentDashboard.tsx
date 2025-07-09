@@ -346,8 +346,8 @@ export default function AgentDashboard() {
                       <span className="font-medium">Verified Agent</span>
                     </div>
                     <Badge
-                      className="hover:bg-blue-100"
-                      style={{ backgroundColor: "#61A5FF", color: "white" }}
+                      className="hover:opacity-80"
+                      style={{ backgroundColor: "#F3E5F5", color: "#455A64" }}
                     >
                       Active
                     </Badge>
