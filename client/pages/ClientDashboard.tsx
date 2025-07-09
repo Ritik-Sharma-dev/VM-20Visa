@@ -109,13 +109,6 @@ export default function ClientDashboard() {
     }
   };
 
-  const handleSidebarExpand = () => {
-    if (sidebarCollapsed) {
-      setSidebarCollapsed(false);
-      startAutoCollapseTimer();
-    }
-  };
-
   // Cleanup timer on unmount
   useEffect(() => {
     return () => {
