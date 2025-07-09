@@ -445,10 +445,7 @@ export default function ClientDashboard() {
           </div>
         ) : (
           /* Collapsed Sidebar */
-          <div
-            className="flex flex-col h-full items-center py-6 pl-2"
-            onMouseEnter={handleSidebarExpand}
-          >
+          <div className="flex flex-col h-full items-center py-6 pl-2">
             {/* Collapsed Navigation Icons */}
             <div className="space-y-4 mb-8">
               {[
