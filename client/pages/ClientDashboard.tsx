@@ -445,44 +445,46 @@ export default function ClientDashboard() {
 
           {/* Tab Navigation */}
           <div
-            className="flex space-x-1 p-1 rounded-lg"
+            className="flex p-1 rounded-lg overflow-x-auto"
             style={{ backgroundColor: "#E0F2E7" }}
           >
-            {tabItems.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = currentView === tab.id;
+            <div className="flex space-x-1 min-w-full">
+              {tabItems.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = currentView === tab.id;
 
-              return (
-                <Button
-                  key={tab.id}
-                  onClick={() => setCurrentView(tab.id as DashboardView)}
-                  variant="ghost"
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-all ${
-                    isActive ? "shadow-sm" : ""
-                  }`}
-                  style={{
-                    backgroundColor: isActive ? "#FEFEFE" : "transparent",
-                    color: "#455A64",
-                  }}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="hidden sm:inline font-medium">
-                    {tab.label}
-                  </span>
-                  {tab.badge && (
-                    <Badge
-                      className="ml-1 text-xs"
-                      style={{
-                        backgroundColor: isActive ? "#0288D1" : "#F3E5F5",
-                        color: isActive ? "white" : "#455A64",
-                      }}
-                    >
-                      {tab.badge}
-                    </Badge>
-                  )}
-                </Button>
-              );
-            })}
+                return (
+                  <Button
+                    key={tab.id}
+                    onClick={() => setCurrentView(tab.id as DashboardView)}
+                    variant="ghost"
+                    className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-all flex-1 min-w-0 ${
+                      isActive ? "shadow-sm" : ""
+                    }`}
+                    style={{
+                      backgroundColor: isActive ? "#FEFEFE" : "transparent",
+                      color: "#455A64",
+                    }}
+                  >
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-medium text-sm truncate">
+                      {tab.label}
+                    </span>
+                    {tab.badge && (
+                      <Badge
+                        className="ml-1 text-xs flex-shrink-0"
+                        style={{
+                          backgroundColor: isActive ? "#0288D1" : "#F3E5F5",
+                          color: isActive ? "white" : "#455A64",
+                        }}
+                      >
+                        {tab.badge}
+                      </Badge>
+                    )}
+                  </Button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
