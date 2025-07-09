@@ -239,8 +239,8 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
             transition={{ delay: index * 0.1 }}
             className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
             style={{
-              backgroundColor: "#FFF9E6",
-              border: "1px solid #E0E0E0",
+              backgroundColor: "#F5FAFE",
+              border: "1px solid #E1E8ED",
             }}
           >
             <div className="flex items-center justify-between mb-4">
