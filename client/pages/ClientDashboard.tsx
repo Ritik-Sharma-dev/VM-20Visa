@@ -78,6 +78,51 @@ export default function ClientDashboard() {
     logout();
   };
 
+  // Auto-collapse functionality
+  const startAutoCollapseTimer = () => {
+    if (autoCollapseTimer) {
+      clearTimeout(autoCollapseTimer);
+    }
+    const timer = setTimeout(() => {
+      setSidebarCollapsed(true);
+    }, 10000); // 10 seconds
+    setAutoCollapseTimer(timer);
+  };
+
+  const clearAutoCollapseTimer = () => {
+    if (autoCollapseTimer) {
+      clearTimeout(autoCollapseTimer);
+      setAutoCollapseTimer(null);
+    }
+  };
+
+  const handleSidebarToggle = () => {
+    const newState = !sidebarCollapsed;
+    setSidebarCollapsed(newState);
+
+    if (!newState) {
+      // If expanding, start the auto-collapse timer
+      startAutoCollapseTimer();
+    } else {
+      // If collapsing manually, clear the timer
+      clearAutoCollapseTimer();
+    }
+  };
+
+  const handleSidebarExpand = () => {
+    if (sidebarCollapsed) {
+      setSidebarCollapsed(false);
+      startAutoCollapseTimer();
+    }
+  };
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      clearAutoCollapseTimer();
+    };
+  }, [autoCollapseTimer]);
+
   // Auto-save functionality
   useEffect(() => {
     const handleBeforeUnload = () => {
