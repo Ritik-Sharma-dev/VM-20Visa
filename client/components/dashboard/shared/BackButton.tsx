@@ -22,7 +22,17 @@ export const BackButton: React.FC<BackButtonProps> = ({
     if (customPath) {
       navigate(customPath);
     } else {
-      navigate("/dashboard");
+      // Determine the correct dashboard based on the current location
+      // This is a simple heuristic - in a real app you'd check user role from context
+      const referrer = document.referrer || "";
+      if (referrer.includes("/agent-dashboard")) {
+        navigate("/agent-dashboard");
+      } else if (referrer.includes("/org-dashboard")) {
+        navigate("/org-dashboard");
+      } else {
+        // Default to client dashboard or detect from localStorage/context
+        navigate("/dashboard");
+      }
     }
   };
 
