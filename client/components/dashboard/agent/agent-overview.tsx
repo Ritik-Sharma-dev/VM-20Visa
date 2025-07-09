@@ -280,8 +280,8 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
           transition={{ delay: 0.4 }}
           className="rounded-2xl p-6 shadow-sm"
           style={{
-            backgroundColor: "#FFF9E6",
-            border: "1px solid #E0E0E0",
+            backgroundColor: "#F5FAFE",
+            border: "1px solid #E1E8ED",
           }}
         >
           <div className="flex items-center justify-between mb-6">
