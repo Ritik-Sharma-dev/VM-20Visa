@@ -39,6 +39,8 @@ import {
   MapPin,
   Mail,
   Phone,
+  ChevronDown,
+  UserCog,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
