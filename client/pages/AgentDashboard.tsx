@@ -72,7 +72,8 @@ export default function AgentDashboard() {
   const navigate = useNavigate();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [filterPeriod, setFilterPeriod] = useState<FilterPeriod>("month");
-  const [showProfileCard, setShowProfileCard] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [autoCollapseTimer, setAutoCollapseTimer] =
     useState<NodeJS.Timeout | null>(null);
   const { logout } = useAuth();
