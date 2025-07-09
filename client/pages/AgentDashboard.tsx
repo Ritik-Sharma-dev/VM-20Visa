@@ -68,7 +68,7 @@ export default function AgentDashboard() {
   const [currentView, setCurrentView] =
     useState<AgentDashboardView>("overview");
   const navigate = useNavigate();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Start collapsed
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [filterPeriod, setFilterPeriod] = useState<FilterPeriod>("month");
   const [showProfileCard, setShowProfileCard] = useState(false);
   const [autoCollapseTimer, setAutoCollapseTimer] =
@@ -135,7 +135,7 @@ export default function AgentDashboard() {
     }
     const timer = setTimeout(() => {
       setSidebarCollapsed(true);
-    }, 10000); // 10 seconds
+    }, 10000);
     setAutoCollapseTimer(timer);
   };
 
@@ -151,10 +151,8 @@ export default function AgentDashboard() {
     setSidebarCollapsed(newState);
 
     if (!newState) {
-      // If expanding, start the auto-collapse timer
       startAutoCollapseTimer();
     } else {
-      // If collapsing manually, clear the timer
       clearAutoCollapseTimer();
     }
   };
@@ -173,11 +171,11 @@ export default function AgentDashboard() {
     { id: "year", label: "Year" },
   ] as const;
 
-  const sidebarItems = [
+  const tabItems = [
     {
-      id: "home",
-      label: "Home",
-      icon: Home,
+      id: "overview",
+      label: "Overview",
+      icon: BarChart3,
       badge: null,
     },
     {
@@ -199,12 +197,6 @@ export default function AgentDashboard() {
       badge: "5",
     },
     {
-      id: "chat",
-      label: "Chat with Clients",
-      icon: MessagesSquare,
-      badge: "3",
-    },
-    {
       id: "documents",
       label: "Documents",
       icon: Upload,
@@ -214,12 +206,6 @@ export default function AgentDashboard() {
       id: "analytics",
       label: "Analytics",
       icon: BarChart3,
-      badge: null,
-    },
-    {
-      id: "settings",
-      label: "Settings",
-      icon: Settings,
       badge: null,
     },
   ];
@@ -274,246 +260,6 @@ export default function AgentDashboard() {
           onToggle={handleSidebarToggle}
         />
       </div>
-        {/* Toggle Button */}
-        <div className="absolute -right-4 top-8 z-10">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleSidebarToggle}
-            className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-gray-800 border border-gray-200 transition-all duration-200"
-          >
-            {sidebarCollapsed ? (
-              <ChevronRight className="w-4 h-4" />
-            ) : (
-              <ChevronLeft className="w-4 h-4" />
-            )}
-          </motion.button>
-        </div>
-
-        {!sidebarCollapsed ? (
-          /* Expanded Sidebar */
-          <div className="flex flex-col h-full">
-            {/* Profile Section - ID Card Style */}
-            <div className="p-6 border-b border-gray-100">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setShowProfileCard(true)}
-                className="rounded-2xl p-4 cursor-pointer shadow-sm transition-all duration-200 hover:shadow-md"
-                style={{
-                  backgroundColor: "#F5FAFE",
-                  border: "1px solid #E1E8ED",
-                }}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
-                      <div
-                        className="w-full h-full flex items-center justify-center text-white font-bold text-lg"
-                        style={{ backgroundColor: "#0288D1" }}
-                      >
-                        SA
-                      </div>
-                    </div>
-                    <div>
-                      <h3
-                        className="font-semibold text-lg"
-                        style={{ color: "#37474F" }}
-                      >
-                        Sarah Ahmad
-                      </h3>
-                      <p className="text-sm" style={{ color: "#37474F" }}>
-                        Premium Agent
-                      </p>
-                    </div>
-                  </div>
-                  <Edit className="w-4 h-4 text-gray-400 hover:text-gray-600" />
-                </div>
-
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center text-gray-600">
-                    <Building className="w-4 h-4 mr-2" />
-                    <span>Global Immigration Services</span>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    <span>Toronto, Canada</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center text-green-600">
-                      <UserCheck className="w-4 h-4 mr-2" />
-                      <span className="font-medium">Verified Agent</span>
-                    </div>
-                    <Badge
-                      className="hover:opacity-80"
-                      style={{ backgroundColor: "#E0F2E7", color: "#37474F" }}
-                    >
-                      Active
-                    </Badge>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Navigation Items */}
-            <div className="flex-1 px-4 py-4">
-              <div className="space-y-2">
-                {sidebarItems.map((item) => (
-                  <motion.button
-                    key={item.id}
-                    whileHover={{ x: 4 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() =>
-                      setCurrentView(item.id as AgentDashboardView)
-                    }
-                    className={cn(
-                      "w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 group",
-                      currentView === item.id
-                        ? "shadow-lg"
-                        : "hover:bg-white/60",
-                    )}
-                    style={{
-                      backgroundColor:
-                        currentView === item.id ? "#0288D1" : "transparent",
-                      color: currentView === item.id ? "white" : "#37474F",
-                    }}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <item.icon className="w-5 h-5" />
-                      <span className="font-medium">{item.label}</span>
-                    </div>
-                    {item.badge && (
-                      <Badge
-                        className={cn(
-                          "text-xs font-medium",
-                          currentView === item.id
-                            ? "bg-white/20 text-white hover:bg-white/20"
-                            : "hover:bg-blue-100",
-                        )}
-                        style={{
-                          backgroundColor:
-                            currentView === item.id
-                              ? "rgba(255,255,255,0.2)"
-                              : "#E0F2E7",
-                          color: currentView === item.id ? "white" : "#37474F",
-                        }}
-                      >
-                        {item.badge}
-                      </Badge>
-                    )}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom Section */}
-            <div className="p-4 border-t border-gray-100 space-y-2">
-              <motion.button
-                whileHover={{ x: 4 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200"
-                style={{ color: "#4A4A4A" }}
-              >
-                <HelpCircle className="w-5 h-5" />
-                <span className="font-medium">Help Center</span>
-              </motion.button>
-
-              <motion.button
-                whileHover={{ x: 4 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleLogout}
-                className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-red-50 hover:text-red-600 transition-all duration-200"
-                style={{ color: "#4A4A4A" }}
-              >
-                <LogOut className="w-5 h-5" />
-                <span className="font-medium">Logout</span>
-              </motion.button>
-            </div>
-          </div>
-        ) : (
-          /* Collapsed Sidebar */
-          <div className="flex flex-col h-full items-center py-6">
-            {/* Collapsed Profile */}
-            <div className="mb-6">
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                onClick={() => setShowProfileCard(true)}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold cursor-pointer shadow-lg"
-                style={{ backgroundColor: "#1F3A93" }}
-              >
-                SA
-              </motion.div>
-            </div>
-
-            {/* Collapsed Navigation */}
-            <div className="space-y-3 flex-1">
-              {sidebarItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setCurrentView(item.id as AgentDashboardView)}
-                  className={cn(
-                    "w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-200 relative group",
-                    currentView === item.id
-                      ? "text-white shadow-lg"
-                      : "hover:bg-white/60",
-                  )}
-                  style={{
-                    backgroundColor:
-                      currentView === item.id ? "#1F3A93" : "transparent",
-                    color: currentView === item.id ? "white" : "#4A4A4A",
-                  }}
-                  title={item.label}
-                >
-                  <item.icon className="w-5 h-5" />
-                  {item.badge && (
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">
-                        {item.badge}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Tooltip */}
-                  <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none">
-                    {item.label}
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Collapsed Bottom Actions */}
-            <div className="space-y-3">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/60 transition-all duration-200 group"
-                style={{ color: "#4A4A4A" }}
-                title="Help Center"
-              >
-                <HelpCircle className="w-5 h-5" />
-                <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none">
-                  Help Center
-                </div>
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={handleLogout}
-                className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-red-100 hover:text-red-600 transition-all duration-200 group"
-                style={{ color: "#4A4A4A" }}
-                title="Logout"
-              >
-                <LogOut className="w-5 h-5" />
-                <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 pointer-events-none">
-                  Logout
-                </div>
-              </motion.button>
-            </div>
-          </div>
-        )}
-      </motion.div>
 
       {/* Main Content Area */}
       <div
@@ -532,158 +278,140 @@ export default function AgentDashboard() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold" style={{ color: "#37474F" }}>
+              <h1 className="text-2xl font-bold" style={{ color: "#455A64" }}>
                 {getPageTitle()}
               </h1>
-              <p className="text-sm mt-1" style={{ color: "#37474F" }}>
-                {currentView === "home"
-                  ? "Monitor your immigration business performance"
-                  : `Manage your ${getPageTitle().toLowerCase()}`}
+              <p
+                className="text-sm mt-1"
+                style={{ color: "#455A64", opacity: 0.7 }}
+              >
+                Manage your immigration services and client relationships
               </p>
             </div>
 
-            {/* Filter Tabs - Show only on relevant pages */}
-            {(currentView === "home" || currentView === "analytics") && (
-              <div className="flex items-center space-x-1 bg-gray-100 rounded-lg p-1">
-                {filterTabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setFilterPeriod(tab.id)}
-                    className={cn(
-                      "px-4 py-2 text-sm font-medium rounded-md transition-all duration-200",
-                      filterPeriod === tab.id
-                        ? "text-white shadow-sm"
-                        : "hover:text-gray-800",
-                    )}
-                    style={{
-                      backgroundColor:
-                        filterPeriod === tab.id ? "#0288D1" : "transparent",
-                      color: filterPeriod === tab.id ? "white" : "#37474F",
-                    }}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Notifications */}
             <div className="flex items-center space-x-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200"
-              >
-                <Bell className="w-5 h-5" />
-                <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">5</span>
+              {/* Filter Period Tabs */}
+              {(currentView === "overview" || currentView === "analytics") && (
+                <div className="flex border border-gray-300 rounded-lg p-1">
+                  {filterTabs.map((tab) => (
+                    <Button
+                      key={tab.id}
+                      onClick={() => setFilterPeriod(tab.id)}
+                      variant="ghost"
+                      size="sm"
+                      className={`rounded-md ${
+                        filterPeriod === tab.id ? "bg-white shadow-sm" : ""
+                      }`}
+                      style={{
+                        backgroundColor:
+                          filterPeriod === tab.id ? "#E0F2E7" : "transparent",
+                        color: "#455A64",
+                      }}
+                    >
+                      {tab.label}
+                    </Button>
+                  ))}
                 </div>
-              </motion.button>
+              )}
+
+              {/* Actions */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-gray-300"
+                style={{ color: "#455A64" }}
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                New Request
+              </Button>
+
+              {/* Notifications */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="relative border-gray-300"
+                style={{ color: "#455A64" }}
+              >
+                <Bell className="w-4 h-4" />
+                <Badge className="absolute -top-2 -right-2 bg-red-500 text-white text-xs min-w-5 h-5 rounded-full flex items-center justify-center">
+                  8
+                </Badge>
+              </Button>
+
+              {/* Profile */}
+              <div className="flex items-center space-x-2">
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold"
+                  style={{ backgroundColor: "#0288D1" }}
+                >
+                  SA
+                </div>
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: "#455A64" }}
+                >
+                  Sarah Ahmad
+                </span>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Content */}
-        <div className="p-8">
+        {/* Main Dashboard Content */}
+        <main className="p-8">
+          {/* Tab Navigation */}
+          <div className="mb-6 flex space-x-1 border-b border-gray-200">
+            {tabItems.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = currentView === tab.id;
+
+              return (
+                <Button
+                  key={tab.id}
+                  onClick={() => setCurrentView(tab.id as AgentDashboardView)}
+                  variant="ghost"
+                  className={`flex items-center space-x-2 px-4 py-2 border-b-2 transition-colors ${
+                    isActive
+                      ? "border-blue-500"
+                      : "border-transparent hover:border-gray-300"
+                  }`}
+                  style={{
+                    color: isActive ? "#0288D1" : "#455A64",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="font-medium">{tab.label}</span>
+                  {tab.badge && (
+                    <Badge
+                      className="ml-1"
+                      style={{
+                        backgroundColor: isActive ? "#0288D1" : "#F3E5F5",
+                        color: isActive ? "white" : "#455A64",
+                      }}
+                    >
+                      {tab.badge}
+                    </Badge>
+                  )}
+                </Button>
+              );
+            })}
+          </div>
+
+          {/* Content Area */}
           <AnimatePresence mode="wait">
             <motion.div
               key={currentView}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               {renderContent()}
             </motion.div>
           </AnimatePresence>
-        </div>
+        </main>
       </div>
-
-      {/* Profile Card Modal */}
-      <AnimatePresence>
-        {showProfileCard && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setShowProfileCard(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="text-center mb-6">
-                <div
-                  className="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-white font-bold text-2xl mb-4"
-                  style={{ backgroundColor: "#1F3A93" }}
-                >
-                  SA
-                </div>
-                <h2 className="text-xl font-bold text-gray-900">Sarah Ahmad</h2>
-                <p className="text-gray-600">Immigration Agent</p>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Building className="w-5 h-5 text-gray-400" />
-                  <div>
-                    <p className="font-medium text-gray-900">
-                      Global Immigration Services
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Senior Immigration Consultant
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-gray-400" />
-                  <span className="text-gray-700">Toronto, Canada</span>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-gray-400" />
-                  <span className="text-gray-700">
-                    sarah.ahmad@globalimmig.com
-                  </span>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <Star className="w-5 h-5 text-gray-400" />
-                  <span className="text-gray-700">8 years experience</span>
-                </div>
-
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-600">
-                    Specialized in work permits, study visas, and permanent
-                    residency applications for North America and Europe.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex space-x-3 mt-6">
-                <Button
-                  className="flex-1"
-                  style={{ backgroundColor: "#1F3A93", color: "white" }}
-                >
-                  Edit Profile
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={() => setShowProfileCard(false)}
-                >
-                  Close
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
