@@ -215,7 +215,7 @@ export default function OrganizationDashboard() {
 
   const renderContent = () => {
     switch (currentView) {
-      case "dashboard":
+      case "overview":
         return <OrganizationOverview />;
       case "manage-agents":
         return <ManageAgents />;
@@ -223,10 +223,6 @@ export default function OrganizationDashboard() {
         return <CaseManagement />;
       case "analytics":
         return <OrganizationAnalytics />;
-      case "settings":
-        return <OrganizationSettings />;
-      case "notifications":
-        return <OrganizationNotifications />;
       default:
         return <OrganizationOverview />;
     }
