@@ -230,7 +230,7 @@ export default function OrganizationDashboard() {
 
   const getPageTitle = () => {
     switch (currentView) {
-      case "dashboard":
+      case "overview":
         return "Organization Dashboard";
       case "manage-agents":
         return "Manage Agents";
@@ -238,10 +238,6 @@ export default function OrganizationDashboard() {
         return "Case Requests";
       case "analytics":
         return "Analytics & Reports";
-      case "settings":
-        return "Organization Settings";
-      case "notifications":
-        return "Notifications";
       default:
         return "Dashboard";
     }
