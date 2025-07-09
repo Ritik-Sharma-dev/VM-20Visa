@@ -319,11 +319,11 @@ export default function AgentDashboard() {
                     <div>
                       <h3
                         className="font-semibold text-lg"
-                        style={{ color: "#455A64" }}
+                        style={{ color: "#37474F" }}
                       >
                         Sarah Ahmad
                       </h3>
-                      <p className="text-sm" style={{ color: "#455A64" }}>
+                      <p className="text-sm" style={{ color: "#37474F" }}>
                         Premium Agent
                       </p>
                     </div>
