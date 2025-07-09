@@ -407,10 +407,7 @@ export default function OrganizationDashboard() {
           </div>
         ) : (
           /* Collapsed Sidebar */
-          <div
-            className="flex flex-col h-full items-center py-6"
-            onMouseEnter={handleSidebarExpand}
-          >
+          <div className="flex flex-col h-full items-center py-6">
             {/* Collapsed Organization Logo */}
             <div className="mb-6">
               <motion.div
