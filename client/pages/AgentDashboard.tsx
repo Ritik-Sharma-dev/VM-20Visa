@@ -302,8 +302,8 @@ export default function AgentDashboard() {
                 onClick={() => setShowProfileCard(true)}
                 className="rounded-2xl p-4 cursor-pointer shadow-sm transition-all duration-200 hover:shadow-md"
                 style={{
-                  backgroundColor: "#E3F2FD",
-                  border: "1px solid #E0E0E0",
+                  backgroundColor: "#F5FAFE",
+                  border: "1px solid #E1E8ED",
                 }}
               >
                 <div className="flex items-center justify-between mb-3">
