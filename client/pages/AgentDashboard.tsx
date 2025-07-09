@@ -266,7 +266,11 @@ export default function AgentDashboard() {
         initial={false}
         animate={{ width: sidebarCollapsed ? "80px" : "320px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 h-screen shadow-xl z-50 overflow-hidden border-r border-gray-200"
+        className={`fixed left-0 top-0 h-screen shadow-xl z-50 border-r border-gray-200 ${
+          sidebarCollapsed
+            ? "overflow-hidden"
+            : "overflow-x-hidden overflow-y-auto"
+        }`}
         style={{ backgroundColor: "#F4F6F8" }}
       >
         {/* Toggle Button */}
