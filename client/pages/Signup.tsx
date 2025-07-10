@@ -77,6 +77,15 @@ export default function Signup() {
   };
 
   if (selectedType) {
+    if (selectedType === "organization") {
+      return (
+        <OrganizationSignupForm
+          onSubmit={handleFormSubmit}
+          onBack={handleBackToSelection}
+        />
+      );
+    }
+
     return (
       <MultiStepForm
         type={selectedType}
