@@ -14,12 +14,47 @@ console.warn = (...args) => {
     fullMessage.includes(
       "defaultProps will be removed from function components",
     ) ||
+    message.includes("Support for defaultProps will be removed") ||
+    fullMessage.includes("Support for defaultProps will be removed")
+  ) {
+    return;
+  }
+
+  // Enhanced check for template string warnings with %s placeholders
+  if (
+    message.includes("%s") &&
     message.includes("Support for defaultProps will be removed")
   ) {
     return;
   }
 
-  // Suppress specific Recharts component warnings by name
+  // Suppress specific Recharts component warnings by name (including as individual args)
+  const rechartsComponents = [
+    "XAxis",
+    "YAxis",
+    "CartesianGrid",
+    "Tooltip",
+    "Area",
+    "Line",
+    "Bar",
+    "Pie",
+    "Cell",
+    "ResponsiveContainer",
+    "Legend",
+    "ReferenceLine",
+    "ReferenceArea",
+    "Brush",
+  ];
+
+  if (
+    args.some(
+      (arg) =>
+        typeof arg === "string" && rechartsComponents.includes(arg.trim()),
+    )
+  ) {
+    return;
+  }
+
   if (
     fullMessage.includes("XAxis") ||
     fullMessage.includes("YAxis") ||
