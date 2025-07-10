@@ -50,6 +50,9 @@ import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileEditPage from "./pages/ProfileEditPage";
 import AgentInsightsPage from "./pages/AgentInsightsPage";
+import FileManagerPage from "./pages/FileManagerPage";
+import PaymentsPage from "./pages/PaymentsPage";
+import ToolsPage from "./pages/ToolsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -69,6 +72,9 @@ function AppContent() {
     "/settings",
     "/profile",
     "/agent-insights",
+    "/file-manager",
+    "/payments",
+    "/tools",
   ].includes(location.pathname);
 
   return (
@@ -181,6 +187,30 @@ function AppContent() {
             element={
               <ProtectedRoute allowedRoles={["agent"]}>
                 <AgentInsightsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/file-manager"
+            element={
+              <ProtectedRoute allowedRoles={["agent"]}>
+                <FileManagerPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/payments"
+            element={
+              <ProtectedRoute allowedRoles={["agent"]}>
+                <PaymentsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/tools"
+            element={
+              <ProtectedRoute allowedRoles={["agent"]}>
+                <ToolsPage />
               </ProtectedRoute>
             }
           />
