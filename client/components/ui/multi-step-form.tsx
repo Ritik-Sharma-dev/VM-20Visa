@@ -246,33 +246,43 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     } else {
       return [
         {
-          title: "Admin Account",
-          subtitle: "Create your admin account",
-          icon: User,
-        },
-        {
-          title: "Organization Profile",
-          subtitle: "Tell us about your organization",
+          title: "Organization Name",
+          subtitle: "What's your organization name?",
           icon: Building,
         },
         {
-          title: "Representative Info",
-          subtitle: "Authorized representative details",
+          title: "Email Address",
+          subtitle: "Official email address",
+          icon: Mail,
+        },
+        {
+          title: "Password Setup",
+          subtitle: "Create secure password",
           icon: User,
         },
         {
-          title: "Services & Regions",
-          subtitle: "What services do you offer and where?",
+          title: "Contact Information",
+          subtitle: "Phone numbers",
+          icon: Phone,
+        },
+        {
+          title: "Basic Profile Info",
+          subtitle: "Location and credentials",
           icon: Globe,
         },
         {
-          title: "Documentation",
-          subtitle: "Upload required documents",
-          icon: Upload,
+          title: "Detailed Company Info",
+          subtitle: "Services and background",
+          icon: Briefcase,
         },
         {
-          title: "Review & Confirm",
-          subtitle: "Review and submit",
+          title: "Representative Info",
+          subtitle: "Authorized representative",
+          icon: User,
+        },
+        {
+          title: "Review & Confirmation",
+          subtitle: "Final review",
           icon: Check,
         },
       ];
