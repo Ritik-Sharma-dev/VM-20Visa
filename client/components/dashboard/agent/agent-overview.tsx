@@ -243,65 +243,62 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className={`h-auto rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border ${
+              className={`h-[140px] rounded-xl p-3 shadow-sm hover:shadow-md transition-all duration-300 border ${
                 isProposals
-                  ? "border-royal-blue-200 hover:border-royal-blue-300"
+                  ? "border-blue-200 hover:border-blue-300"
                   : isSuccessRate
-                    ? "border-sage-green-200 hover:border-sage-green-300"
+                    ? "border-green-200 hover:border-green-300"
                     : isActive
-                      ? "border-gold-200 hover:border-gold-300"
+                      ? "border-yellow-200 hover:border-yellow-300"
                       : "border-purple-200 hover:border-purple-300"
               }`}
               style={{ backgroundColor: "#F5FAFE" }}
             >
-              <div className="flex items-center space-x-4">
-                <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    isProposals
-                      ? "bg-royal-blue-100"
-                      : isSuccessRate
-                        ? "bg-sage-green-100"
-                        : isActive
-                          ? "bg-gold-100"
-                          : "bg-purple-100"
-                  }`}
-                >
-                  <card.icon
-                    className={`w-5 h-5 ${
+              <div className="flex flex-col h-full justify-between">
+                <div className="flex items-center justify-between">
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                       isProposals
-                        ? "text-royal-blue-600"
+                        ? "bg-blue-100"
                         : isSuccessRate
-                          ? "text-sage-green-600"
+                          ? "bg-green-100"
                           : isActive
-                            ? "text-gold-600"
-                            : "text-purple-600"
+                            ? "bg-yellow-100"
+                            : "bg-purple-100"
                     }`}
-                  />
+                  >
+                    <card.icon
+                      className={`w-5 h-5 ${
+                        isProposals
+                          ? "text-blue-600"
+                          : isSuccessRate
+                            ? "text-green-600"
+                            : isActive
+                              ? "text-yellow-600"
+                              : "text-purple-600"
+                      }`}
+                    />
+                  </div>
+                  <div className="flex items-center space-x-1 text-green-600">
+                    <TrendingUp className="w-3 h-3" />
+                    <span className="text-xs font-medium">{card.growth}</span>
+                  </div>
                 </div>
 
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-1">
-                    <p
-                      className="text-2xl font-bold"
-                      style={{ color: "#37474F" }}
-                    >
-                      {card.value}
-                    </p>
-                    <div className="flex items-center space-x-1 text-green-600">
-                      <TrendingUp className="w-4 h-4" />
-                      <span className="text-sm font-medium">{card.growth}</span>
-                    </div>
-                  </div>
+                <div>
+                  <p
+                    className="text-2xl font-bold mb-1"
+                    style={{ color: "#37474F" }}
+                  >
+                    {card.value}
+                  </p>
                   <h3
                     className="text-sm font-medium mb-1"
                     style={{ color: "#37474F" }}
                   >
                     {card.title}
                   </h3>
-                  <p
-                    className="text-xs capitalize"
-                    style={{ color: "#37474F" }}
-                  >
+                  <p className="text-xs text-gray-500">
                     {card.period === "7days"
                       ? "This week"
                       : `This ${card.period}`}
@@ -313,136 +310,18 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
         })}
       </div>
 
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Proposals Trend Chart */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 }}
-          className="rounded-2xl p-6 shadow-sm"
-          style={{
-            backgroundColor: "#F5FAFE",
-            border: "1px solid #E1E8ED",
-          }}
-        >
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3
-                className="text-lg font-semibold"
-                style={{ color: "#37474F" }}
-              >
-                Proposals vs Acceptance
-              </h3>
-              <p className="text-sm" style={{ color: "#37474F" }}>
-                Track your proposal success over time
-              </p>
-            </div>
-            <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100">
-              Last 6 months
-            </Badge>
-          </div>
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={proposalTrendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis
-                  dataKey="month"
-                  stroke="#666"
-                  fontSize={12}
-                  tickLine={false}
-                />
-                <YAxis stroke="#666" fontSize={12} tickLine={false} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "white",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="sent"
-                  stroke="#0288D1"
-                  strokeWidth={3}
-                  dot={{ fill: "#0288D1", strokeWidth: 2, r: 4 }}
-                  name="Proposals Sent"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="accepted"
-                  stroke="#E0F2E7"
-                  strokeWidth={3}
-                  dot={{ fill: "#E0F2E7", strokeWidth: 2, r: 4 }}
-                  name="Proposals Accepted"
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </motion.div>
-
-        {/* Visa Types Pie Chart */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5 }}
-          className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Visa Types Handled
-              </h3>
-              <p className="text-sm text-gray-600">
-                Distribution of your case types
-              </p>
-            </div>
-            <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
-              This month
-            </Badge>
-          </div>
-          <div className="h-80 flex items-center">
-            <div className="w-full h-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={visaTypesData}
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    dataKey="value"
-                    label={({ name, percent }) =>
-                      `${name} ${(percent * 100).toFixed(0)}%`
-                    }
-                    labelLine={false}
-                  >
-                    {visaTypesData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Main Panels */}
+      {/* Main Content - 2 Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Tasks Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          transition={{ delay: 0.4 }}
+          className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
         >
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Active Tasks
-              </h3>
+              <h3 className="text-xl font-bold text-gray-900">Active Tasks</h3>
               <p className="text-sm text-gray-600">
                 Current proposals and projects
               </p>
@@ -575,19 +454,24 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          transition={{ delay: 0.5 }}
+          className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
         >
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-xl font-bold text-gray-900">
                 Recent Activity
               </h3>
               <p className="text-sm text-gray-600">
                 Your latest actions and updates
               </p>
             </div>
-            <Button size="sm" variant="outline">
+            <Button
+              size="sm"
+              variant="outline"
+              style={{ color: "#0288D1", borderColor: "#0288D1" }}
+              className="hover:bg-blue-50"
+            >
               View All
             </Button>
           </div>
