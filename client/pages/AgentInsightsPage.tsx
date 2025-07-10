@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import BackButton from "@/components/dashboard/shared/BackButton";
+import { BackButton } from "@/components/dashboard/shared/BackButton";
 import {
   LineChart,
   Line,
