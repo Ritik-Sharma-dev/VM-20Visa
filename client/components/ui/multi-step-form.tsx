@@ -886,7 +886,7 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
             </div>
           );
 
-        case 1: // Organization Profile Step
+        case 1: // Page 2: Email Address
           return (
             <div className="space-y-6">
               <div>
