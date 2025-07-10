@@ -135,6 +135,60 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     "Express Entry",
   ];
 
+  const visaServiceOptions = [
+    "Student Visa",
+    "PR Visa",
+    "Work Permit",
+    "Family Visa",
+    "Business/Investor Visa",
+    "Visitor Visa",
+  ];
+
+  const countryOptions = [
+    "Canada",
+    "United States",
+    "United Kingdom",
+    "Australia",
+    "New Zealand",
+    "Germany",
+    "France",
+    "Netherlands",
+    "Denmark",
+    "Sweden",
+    "Norway",
+    "Switzerland",
+    "Austria",
+    "Belgium",
+    "Ireland",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Japan",
+    "Singapore",
+    "Hong Kong",
+  ];
+
+  const languageOptions = [
+    "English",
+    "French",
+    "Spanish",
+    "Hindi",
+    "Punjabi",
+    "Mandarin",
+    "Arabic",
+    "Portuguese",
+    "German",
+    "Italian",
+    "Dutch",
+    "Russian",
+    "Japanese",
+    "Korean",
+    "Tagalog",
+    "Urdu",
+    "Bengali",
+    "Tamil",
+  ];
+
   const getSteps = (): Step[] => {
     if (type === "client") {
       return [
