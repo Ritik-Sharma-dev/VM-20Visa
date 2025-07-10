@@ -21,18 +21,6 @@ import {
   AlertCircle,
   Plus,
 } from "lucide-react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
 
 interface AgentOverviewProps {
   filterPeriod: "today" | "7days" | "month" | "year";
@@ -77,24 +65,6 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
   };
 
   const kpiData = getKPIData();
-
-  // Chart data
-  const proposalTrendData = [
-    { month: "Jan", sent: 85, accepted: 78 },
-    { month: "Feb", sent: 92, accepted: 85 },
-    { month: "Mar", sent: 110, accepted: 102 },
-    { month: "Apr", sent: 98, accepted: 89 },
-    { month: "May", sent: 125, accepted: 115 },
-    { month: "Jun", sent: 120, accepted: 110 },
-  ];
-
-  const visaTypesData = [
-    { name: "Work Visa", value: 35, color: "#0288D1" },
-    { name: "Study Visa", value: 25, color: "#F5FAFE" },
-    { name: "PR Applications", value: 20, color: "#E0F2E7" },
-    { name: "Visitor Visa", value: 15, color: "#B3E5FC" },
-    { name: "Other", value: 5, color: "#E1E8ED" },
-  ];
 
   const recentTasks = [
     {
