@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MultiStepForm } from "@/components/ui/multi-step-form";
+import { OrganizationSignupForm } from "@/components/ui/organization-signup-form";
 import {
   User,
   Briefcase,
