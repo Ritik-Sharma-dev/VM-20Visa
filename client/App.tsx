@@ -49,6 +49,7 @@ import SupportPage from "./pages/SupportPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileEditPage from "./pages/ProfileEditPage";
+import AgentInsightsPage from "./pages/AgentInsightsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +68,7 @@ function AppContent() {
     "/support",
     "/settings",
     "/profile",
+    "/agent-insights",
   ].includes(location.pathname);
 
   return (
@@ -171,6 +173,14 @@ function AppContent() {
                 allowedRoles={["client", "agent", "organization"]}
               >
                 <ProfileEditPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/agent-insights"
+            element={
+              <ProtectedRoute allowedRoles={["agent"]}>
+                <AgentInsightsPage />
               </ProtectedRoute>
             }
           />
