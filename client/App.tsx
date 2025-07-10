@@ -2,33 +2,22 @@ import "./global.css";
 
 import { Toaster } from "@/components/ui/toaster";
 
-// Suppress Recharts defaultProps warnings
+// Completely suppress Recharts defaultProps warnings
 const originalWarn = console.warn;
 console.warn = (...args) => {
   const message = args[0]?.toString?.() || "";
   const fullMessage = args.join(" ");
 
-  // Suppress all defaultProps warnings (includes template string patterns)
+  // Block ALL defaultProps warnings completely
   if (
-    message.includes("defaultProps will be removed from function components") ||
-    fullMessage.includes(
-      "defaultProps will be removed from function components",
-    ) ||
-    message.includes("Support for defaultProps will be removed") ||
-    fullMessage.includes("Support for defaultProps will be removed")
+    message.includes("defaultProps") ||
+    fullMessage.includes("defaultProps") ||
+    (message.includes("%s") && message.includes("Support for defaultProps"))
   ) {
     return;
   }
 
-  // Enhanced check for template string warnings with %s placeholders
-  if (
-    message.includes("%s") &&
-    message.includes("Support for defaultProps will be removed")
-  ) {
-    return;
-  }
-
-  // Suppress specific Recharts component warnings by name (including as individual args)
+  // Block any warning mentioning Recharts components
   const rechartsComponents = [
     "XAxis",
     "YAxis",
@@ -44,49 +33,30 @@ console.warn = (...args) => {
     "ReferenceLine",
     "ReferenceArea",
     "Brush",
+    "LineChart",
+    "AreaChart",
+    "BarChart",
+    "PieChart",
+    "ScatterChart",
+    "RadarChart",
   ];
 
+  // Check if any argument is a Recharts component name
   if (
     args.some(
       (arg) =>
-        typeof arg === "string" && rechartsComponents.includes(arg.trim()),
+        typeof arg === "string" &&
+        rechartsComponents.some((comp) => arg.includes(comp)),
     )
   ) {
     return;
   }
 
-  if (
-    fullMessage.includes("XAxis") ||
-    fullMessage.includes("YAxis") ||
-    fullMessage.includes("CartesianGrid") ||
-    fullMessage.includes("Tooltip") ||
-    fullMessage.includes("Area") ||
-    fullMessage.includes("Line") ||
-    fullMessage.includes("Bar") ||
-    fullMessage.includes("Pie") ||
-    fullMessage.includes("Cell") ||
-    fullMessage.includes("ResponsiveContainer") ||
-    fullMessage.includes("Legend") ||
-    fullMessage.includes("ReferenceLine") ||
-    fullMessage.includes("ReferenceArea") ||
-    fullMessage.includes("Brush")
-  ) {
-    return;
-  }
-
-  // Suppress any warning that contains Recharts-related keywords
+  // Block warnings from Recharts URLs or containing recharts
   if (
     fullMessage.includes("recharts") ||
-    fullMessage.includes("Recharts") ||
-    (message.includes("%s") &&
-      args.some(
-        (arg) =>
-          typeof arg === "string" &&
-          (arg.includes("Axis") ||
-            arg.includes("Chart") ||
-            arg.includes("Grid") ||
-            arg.includes("Tooltip")),
-      ))
+    fullMessage.includes("/deps/recharts.js") ||
+    args.some((arg) => typeof arg === "string" && arg.includes("recharts"))
   ) {
     return;
   }
