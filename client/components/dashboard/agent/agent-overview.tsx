@@ -230,45 +230,87 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
   return (
     <div className="space-y-8">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {kpiCards.map((card, index) => (
-          <motion.div
-            key={card.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
-            style={{
-              backgroundColor: "#F5FAFE",
-              border: "1px solid #E1E8ED",
-            }}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: "#E1E8ED" }}
-              >
-                <card.icon className="w-6 h-6" style={{ color: "#0288D1" }} />
-              </div>
-              <div className="flex items-center space-x-1 text-green-600">
-                <TrendingUp className="w-4 h-4" />
-                <span className="text-sm font-medium">{card.growth}</span>
-              </div>
-            </div>
-            <h3
-              className="text-sm font-medium mb-1"
-              style={{ color: "#37474F" }}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {kpiCards.map((card, index) => {
+          const isProposals = index === 0;
+          const isSuccessRate = index === 1;
+          const isActive = index === 2;
+          const isEarnings = index === 3;
+
+          return (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className={`h-auto rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 border ${
+                isProposals
+                  ? "border-royal-blue-200 hover:border-royal-blue-300"
+                  : isSuccessRate
+                    ? "border-sage-green-200 hover:border-sage-green-300"
+                    : isActive
+                      ? "border-gold-200 hover:border-gold-300"
+                      : "border-purple-200 hover:border-purple-300"
+              }`}
+              style={{ backgroundColor: "#F5FAFE" }}
             >
-              {card.title}
-            </h3>
-            <p className="text-2xl font-bold mb-2" style={{ color: "#37474F" }}>
-              {card.value}
-            </p>
-            <p className="text-xs capitalize" style={{ color: "#37474F" }}>
-              {card.period === "7days" ? "This week" : `This ${card.period}`}
-            </p>
-          </motion.div>
-        ))}
+              <div className="flex items-center space-x-4">
+                <div
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    isProposals
+                      ? "bg-royal-blue-100"
+                      : isSuccessRate
+                        ? "bg-sage-green-100"
+                        : isActive
+                          ? "bg-gold-100"
+                          : "bg-purple-100"
+                  }`}
+                >
+                  <card.icon
+                    className={`w-5 h-5 ${
+                      isProposals
+                        ? "text-royal-blue-600"
+                        : isSuccessRate
+                          ? "text-sage-green-600"
+                          : isActive
+                            ? "text-gold-600"
+                            : "text-purple-600"
+                    }`}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <p
+                      className="text-2xl font-bold"
+                      style={{ color: "#37474F" }}
+                    >
+                      {card.value}
+                    </p>
+                    <div className="flex items-center space-x-1 text-green-600">
+                      <TrendingUp className="w-4 h-4" />
+                      <span className="text-sm font-medium">{card.growth}</span>
+                    </div>
+                  </div>
+                  <h3
+                    className="text-sm font-medium mb-1"
+                    style={{ color: "#37474F" }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    className="text-xs capitalize"
+                    style={{ color: "#37474F" }}
+                  >
+                    {card.period === "7days"
+                      ? "This week"
+                      : `This ${card.period}`}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Charts Section */}
@@ -409,6 +451,10 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
               size="sm"
               style={{ backgroundColor: "#0288D1", color: "white" }}
               className="hover:bg-blue-700"
+              onClick={() => {
+                // Navigate to create new task/proposal
+                console.log("Creating new task");
+              }}
             >
               <Plus className="w-4 h-4 mr-2" />
               New Task
@@ -437,13 +483,37 @@ export function AgentOverview({ filterPeriod }: AgentOverviewProps) {
                     </span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button size="sm" variant="ghost">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Navigate to task details
+                        console.log("View task:", task.id);
+                      }}
+                    >
                       <Eye className="w-4 h-4" />
                     </Button>
-                    <Button size="sm" variant="ghost">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Navigate to edit task
+                        console.log("Edit task:", task.id);
+                      }}
+                    >
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button size="sm" variant="ghost">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Open messaging
+                        console.log("Message client:", task.client);
+                      }}
+                    >
                       <MessageCircle className="w-4 h-4" />
                     </Button>
                   </div>
