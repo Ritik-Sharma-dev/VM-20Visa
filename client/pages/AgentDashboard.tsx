@@ -159,6 +159,8 @@ export default function AgentDashboard() {
       navigate("/payments");
     } else if (page === "tools") {
       navigate("/tools");
+    } else if (page === "escrow") {
+      navigate("/escrow");
     } else if (
       ["chat", "messages", "calendar", "support", "settings"].includes(page)
     ) {

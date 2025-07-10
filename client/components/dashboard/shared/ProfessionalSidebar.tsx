@@ -26,6 +26,7 @@ import {
   Wrench,
   CreditCard,
   BrainCircuit,
+  Shield,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -115,6 +116,7 @@ const getSidebarItems = (userType: string) => {
       { id: "calendar", label: "Calendar", icon: Calendar },
       { id: "file-manager", label: "File Manager", icon: FolderOpen },
       { id: "payments", label: "Payments & Invoices", icon: CreditCard },
+      { id: "escrow", label: "Escrow Management", icon: Shield },
       { id: "insights", label: "Insights & Reports", icon: TrendingUp },
       { id: "tools", label: "Tools & Resources", icon: Wrench },
       { id: "settings", label: "Settings", icon: Settings },
@@ -127,6 +129,7 @@ const getSidebarItems = (userType: string) => {
     { id: "chat", label: "Chat", icon: MessageCircle, badge: 3 },
     { id: "messages", label: "Messages", icon: Mail, badge: 5 },
     { id: "calendar", label: "Calendar", icon: Calendar },
+    { id: "escrow", label: "Escrow & Payments", icon: Shield },
     { id: "support", label: "Support & Help", icon: HelpCircle },
     { id: "settings", label: "Settings", icon: Settings },
   ];
