@@ -140,9 +140,7 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
       title: "Schedule Call",
       description: "Book agent consultation",
       icon: Calendar,
-      action: () => {
-        /* Open calendar modal */
-      },
+      action: () => onNavigate("calendar"),
       color: "from-royal-blue-600 to-royal-blue-500",
     },
   ];
@@ -154,17 +152,17 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="glass-card p-8 rounded-3xl"
+        className="glass-card p-6 rounded-2xl"
       >
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-3xl lg:text-4xl font-heading font-bold text-cool-gray-800 mb-2">
+            <h1 className="text-xl lg:text-2xl font-heading font-bold text-cool-gray-800 mb-2">
               Welcome back, John! 👋
             </h1>
-            <p className="text-lg text-cool-gray-600 mb-4">
+            <p className="text-base text-cool-gray-600 mb-3">
               You have 3 active applications and 5 new messages from agents.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               <Badge className="bg-sage-green-100 text-sage-green-700">
                 Premium Member
               </Badge>
@@ -173,62 +171,90 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
               </Badge>
             </div>
           </div>
-          <div className="mt-6 lg:mt-0">
+          <div className="mt-4 md:mt-0">
             <Button
               variant="premium"
-              size="lg"
+              size="default"
               onClick={() => onNavigate("my-requests")}
               className="group"
             >
-              <Plus className="w-5 h-5 mr-2" />
+              <Plus className="w-4 h-4 mr-2" />
               New Application
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
       </motion.div>
 
       {/* Stats Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.6 }}
-            whileHover={{ y: -5, scale: 1.02 }}
-            className="glass-card p-6 rounded-2xl hover:bg-white/40 transition-all duration-300"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div
-                className={`w-12 h-12 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center`}
-              >
-                <stat.icon className="w-6 h-6 text-white" />
-              </div>
-              {stat.trend === "up" && (
-                <TrendingUp className="w-4 h-4 text-sage-green-500" />
-              )}
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {stats.map((stat, index) => {
+          const isActiveRequests = index === 0;
+          const isProposalsReceived = index === 1;
+          const isDocumentsUploaded = index === 2;
 
-            <div className="space-y-1">
-              <h3 className="text-2xl font-heading font-bold text-cool-gray-800">
-                {stat.value}
-              </h3>
-              <p className="text-sm font-medium text-cool-gray-600">
-                {stat.label}
-              </p>
-              <p
-                className={`text-xs ${
-                  stat.trend === "up"
-                    ? "text-sage-green-600"
-                    : "text-cool-gray-500"
-                }`}
-              >
-                {stat.change}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              whileHover={{ y: -2, scale: 1.01 }}
+              className={`h-auto glass-card p-4 rounded-xl transition-all duration-300 border ${
+                isActiveRequests
+                  ? "border-royal-blue-200 hover:border-royal-blue-300 hover:shadow-lg"
+                  : isProposalsReceived
+                    ? "border-sage-green-200 hover:border-sage-green-300 hover:shadow-lg"
+                    : "border-gold-200 hover:border-gold-300 hover:shadow-lg"
+              }`}
+            >
+              <div className="flex items-center space-x-4">
+                <div
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    isActiveRequests
+                      ? "bg-royal-blue-100"
+                      : isProposalsReceived
+                        ? "bg-sage-green-100"
+                        : "bg-gold-100"
+                  }`}
+                >
+                  <stat.icon
+                    className={`w-5 h-5 ${
+                      isActiveRequests
+                        ? "text-royal-blue-600"
+                        : isProposalsReceived
+                          ? "text-sage-green-600"
+                          : "text-gold-600"
+                    }`}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-2xl font-heading font-bold text-cool-gray-800">
+                      {stat.value}
+                    </h3>
+                    {stat.trend === "up" && (
+                      <TrendingUp className="w-4 h-4 text-sage-green-500" />
+                    )}
+                  </div>
+                  <p className="text-sm font-medium text-cool-gray-600 mb-1">
+                    {stat.label}
+                  </p>
+                  <p
+                    className={`text-xs ${
+                      stat.trend === "up"
+                        ? "text-sage-green-600"
+                        : "text-cool-gray-500"
+                    }`}
+                  >
+                    {stat.change}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Main Content Grid */}
