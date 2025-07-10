@@ -20,6 +20,12 @@ import {
   Star,
   BarChart3,
   Bell,
+  FileText,
+  FolderOpen,
+  TrendingUp,
+  Wrench,
+  CreditCard,
+  BrainCircuit,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -101,14 +107,31 @@ const dailyTips = [
   "🌟 Complete your profile to unlock premium features",
 ];
 
-const sidebarItems = [
-  { id: "overview", label: "Dashboard", icon: BarChart3 },
-  { id: "chat", label: "Chat", icon: MessageCircle, badge: 3 },
-  { id: "messages", label: "Messages", icon: Mail, badge: 5 },
-  { id: "calendar", label: "Calendar", icon: Calendar },
-  { id: "support", label: "Support & Help", icon: HelpCircle },
-  { id: "settings", label: "Settings", icon: Settings },
-];
+const getSidebarItems = (userType: string) => {
+  if (userType === "agent") {
+    return [
+      { id: "overview", label: "Dashboard", icon: BarChart3 },
+      { id: "messages", label: "Messages", icon: Mail, badge: 8 },
+      { id: "calendar", label: "Calendar", icon: Calendar },
+      { id: "file-manager", label: "File Manager", icon: FolderOpen },
+      { id: "ai-assistant", label: "AI Assistant", icon: BrainCircuit },
+      { id: "payments", label: "Payments & Invoices", icon: CreditCard },
+      { id: "insights", label: "Insights & Reports", icon: TrendingUp },
+      { id: "tools", label: "Tools & Resources", icon: Wrench },
+      { id: "settings", label: "Settings", icon: Settings },
+    ];
+  }
+
+  // Default items for clients and organizations
+  return [
+    { id: "overview", label: "Dashboard", icon: BarChart3 },
+    { id: "chat", label: "Chat", icon: MessageCircle, badge: 3 },
+    { id: "messages", label: "Messages", icon: Mail, badge: 5 },
+    { id: "calendar", label: "Calendar", icon: Calendar },
+    { id: "support", label: "Support & Help", icon: HelpCircle },
+    { id: "settings", label: "Settings", icon: Settings },
+  ];
+};
 
 export const ProfessionalSidebar: React.FC<ProfessionalSidebarProps> = ({
   userType,
@@ -120,6 +143,7 @@ export const ProfessionalSidebar: React.FC<ProfessionalSidebarProps> = ({
   const [profileExpanded, setProfileExpanded] = useState(false);
   const [currentTip, setCurrentTip] = useState(0);
   const userProfile = getUserProfile(userType);
+  const sidebarItems = getSidebarItems(userType);
 
   // Rotate daily tips every 10 seconds
   useEffect(() => {
