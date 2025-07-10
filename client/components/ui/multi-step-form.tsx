@@ -904,17 +904,23 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   id="confirmPassword"
                   type="password"
                   value={formData.confirmPassword}
-                  onChange={(e) => updateFormData("confirmPassword", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("confirmPassword", e.target.value)
+                  }
                   placeholder="Confirm your password"
                   className={cn(errors.confirmPassword && "border-red-500")}
                 />
                 {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.confirmPassword}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="phone">Phone Number (with country code) *</Label>
+                <Label htmlFor="phone">
+                  Phone Number (with country code) *
+                </Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -948,16 +954,22 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
               </div>
 
               <div>
-                <Label htmlFor="registrationNumber">Registration Number / License ID *</Label>
+                <Label htmlFor="registrationNumber">
+                  Registration Number / License ID *
+                </Label>
                 <Input
                   id="registrationNumber"
                   value={formData.registrationNumber || ""}
-                  onChange={(e) => updateFormData("registrationNumber", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("registrationNumber", e.target.value)
+                  }
                   placeholder="R123456789"
                   className={cn(errors.registrationNumber && "border-red-500")}
                 />
                 {errors.registrationNumber && (
-                  <p className="text-red-500 text-sm mt-1">{errors.registrationNumber}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.registrationNumber}
+                  </p>
                 )}
               </div>
 
@@ -967,36 +979,48 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   id="yearEstablished"
                   type="number"
                   value={formData.yearEstablished || ""}
-                  onChange={(e) => updateFormData("yearEstablished", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("yearEstablished", e.target.value)
+                  }
                   placeholder="2020"
                   min="1900"
                   max="2024"
                   className={cn(errors.yearEstablished && "border-red-500")}
                 />
                 {errors.yearEstablished && (
-                  <p className="text-red-500 text-sm mt-1">{errors.yearEstablished}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.yearEstablished}
+                  </p>
                 )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="headOfficeCountry">Head Office Country *</Label>
+                  <Label htmlFor="headOfficeCountry">
+                    Head Office Country *
+                  </Label>
                   <select
                     id="headOfficeCountry"
                     value={formData.headOfficeCountry || ""}
-                    onChange={(e) => updateFormData("headOfficeCountry", e.target.value)}
+                    onChange={(e) =>
+                      updateFormData("headOfficeCountry", e.target.value)
+                    }
                     className={cn(
                       "w-full p-3 border border-cool-gray-300 rounded-xl focus:ring-2 focus:ring-royal-blue-500",
-                      errors.headOfficeCountry && "border-red-500"
+                      errors.headOfficeCountry && "border-red-500",
                     )}
                   >
                     <option value="">Select Country</option>
                     {countryOptions.map((country) => (
-                      <option key={country} value={country}>{country}</option>
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
                     ))}
                   </select>
                   {errors.headOfficeCountry && (
-                    <p className="text-red-500 text-sm mt-1">{errors.headOfficeCountry}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.headOfficeCountry}
+                    </p>
                   )}
                 </div>
 
@@ -1005,12 +1029,16 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   <Input
                     id="headOfficeCity"
                     value={formData.headOfficeCity || ""}
-                    onChange={(e) => updateFormData("headOfficeCity", e.target.value)}
+                    onChange={(e) =>
+                      updateFormData("headOfficeCity", e.target.value)
+                    }
                     placeholder="Toronto"
                     className={cn(errors.headOfficeCity && "border-red-500")}
                   />
                   {errors.headOfficeCity && (
-                    <p className="text-red-500 text-sm mt-1">{errors.headOfficeCity}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.headOfficeCity}
+                    </p>
                   )}
                 </div>
               </div>
@@ -1032,12 +1060,16 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   id="officePhone"
                   type="tel"
                   value={formData.officePhone || ""}
-                  onChange={(e) => updateFormData("officePhone", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("officePhone", e.target.value)
+                  }
                   placeholder="+1 (416) 555-0123"
                   className={cn(errors.officePhone && "border-red-500")}
                 />
                 {errors.officePhone && (
-                  <p className="text-red-500 text-sm mt-1">{errors.officePhone}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.officePhone}
+                  </p>
                 )}
               </div>
 
@@ -1057,7 +1089,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
               </div>
 
               <div>
-                <Label htmlFor="incorporationCert">Upload Certificate of Incorporation *</Label>
+                <Label htmlFor="incorporationCert">
+                  Upload Certificate of Incorporation *
+                </Label>
                 <div className="mt-2 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center">
                   <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-2" />
                   <p className="text-sm text-cool-gray-600 mb-2">
@@ -1066,7 +1100,12 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    onChange={(e) => updateFormData("incorporationCert", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData(
+                        "incorporationCert",
+                        e.target.files?.[0] || null,
+                      )
+                    }
                     className="hidden"
                     id="incorporationCert"
                   />
@@ -1090,7 +1129,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
           return (
             <div className="space-y-6">
               <div>
-                <Label htmlFor="repName">Authorized Representative Name *</Label>
+                <Label htmlFor="repName">
+                  Authorized Representative Name *
+                </Label>
                 <Input
                   id="repName"
                   value={formData.repName || ""}
@@ -1108,12 +1149,16 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                 <Input
                   id="repDesignation"
                   value={formData.repDesignation || ""}
-                  onChange={(e) => updateFormData("repDesignation", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("repDesignation", e.target.value)
+                  }
                   placeholder="Managing Director"
                   className={cn(errors.repDesignation && "border-red-500")}
                 />
                 {errors.repDesignation && (
-                  <p className="text-red-500 text-sm mt-1">{errors.repDesignation}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.repDesignation}
+                  </p>
                 )}
               </div>
 
@@ -1123,7 +1168,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   id="repLinkedIn"
                   type="url"
                   value={formData.repLinkedIn || ""}
-                  onChange={(e) => updateFormData("repLinkedIn", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("repLinkedIn", e.target.value)
+                  }
                   placeholder="https://linkedin.com/in/username"
                 />
               </div>
@@ -1138,7 +1185,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   <input
                     type="file"
                     accept=".jpg,.jpeg,.png"
-                    onChange={(e) => updateFormData("repPhoto", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData("repPhoto", e.target.files?.[0] || null)
+                    }
                     className="hidden"
                     id="repPhoto"
                   />
@@ -1165,15 +1214,26 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                 <Label>Visa Services Offered *</Label>
                 <div className="mt-2 grid grid-cols-2 gap-3">
                   {visaServiceOptions.map((service) => (
-                    <label key={service} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={service}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <Checkbox
-                        checked={formData.servicesOffered?.includes(service) || false}
+                        checked={
+                          formData.servicesOffered?.includes(service) || false
+                        }
                         onCheckedChange={(checked) => {
                           const current = formData.servicesOffered || [];
                           if (checked) {
-                            updateFormData("servicesOffered", [...current, service]);
+                            updateFormData("servicesOffered", [
+                              ...current,
+                              service,
+                            ]);
                           } else {
-                            updateFormData("servicesOffered", current.filter(s => s !== service));
+                            updateFormData(
+                              "servicesOffered",
+                              current.filter((s) => s !== service),
+                            );
                           }
                         }}
                       />
@@ -1182,7 +1242,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   ))}
                 </div>
                 {errors.servicesOffered && (
-                  <p className="text-red-500 text-sm mt-1">{errors.servicesOffered}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.servicesOffered}
+                  </p>
                 )}
               </div>
 
@@ -1190,15 +1252,26 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                 <Label>Countries You Serve *</Label>
                 <div className="mt-2 grid grid-cols-3 gap-3 max-h-48 overflow-y-auto">
                   {countryOptions.map((country) => (
-                    <label key={country} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={country}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <Checkbox
-                        checked={formData.countriesServed?.includes(country) || false}
+                        checked={
+                          formData.countriesServed?.includes(country) || false
+                        }
                         onCheckedChange={(checked) => {
                           const current = formData.countriesServed || [];
                           if (checked) {
-                            updateFormData("countriesServed", [...current, country]);
+                            updateFormData("countriesServed", [
+                              ...current,
+                              country,
+                            ]);
                           } else {
-                            updateFormData("countriesServed", current.filter(c => c !== country));
+                            updateFormData(
+                              "countriesServed",
+                              current.filter((c) => c !== country),
+                            );
                           }
                         }}
                       />
@@ -1207,7 +1280,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   ))}
                 </div>
                 {errors.countriesServed && (
-                  <p className="text-red-500 text-sm mt-1">{errors.countriesServed}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.countriesServed}
+                  </p>
                 )}
               </div>
 
@@ -1215,15 +1290,27 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                 <Label>Languages Supported *</Label>
                 <div className="mt-2 grid grid-cols-3 gap-3">
                   {languageOptions.map((language) => (
-                    <label key={language} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={language}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <Checkbox
-                        checked={formData.languagesSupported?.includes(language) || false}
+                        checked={
+                          formData.languagesSupported?.includes(language) ||
+                          false
+                        }
                         onCheckedChange={(checked) => {
                           const current = formData.languagesSupported || [];
                           if (checked) {
-                            updateFormData("languagesSupported", [...current, language]);
+                            updateFormData("languagesSupported", [
+                              ...current,
+                              language,
+                            ]);
                           } else {
-                            updateFormData("languagesSupported", current.filter(l => l !== language));
+                            updateFormData(
+                              "languagesSupported",
+                              current.filter((l) => l !== language),
+                            );
                           }
                         }}
                       />
@@ -1232,7 +1319,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   ))}
                 </div>
                 {errors.languagesSupported && (
-                  <p className="text-red-500 text-sm mt-1">{errors.languagesSupported}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.languagesSupported}
+                  </p>
                 )}
               </div>
             </div>
@@ -1242,7 +1331,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
           return (
             <div className="space-y-6">
               <div>
-                <Label htmlFor="govLicense">Upload Valid Government License / Registration Proof *</Label>
+                <Label htmlFor="govLicense">
+                  Upload Valid Government License / Registration Proof *
+                </Label>
                 <div className="mt-2 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center">
                   <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-2" />
                   <p className="text-sm text-cool-gray-600 mb-2">
@@ -1251,7 +1342,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    onChange={(e) => updateFormData("govLicense", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData("govLicense", e.target.files?.[0] || null)
+                    }
                     className="hidden"
                     id="govLicense"
                   />
@@ -1268,7 +1361,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   )}
                 </div>
                 {errors.govLicense && (
-                  <p className="text-red-500 text-sm mt-1">{errors.govLicense}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.govLicense}
+                  </p>
                 )}
               </div>
 
@@ -1282,7 +1377,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   <input
                     type="file"
                     accept=".png,.jpg,.jpeg"
-                    onChange={(e) => updateFormData("companyLogo", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData("companyLogo", e.target.files?.[0] || null)
+                    }
                     className="hidden"
                     id="companyLogo"
                   />
@@ -1301,7 +1398,9 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
               </div>
 
               <div>
-                <Label htmlFor="companyBrochure">Upload Brochure or Company Profile PDF (Optional)</Label>
+                <Label htmlFor="companyBrochure">
+                  Upload Brochure or Company Profile PDF (Optional)
+                </Label>
                 <div className="mt-2 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center">
                   <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-2" />
                   <p className="text-sm text-cool-gray-600 mb-2">
@@ -1310,7 +1409,12 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                   <input
                     type="file"
                     accept=".pdf"
-                    onChange={(e) => updateFormData("companyBrochure", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData(
+                        "companyBrochure",
+                        e.target.files?.[0] || null,
+                      )
+                    }
                     className="hidden"
                     id="companyBrochure"
                   />
@@ -1340,28 +1444,36 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
 
                 <div className="space-y-4 text-sm">
                   <div>
-                    <span className="font-medium">Admin:</span> {formData.fullName} ({formData.email})
+                    <span className="font-medium">Admin:</span>{" "}
+                    {formData.fullName} ({formData.email})
                   </div>
                   <div>
-                    <span className="font-medium">Organization:</span> {formData.orgName}
+                    <span className="font-medium">Organization:</span>{" "}
+                    {formData.orgName}
                   </div>
                   <div>
-                    <span className="font-medium">Registration:</span> {formData.registrationNumber}
+                    <span className="font-medium">Registration:</span>{" "}
+                    {formData.registrationNumber}
                   </div>
                   <div>
-                    <span className="font-medium">Location:</span> {formData.headOfficeCity}, {formData.headOfficeCountry}
+                    <span className="font-medium">Location:</span>{" "}
+                    {formData.headOfficeCity}, {formData.headOfficeCountry}
                   </div>
                   <div>
-                    <span className="font-medium">Representative:</span> {formData.repName} - {formData.repDesignation}
+                    <span className="font-medium">Representative:</span>{" "}
+                    {formData.repName} - {formData.repDesignation}
                   </div>
                   <div>
-                    <span className="font-medium">Services:</span> {formData.servicesOffered?.join(', ')}
+                    <span className="font-medium">Services:</span>{" "}
+                    {formData.servicesOffered?.join(", ")}
                   </div>
                   <div>
-                    <span className="font-medium">Countries:</span> {formData.countriesServed?.join(', ')}
+                    <span className="font-medium">Countries:</span>{" "}
+                    {formData.countriesServed?.join(", ")}
                   </div>
                   <div>
-                    <span className="font-medium">Languages:</span> {formData.languagesSupported?.join(', ')}
+                    <span className="font-medium">Languages:</span>{" "}
+                    {formData.languagesSupported?.join(", ")}
                   </div>
                 </div>
               </div>
@@ -1370,15 +1482,23 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
                 <Checkbox
                   id="agreeToTerms"
                   checked={formData.agreeToTerms}
-                  onCheckedChange={(checked) => updateFormData("agreeToTerms", checked)}
+                  onCheckedChange={(checked) =>
+                    updateFormData("agreeToTerms", checked)
+                  }
                   className={cn(errors.agreeToTerms && "border-red-500")}
                 />
                 <div>
-                  <Label htmlFor="agreeToTerms" className="text-sm cursor-pointer">
-                    ✅ I confirm that the information provided is accurate and I agree to the platform's terms and privacy policy.
+                  <Label
+                    htmlFor="agreeToTerms"
+                    className="text-sm cursor-pointer"
+                  >
+                    ✅ I confirm that the information provided is accurate and I
+                    agree to the platform's terms and privacy policy.
                   </Label>
                   {errors.agreeToTerms && (
-                    <p className="text-red-500 text-sm mt-1">{errors.agreeToTerms}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.agreeToTerms}
+                    </p>
                   )}
                 </div>
               </div>
@@ -1387,85 +1507,6 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
 
         default:
           return <div>Invalid step</div>;
-                />
-                {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                )}
-              </div>
-
-              <div>
-                <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  value={formData.confirmPassword}
-                  onChange={(e) =>
-                    updateFormData("confirmPassword", e.target.value)
-                  }
-                  placeholder="Confirm your password"
-                  className={cn(errors.confirmPassword && "border-red-500")}
-                />
-                {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.confirmPassword}
-                  </p>
-                )}
-              </div>
-            </div>
-          );
-
-        case 3:
-          return (
-            <div className="space-y-6">
-              <div className="glass-card p-6 rounded-2xl">
-                <h3 className="text-xl font-heading font-bold mb-4">
-                  Review Organization Information
-                </h3>
-                <div className="space-y-3 text-sm">
-                  <p>
-                    <strong>Organization:</strong> {formData.orgName}
-                  </p>
-                  <p>
-                    <strong>Admin:</strong> {formData.adminName}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {formData.email}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {formData.phone}
-                  </p>
-                  {formData.website && (
-                    <p>
-                      <strong>Website:</strong> {formData.website}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <Checkbox
-                  id="terms"
-                  checked={formData.agreeToTerms}
-                  onCheckedChange={(checked) =>
-                    updateFormData("agreeToTerms", checked)
-                  }
-                />
-                <Label htmlFor="terms" className="text-sm leading-relaxed">
-                  I agree to the Organization{" "}
-                  <a href="#" className="text-royal-blue-600 hover:underline">
-                    Terms of Service
-                  </a>{" "}
-                  and{" "}
-                  <a href="#" className="text-royal-blue-600 hover:underline">
-                    Partnership Agreement
-                  </a>
-                </Label>
-              </div>
-              {errors.agreeToTerms && (
-                <p className="text-red-500 text-sm">{errors.agreeToTerms}</p>
-              )}
-            </div>
-          );
       }
     }
 
