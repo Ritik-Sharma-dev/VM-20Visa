@@ -43,8 +43,30 @@ interface FormData {
 
   // Organization specific
   orgName?: string;
-  adminName?: string;
+  registrationNumber?: string;
+  yearEstablished?: string;
+  headOfficeCountry?: string;
+  headOfficeCity?: string;
   website?: string;
+  officePhone?: string;
+  orgEmail?: string;
+  incorporationCert?: File | null;
+
+  // Representative info
+  repName?: string;
+  repDesignation?: string;
+  repLinkedIn?: string;
+  repPhoto?: File | null;
+
+  // Services & Regions
+  servicesOffered?: string[];
+  countriesServed?: string[];
+  languagesSupported?: string[];
+
+  // Documentation
+  govLicense?: File | null;
+  companyLogo?: File | null;
+  companyBrochure?: File | null;
 }
 
 interface MultiStepFormProps {
@@ -67,8 +89,24 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     license: null,
     bio: "",
     orgName: "",
-    adminName: "",
+    registrationNumber: "",
+    yearEstablished: "",
+    headOfficeCountry: "",
+    headOfficeCity: "",
     website: "",
+    officePhone: "",
+    orgEmail: "",
+    incorporationCert: null,
+    repName: "",
+    repDesignation: "",
+    repLinkedIn: "",
+    repPhoto: null,
+    servicesOffered: [],
+    countriesServed: [],
+    languagesSupported: [],
+    govLicense: null,
+    companyLogo: null,
+    companyBrochure: null,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const { signup, isLoading } = useAuth();
@@ -154,21 +192,35 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
     } else {
       return [
         {
-          title: "Organization Details",
+          title: "Admin Account",
+          subtitle: "Create your admin account",
+          icon: User,
+        },
+        {
+          title: "Organization Profile",
           subtitle: "Tell us about your organization",
           icon: Building,
         },
         {
-          title: "Contact Information",
-          subtitle: "How can we reach you?",
-          icon: Mail,
+          title: "Representative Info",
+          subtitle: "Authorized representative details",
+          icon: User,
         },
         {
-          title: "Additional Details",
-          subtitle: "Complete your setup",
+          title: "Services & Regions",
+          subtitle: "What services do you offer and where?",
           icon: Globe,
         },
-        { title: "Complete Setup", subtitle: "Review and submit", icon: Check },
+        {
+          title: "Documentation",
+          subtitle: "Upload required documents",
+          icon: Upload,
+        },
+        {
+          title: "Review & Confirm",
+          subtitle: "Review and submit",
+          icon: Check,
+        },
       ];
     }
   };
