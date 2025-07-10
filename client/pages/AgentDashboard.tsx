@@ -153,15 +153,16 @@ export default function AgentDashboard() {
       setCurrentView("overview");
     } else if (page === "insights") {
       navigate("/agent-insights");
+    } else if (page === "file-manager") {
+      navigate("/file-manager");
+    } else if (page === "payments") {
+      navigate("/payments");
+    } else if (page === "tools") {
+      navigate("/tools");
     } else if (
       ["chat", "messages", "calendar", "support", "settings"].includes(page)
     ) {
       navigate(`/${page}`);
-    } else if (
-      ["file-manager", "ai-assistant", "payments", "tools"].includes(page)
-    ) {
-      // TODO: Create these pages later
-      console.log(`${page} - Coming Soon`);
     }
   };
 
