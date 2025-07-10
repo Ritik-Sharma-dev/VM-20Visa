@@ -114,7 +114,6 @@ const getSidebarItems = (userType: string) => {
       { id: "messages", label: "Messages", icon: Mail, badge: 8 },
       { id: "calendar", label: "Calendar", icon: Calendar },
       { id: "file-manager", label: "File Manager", icon: FolderOpen },
-      { id: "ai-assistant", label: "AI Assistant", icon: BrainCircuit },
       { id: "payments", label: "Payments & Invoices", icon: CreditCard },
       { id: "insights", label: "Insights & Reports", icon: TrendingUp },
       { id: "tools", label: "Tools & Resources", icon: Wrench },
