@@ -27,7 +27,7 @@ import {
   Target,
 } from "lucide-react";
 
-export default function AgentInsightsPage() {
+function AgentInsightsPage() {
   const [filterPeriod, setFilterPeriod] = useState<string>("6months");
 
   // Chart data
@@ -336,3 +336,5 @@ export default function AgentInsightsPage() {
     </div>
   );
 }
+
+export default AgentInsightsPage;
