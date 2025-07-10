@@ -852,86 +852,35 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
       }
     } else if (type === "organization") {
       switch (currentStep) {
-        case 0: // Organization Name
+        case 0: // Page 1: Organization Name
           return (
             <div className="space-y-6">
-              <div>
-                <Label htmlFor="fullName">Full Name *</Label>
-                <Input
-                  id="fullName"
-                  value={formData.fullName}
-                  onChange={(e) => updateFormData("fullName", e.target.value)}
-                  placeholder="Enter your full name"
-                  className={cn(errors.fullName && "border-red-500")}
-                />
-                {errors.fullName && (
-                  <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
-                )}
+              <div className="text-center mb-8">
+                <Building className="w-16 h-16 mx-auto text-royal-blue-500 mb-4" />
+                <h2 className="text-2xl font-bold text-cool-gray-800 mb-2">
+                  What's your organization name?
+                </h2>
+                <p className="text-cool-gray-600">
+                  Enter the official name of your immigration consultancy
+                </p>
               </div>
 
               <div>
-                <Label htmlFor="email">Official Email Address *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => updateFormData("email", e.target.value)}
-                  placeholder="admin@yourorganization.com"
-                  className={cn(errors.email && "border-red-500")}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                )}
-              </div>
-
-              <div>
-                <Label htmlFor="password">Password *</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={(e) => updateFormData("password", e.target.value)}
-                  placeholder="Create a secure password"
-                  className={cn(errors.password && "border-red-500")}
-                />
-                {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                )}
-              </div>
-
-              <div>
-                <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  value={formData.confirmPassword}
-                  onChange={(e) =>
-                    updateFormData("confirmPassword", e.target.value)
-                  }
-                  placeholder="Confirm your password"
-                  className={cn(errors.confirmPassword && "border-red-500")}
-                />
-                {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.confirmPassword}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <Label htmlFor="phone">
-                  Phone Number (with country code) *
+                <Label htmlFor="orgName" className="text-lg font-medium">
+                  Organization Name
                 </Label>
                 <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => updateFormData("phone", e.target.value)}
-                  placeholder="+1 (555) 123-4567"
-                  className={cn(errors.phone && "border-red-500")}
+                  id="orgName"
+                  value={formData.orgName || ""}
+                  onChange={(e) => updateFormData("orgName", e.target.value)}
+                  placeholder="VM Visa Immigration Services"
+                  className={cn(
+                    "text-lg h-14 mt-3",
+                    errors.orgName && "border-red-500",
+                  )}
                 />
-                {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                {errors.orgName && (
+                  <p className="text-red-500 text-sm mt-2">{errors.orgName}</p>
                 )}
               </div>
             </div>
