@@ -57,7 +57,10 @@ interface OrganizationSignupFormProps {
   onBack?: () => void;
 }
 
-export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupFormProps) {
+export function OrganizationSignupForm({
+  onSubmit,
+  onBack,
+}: OrganizationSignupFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<FormData>({
     orgName: "",
@@ -87,36 +90,89 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
   const { signup, isLoading } = useAuth();
 
   const steps = [
-    { title: "Organization Name", subtitle: "What's your organization name?", icon: Building },
+    {
+      title: "Organization Name",
+      subtitle: "What's your organization name?",
+      icon: Building,
+    },
     { title: "Email Address", subtitle: "Official email address", icon: Mail },
     { title: "Password Setup", subtitle: "Create secure password", icon: User },
     { title: "Contact Information", subtitle: "Phone numbers", icon: Phone },
-    { title: "Basic Profile Info", subtitle: "Location and credentials", icon: Globe },
-    { title: "Detailed Company Info", subtitle: "Services and background", icon: Briefcase },
-    { title: "Representative Info", subtitle: "Authorized representative", icon: User },
+    {
+      title: "Basic Profile Info",
+      subtitle: "Location and credentials",
+      icon: Globe,
+    },
+    {
+      title: "Detailed Company Info",
+      subtitle: "Services and background",
+      icon: Briefcase,
+    },
+    {
+      title: "Representative Info",
+      subtitle: "Authorized representative",
+      icon: User,
+    },
     { title: "Review & Confirmation", subtitle: "Final review", icon: Check },
   ];
 
   const visaServiceOptions = [
-    "Student Visa", "PR Visa", "Work Permit", "Family Visa", "Business/Investor Visa", "Visitor Visa"
+    "Student Visa",
+    "PR Visa",
+    "Work Permit",
+    "Family Visa",
+    "Business/Investor Visa",
+    "Visitor Visa",
   ];
 
   const countryOptions = [
-    "Canada", "United States", "United Kingdom", "Australia", "New Zealand",
-    "Germany", "France", "Netherlands", "Denmark", "Sweden", "Norway",
-    "Switzerland", "Austria", "Belgium", "Ireland", "Italy", "Spain",
-    "Portugal", "Japan", "Singapore", "Hong Kong"
+    "Canada",
+    "United States",
+    "United Kingdom",
+    "Australia",
+    "New Zealand",
+    "Germany",
+    "France",
+    "Netherlands",
+    "Denmark",
+    "Sweden",
+    "Norway",
+    "Switzerland",
+    "Austria",
+    "Belgium",
+    "Ireland",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Japan",
+    "Singapore",
+    "Hong Kong",
   ];
 
   const languageOptions = [
-    "English", "French", "Spanish", "Hindi", "Punjabi", "Mandarin",
-    "Arabic", "Portuguese", "German", "Italian", "Dutch", "Russian",
-    "Japanese", "Korean", "Tagalog", "Urdu", "Bengali", "Tamil"
+    "English",
+    "French",
+    "Spanish",
+    "Hindi",
+    "Punjabi",
+    "Mandarin",
+    "Arabic",
+    "Portuguese",
+    "German",
+    "Italian",
+    "Dutch",
+    "Russian",
+    "Japanese",
+    "Korean",
+    "Tagalog",
+    "Urdu",
+    "Bengali",
+    "Tamil",
   ];
 
   // Load saved form data
   useEffect(() => {
-    const saved = localStorage.getItem('vm-visa-org-signup');
+    const saved = localStorage.getItem("vm-visa-org-signup");
     if (saved) {
       setFormData({ ...formData, ...JSON.parse(saved) });
     }
@@ -124,11 +180,11 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
 
   // Save form data
   useEffect(() => {
-    localStorage.setItem('vm-visa-org-signup', JSON.stringify(formData));
+    localStorage.setItem("vm-visa-org-signup", JSON.stringify(formData));
   }, [formData]);
 
   const updateFormData = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const validateStep = (step: number): boolean => {
@@ -136,38 +192,56 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
 
     switch (step) {
       case 0:
-        if (!formData.orgName.trim()) newErrors.orgName = "Organization name is required";
+        if (!formData.orgName.trim())
+          newErrors.orgName = "Organization name is required";
         break;
       case 1:
         if (!formData.email.trim()) newErrors.email = "Email is required";
-        if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Invalid email format";
+        if (!/\S+@\S+\.\S+/.test(formData.email))
+          newErrors.email = "Invalid email format";
         break;
       case 2:
         if (!formData.password) newErrors.password = "Password is required";
-        if (formData.password.length < 8) newErrors.password = "Password must be at least 8 characters";
-        if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Passwords don't match";
+        if (formData.password.length < 8)
+          newErrors.password = "Password must be at least 8 characters";
+        if (formData.password !== formData.confirmPassword)
+          newErrors.confirmPassword = "Passwords don't match";
         break;
       case 3:
-        if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+        if (!formData.phone.trim())
+          newErrors.phone = "Phone number is required";
         break;
       case 4:
-        if (!formData.countryHeadquarters.trim()) newErrors.countryHeadquarters = "Country of headquarters is required";
-        if (!formData.operatingRegions.length) newErrors.operatingRegions = "Please select at least one operating region";
-        if (!formData.businessLicense) newErrors.businessLicense = "Business license is required";
+        if (!formData.countryHeadquarters.trim())
+          newErrors.countryHeadquarters = "Country of headquarters is required";
+        if (!formData.operatingRegions.length)
+          newErrors.operatingRegions =
+            "Please select at least one operating region";
+        if (!formData.businessLicense)
+          newErrors.businessLicense = "Business license is required";
         break;
       case 5:
-        if (!formData.yearEstablished.trim()) newErrors.yearEstablished = "Year of establishment is required";
-        if (!formData.registrationNumber.trim()) newErrors.registrationNumber = "Registration/License number is required";
-        if (!formData.servicesOffered.length) newErrors.servicesOffered = "Please select at least one service";
-        if (!formData.languagesSupported.length) newErrors.languagesSupported = "Please select at least one language";
-        if (!formData.companyOverview.trim()) newErrors.companyOverview = "Company overview is required";
+        if (!formData.yearEstablished.trim())
+          newErrors.yearEstablished = "Year of establishment is required";
+        if (!formData.registrationNumber.trim())
+          newErrors.registrationNumber =
+            "Registration/License number is required";
+        if (!formData.servicesOffered.length)
+          newErrors.servicesOffered = "Please select at least one service";
+        if (!formData.languagesSupported.length)
+          newErrors.languagesSupported = "Please select at least one language";
+        if (!formData.companyOverview.trim())
+          newErrors.companyOverview = "Company overview is required";
         break;
       case 6:
-        if (!formData.repName.trim()) newErrors.repName = "Representative name is required";
-        if (!formData.repDesignation.trim()) newErrors.repDesignation = "Designation/Title is required";
+        if (!formData.repName.trim())
+          newErrors.repName = "Representative name is required";
+        if (!formData.repDesignation.trim())
+          newErrors.repDesignation = "Designation/Title is required";
         break;
       case 7:
-        if (!formData.agreeToTerms) newErrors.agreeToTerms = "You must agree to the terms";
+        if (!formData.agreeToTerms)
+          newErrors.agreeToTerms = "You must agree to the terms";
         break;
     }
 
@@ -193,7 +267,7 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
 
   const handleSubmit = async () => {
     try {
-      localStorage.removeItem('vm-visa-org-signup');
+      localStorage.removeItem("vm-visa-org-signup");
       await signup(formData.email, formData.password, "organization");
       if (onSubmit) onSubmit(formData);
     } catch (error) {
@@ -215,15 +289,20 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 Enter the official name of your immigration consultancy
               </p>
             </div>
-            
+
             <div>
-              <Label htmlFor="orgName" className="text-lg font-medium">Organization Name</Label>
+              <Label htmlFor="orgName" className="text-lg font-medium">
+                Organization Name
+              </Label>
               <Input
                 id="orgName"
                 value={formData.orgName}
                 onChange={(e) => updateFormData("orgName", e.target.value)}
                 placeholder="VM Visa Immigration Services"
-                className={cn("text-lg h-14 mt-3", errors.orgName && "border-red-500")}
+                className={cn(
+                  "text-lg h-14 mt-3",
+                  errors.orgName && "border-red-500",
+                )}
               />
               {errors.orgName && (
                 <p className="text-red-500 text-sm mt-2">{errors.orgName}</p>
@@ -244,16 +323,21 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 We'll check if this email is already registered
               </p>
             </div>
-            
+
             <div>
-              <Label htmlFor="email" className="text-lg font-medium">Email Address</Label>
+              <Label htmlFor="email" className="text-lg font-medium">
+                Email Address
+              </Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateFormData("email", e.target.value)}
                 placeholder="admin@yourorganization.com"
-                className={cn("text-lg h-14 mt-3", errors.email && "border-red-500")}
+                className={cn(
+                  "text-lg h-14 mt-3",
+                  errors.email && "border-red-500",
+                )}
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-2">{errors.email}</p>
@@ -274,17 +358,22 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 Password must be at least 8 characters
               </p>
             </div>
-            
+
             <div className="space-y-4">
               <div>
-                <Label htmlFor="password" className="text-lg font-medium">Create Password</Label>
+                <Label htmlFor="password" className="text-lg font-medium">
+                  Create Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
                   value={formData.password}
                   onChange={(e) => updateFormData("password", e.target.value)}
                   placeholder="••••••••"
-                  className={cn("text-lg h-14 mt-3", errors.password && "border-red-500")}
+                  className={cn(
+                    "text-lg h-14 mt-3",
+                    errors.password && "border-red-500",
+                  )}
                 />
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-2">{errors.password}</p>
@@ -292,17 +381,29 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
               </div>
 
               <div>
-                <Label htmlFor="confirmPassword" className="text-lg font-medium">Confirm Password</Label>
+                <Label
+                  htmlFor="confirmPassword"
+                  className="text-lg font-medium"
+                >
+                  Confirm Password
+                </Label>
                 <Input
                   id="confirmPassword"
                   type="password"
                   value={formData.confirmPassword}
-                  onChange={(e) => updateFormData("confirmPassword", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("confirmPassword", e.target.value)
+                  }
                   placeholder="••••••••"
-                  className={cn("text-lg h-14 mt-3", errors.confirmPassword && "border-red-500")}
+                  className={cn(
+                    "text-lg h-14 mt-3",
+                    errors.confirmPassword && "border-red-500",
+                  )}
                 />
                 {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm mt-2">{errors.confirmPassword}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.confirmPassword}
+                  </p>
                 )}
               </div>
             </div>
@@ -321,17 +422,22 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 Primary phone number is required
               </p>
             </div>
-            
+
             <div className="space-y-4">
               <div>
-                <Label htmlFor="phone" className="text-lg font-medium">Phone Number (with country code)</Label>
+                <Label htmlFor="phone" className="text-lg font-medium">
+                  Phone Number (with country code)
+                </Label>
                 <Input
                   id="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => updateFormData("phone", e.target.value)}
                   placeholder="+1 (555) 123-4567"
-                  className={cn("text-lg h-14 mt-3", errors.phone && "border-red-500")}
+                  className={cn(
+                    "text-lg h-14 mt-3",
+                    errors.phone && "border-red-500",
+                  )}
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-sm mt-2">{errors.phone}</p>
@@ -339,24 +445,32 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
               </div>
 
               <div>
-                <Label htmlFor="alternatePhone" className="text-lg font-medium">Alternate Phone (Optional)</Label>
+                <Label htmlFor="alternatePhone" className="text-lg font-medium">
+                  Alternate Phone (Optional)
+                </Label>
                 <Input
                   id="alternatePhone"
                   type="tel"
                   value={formData.alternatePhone}
-                  onChange={(e) => updateFormData("alternatePhone", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("alternatePhone", e.target.value)
+                  }
                   placeholder="+1 (555) 987-6543"
                   className="text-lg h-14 mt-3"
                 />
               </div>
 
               <div>
-                <Label htmlFor="whatsappNumber" className="text-lg font-medium">WhatsApp Number (Optional)</Label>
+                <Label htmlFor="whatsappNumber" className="text-lg font-medium">
+                  WhatsApp Number (Optional)
+                </Label>
                 <Input
                   id="whatsappNumber"
                   type="tel"
                   value={formData.whatsappNumber}
-                  onChange={(e) => updateFormData("whatsappNumber", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("whatsappNumber", e.target.value)
+                  }
                   placeholder="+1 (555) 555-5555"
                   className="text-lg h-14 mt-3"
                 />
@@ -373,46 +487,66 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
               <h2 className="text-2xl font-bold text-cool-gray-800 mb-2">
                 Basic Profile Information
               </h2>
-              <p className="text-cool-gray-600">
-                Location and credentials
-              </p>
+              <p className="text-cool-gray-600">Location and credentials</p>
             </div>
-            
+
             <div className="space-y-6">
               <div>
-                <Label htmlFor="countryHeadquarters" className="text-lg font-medium">Country of Headquarters</Label>
+                <Label
+                  htmlFor="countryHeadquarters"
+                  className="text-lg font-medium"
+                >
+                  Country of Headquarters
+                </Label>
                 <select
                   id="countryHeadquarters"
                   value={formData.countryHeadquarters}
-                  onChange={(e) => updateFormData("countryHeadquarters", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("countryHeadquarters", e.target.value)
+                  }
                   className={cn(
                     "w-full p-4 text-lg border border-cool-gray-300 rounded-xl focus:ring-2 focus:ring-royal-blue-500 mt-3",
-                    errors.countryHeadquarters && "border-red-500"
+                    errors.countryHeadquarters && "border-red-500",
                   )}
                 >
                   <option value="">Select Country</option>
                   {countryOptions.map((country) => (
-                    <option key={country} value={country}>{country}</option>
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
                   ))}
                 </select>
                 {errors.countryHeadquarters && (
-                  <p className="text-red-500 text-sm mt-2">{errors.countryHeadquarters}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.countryHeadquarters}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label className="text-lg font-medium">Operating Regions (Select all that apply)</Label>
+                <Label className="text-lg font-medium">
+                  Operating Regions (Select all that apply)
+                </Label>
                 <div className="mt-3 grid grid-cols-2 gap-3 max-h-48 overflow-y-auto border border-cool-gray-300 rounded-xl p-4">
                   {countryOptions.map((country) => (
-                    <label key={country} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={country}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <Checkbox
                         checked={formData.operatingRegions.includes(country)}
                         onCheckedChange={(checked) => {
                           const current = formData.operatingRegions;
                           if (checked) {
-                            updateFormData("operatingRegions", [...current, country]);
+                            updateFormData("operatingRegions", [
+                              ...current,
+                              country,
+                            ]);
                           } else {
-                            updateFormData("operatingRegions", current.filter(c => c !== country));
+                            updateFormData(
+                              "operatingRegions",
+                              current.filter((c) => c !== country),
+                            );
                           }
                         }}
                       />
@@ -421,19 +555,27 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                   ))}
                 </div>
                 {errors.operatingRegions && (
-                  <p className="text-red-500 text-sm mt-2">{errors.operatingRegions}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.operatingRegions}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="companyLogo" className="text-lg font-medium">Company Logo</Label>
+                <Label htmlFor="companyLogo" className="text-lg font-medium">
+                  Company Logo
+                </Label>
                 <div className="mt-3 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center">
                   <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-2" />
-                  <p className="text-sm text-cool-gray-600 mb-2">Upload PNG or JPG</p>
+                  <p className="text-sm text-cool-gray-600 mb-2">
+                    Upload PNG or JPG
+                  </p>
                   <input
                     type="file"
                     accept=".png,.jpg,.jpeg"
-                    onChange={(e) => updateFormData("companyLogo", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData("companyLogo", e.target.files?.[0] || null)
+                    }
                     className="hidden"
                     id="companyLogo"
                   />
@@ -444,20 +586,34 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                     Choose Logo
                   </label>
                   {formData.companyLogo && (
-                    <p className="text-sm text-green-600 mt-2">✓ {formData.companyLogo.name}</p>
+                    <p className="text-sm text-green-600 mt-2">
+                      ✓ {formData.companyLogo.name}
+                    </p>
                   )}
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="businessLicense" className="text-lg font-medium">Business License or Certificate</Label>
+                <Label
+                  htmlFor="businessLicense"
+                  className="text-lg font-medium"
+                >
+                  Business License or Certificate
+                </Label>
                 <div className="mt-3 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center">
                   <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-2" />
-                  <p className="text-sm text-cool-gray-600 mb-2">Upload official license document</p>
+                  <p className="text-sm text-cool-gray-600 mb-2">
+                    Upload official license document
+                  </p>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    onChange={(e) => updateFormData("businessLicense", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData(
+                        "businessLicense",
+                        e.target.files?.[0] || null,
+                      )
+                    }
                     className="hidden"
                     id="businessLicense"
                   />
@@ -468,11 +624,15 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                     Choose File
                   </label>
                   {formData.businessLicense && (
-                    <p className="text-sm text-green-600 mt-2">✓ {formData.businessLicense.name}</p>
+                    <p className="text-sm text-green-600 mt-2">
+                      ✓ {formData.businessLicense.name}
+                    </p>
                   )}
                 </div>
                 {errors.businessLicense && (
-                  <p className="text-red-500 text-sm mt-2">{errors.businessLicense}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.businessLicense}
+                  </p>
                 )}
               </div>
             </div>
@@ -491,43 +651,69 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 Services and background details
               </p>
             </div>
-            
+
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="yearEstablished" className="text-lg font-medium">Year of Establishment</Label>
+                  <Label
+                    htmlFor="yearEstablished"
+                    className="text-lg font-medium"
+                  >
+                    Year of Establishment
+                  </Label>
                   <Input
                     id="yearEstablished"
                     type="number"
                     value={formData.yearEstablished}
-                    onChange={(e) => updateFormData("yearEstablished", e.target.value)}
+                    onChange={(e) =>
+                      updateFormData("yearEstablished", e.target.value)
+                    }
                     placeholder="2020"
                     min="1900"
                     max="2024"
-                    className={cn("text-lg h-14 mt-3", errors.yearEstablished && "border-red-500")}
+                    className={cn(
+                      "text-lg h-14 mt-3",
+                      errors.yearEstablished && "border-red-500",
+                    )}
                   />
                   {errors.yearEstablished && (
-                    <p className="text-red-500 text-sm mt-2">{errors.yearEstablished}</p>
+                    <p className="text-red-500 text-sm mt-2">
+                      {errors.yearEstablished}
+                    </p>
                   )}
                 </div>
 
                 <div>
-                  <Label htmlFor="registrationNumber" className="text-lg font-medium">Registration/License Number</Label>
+                  <Label
+                    htmlFor="registrationNumber"
+                    className="text-lg font-medium"
+                  >
+                    Registration/License Number
+                  </Label>
                   <Input
                     id="registrationNumber"
                     value={formData.registrationNumber}
-                    onChange={(e) => updateFormData("registrationNumber", e.target.value)}
+                    onChange={(e) =>
+                      updateFormData("registrationNumber", e.target.value)
+                    }
                     placeholder="R123456789"
-                    className={cn("text-lg h-14 mt-3", errors.registrationNumber && "border-red-500")}
+                    className={cn(
+                      "text-lg h-14 mt-3",
+                      errors.registrationNumber && "border-red-500",
+                    )}
                   />
                   {errors.registrationNumber && (
-                    <p className="text-red-500 text-sm mt-2">{errors.registrationNumber}</p>
+                    <p className="text-red-500 text-sm mt-2">
+                      {errors.registrationNumber}
+                    </p>
                   )}
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="website" className="text-lg font-medium">Website URL (Optional)</Label>
+                <Label htmlFor="website" className="text-lg font-medium">
+                  Website URL (Optional)
+                </Label>
                 <Input
                   id="website"
                   type="url"
@@ -539,18 +725,29 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
               </div>
 
               <div>
-                <Label className="text-lg font-medium">Visa Services Offered</Label>
+                <Label className="text-lg font-medium">
+                  Visa Services Offered
+                </Label>
                 <div className="mt-3 grid grid-cols-2 gap-3">
                   {visaServiceOptions.map((service) => (
-                    <label key={service} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={service}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <Checkbox
                         checked={formData.servicesOffered.includes(service)}
                         onCheckedChange={(checked) => {
                           const current = formData.servicesOffered;
                           if (checked) {
-                            updateFormData("servicesOffered", [...current, service]);
+                            updateFormData("servicesOffered", [
+                              ...current,
+                              service,
+                            ]);
                           } else {
-                            updateFormData("servicesOffered", current.filter(s => s !== service));
+                            updateFormData(
+                              "servicesOffered",
+                              current.filter((s) => s !== service),
+                            );
                           }
                         }}
                       />
@@ -559,23 +756,36 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                   ))}
                 </div>
                 {errors.servicesOffered && (
-                  <p className="text-red-500 text-sm mt-2">{errors.servicesOffered}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.servicesOffered}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label className="text-lg font-medium">Languages Supported</Label>
+                <Label className="text-lg font-medium">
+                  Languages Supported
+                </Label>
                 <div className="mt-3 grid grid-cols-3 gap-3 max-h-32 overflow-y-auto">
                   {languageOptions.map((language) => (
-                    <label key={language} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={language}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <Checkbox
                         checked={formData.languagesSupported.includes(language)}
                         onCheckedChange={(checked) => {
                           const current = formData.languagesSupported;
                           if (checked) {
-                            updateFormData("languagesSupported", [...current, language]);
+                            updateFormData("languagesSupported", [
+                              ...current,
+                              language,
+                            ]);
                           } else {
-                            updateFormData("languagesSupported", current.filter(l => l !== language));
+                            updateFormData(
+                              "languagesSupported",
+                              current.filter((l) => l !== language),
+                            );
                           }
                         }}
                       />
@@ -584,29 +794,40 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                   ))}
                 </div>
                 {errors.languagesSupported && (
-                  <p className="text-red-500 text-sm mt-2">{errors.languagesSupported}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.languagesSupported}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="companyOverview" className="text-lg font-medium">Brief Company Overview (max 300 words)</Label>
+                <Label
+                  htmlFor="companyOverview"
+                  className="text-lg font-medium"
+                >
+                  Brief Company Overview (max 300 words)
+                </Label>
                 <textarea
                   id="companyOverview"
                   value={formData.companyOverview}
-                  onChange={(e) => updateFormData("companyOverview", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("companyOverview", e.target.value)
+                  }
                   placeholder="Describe your immigration consultancy, expertise, and what makes you unique..."
                   maxLength={300}
                   rows={4}
                   className={cn(
                     "w-full p-4 text-lg border border-cool-gray-300 rounded-xl focus:ring-2 focus:ring-royal-blue-500 mt-3 resize-none",
-                    errors.companyOverview && "border-red-500"
+                    errors.companyOverview && "border-red-500",
                   )}
                 />
                 <p className="text-xs text-cool-gray-500 mt-1">
                   {formData.companyOverview.length}/300 characters
                 </p>
                 {errors.companyOverview && (
-                  <p className="text-red-500 text-sm mt-2">{errors.companyOverview}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.companyOverview}
+                  </p>
                 )}
               </div>
             </div>
@@ -625,16 +846,21 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 Primary contact person details
               </p>
             </div>
-            
+
             <div className="space-y-6">
               <div>
-                <Label htmlFor="repName" className="text-lg font-medium">Name</Label>
+                <Label htmlFor="repName" className="text-lg font-medium">
+                  Name
+                </Label>
                 <Input
                   id="repName"
                   value={formData.repName}
                   onChange={(e) => updateFormData("repName", e.target.value)}
                   placeholder="John Smith"
-                  className={cn("text-lg h-14 mt-3", errors.repName && "border-red-500")}
+                  className={cn(
+                    "text-lg h-14 mt-3",
+                    errors.repName && "border-red-500",
+                  )}
                 />
                 {errors.repName && (
                   <p className="text-red-500 text-sm mt-2">{errors.repName}</p>
@@ -642,28 +868,43 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
               </div>
 
               <div>
-                <Label htmlFor="repDesignation" className="text-lg font-medium">Designation/Title</Label>
+                <Label htmlFor="repDesignation" className="text-lg font-medium">
+                  Designation/Title
+                </Label>
                 <Input
                   id="repDesignation"
                   value={formData.repDesignation}
-                  onChange={(e) => updateFormData("repDesignation", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("repDesignation", e.target.value)
+                  }
                   placeholder="Managing Director"
-                  className={cn("text-lg h-14 mt-3", errors.repDesignation && "border-red-500")}
+                  className={cn(
+                    "text-lg h-14 mt-3",
+                    errors.repDesignation && "border-red-500",
+                  )}
                 />
                 {errors.repDesignation && (
-                  <p className="text-red-500 text-sm mt-2">{errors.repDesignation}</p>
+                  <p className="text-red-500 text-sm mt-2">
+                    {errors.repDesignation}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="repPhoto" className="text-lg font-medium">Profile Photo</Label>
+                <Label htmlFor="repPhoto" className="text-lg font-medium">
+                  Profile Photo
+                </Label>
                 <div className="mt-3 border-2 border-dashed border-cool-gray-300 rounded-xl p-6 text-center">
                   <Upload className="w-8 h-8 text-cool-gray-400 mx-auto mb-2" />
-                  <p className="text-sm text-cool-gray-600 mb-2">Upload profile photo</p>
+                  <p className="text-sm text-cool-gray-600 mb-2">
+                    Upload profile photo
+                  </p>
                   <input
                     type="file"
                     accept=".jpg,.jpeg,.png"
-                    onChange={(e) => updateFormData("repPhoto", e.target.files?.[0] || null)}
+                    onChange={(e) =>
+                      updateFormData("repPhoto", e.target.files?.[0] || null)
+                    }
                     className="hidden"
                     id="repPhoto"
                   />
@@ -674,18 +915,24 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                     Choose Photo
                   </label>
                   {formData.repPhoto && (
-                    <p className="text-sm text-green-600 mt-2">✓ {formData.repPhoto.name}</p>
+                    <p className="text-sm text-green-600 mt-2">
+                      ✓ {formData.repPhoto.name}
+                    </p>
                   )}
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="repLinkedIn" className="text-lg font-medium">LinkedIn Profile URL (Optional)</Label>
+                <Label htmlFor="repLinkedIn" className="text-lg font-medium">
+                  LinkedIn Profile URL (Optional)
+                </Label>
                 <Input
                   id="repLinkedIn"
                   type="url"
                   value={formData.repLinkedIn}
-                  onChange={(e) => updateFormData("repLinkedIn", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("repLinkedIn", e.target.value)
+                  }
                   placeholder="https://linkedin.com/in/username"
                   className="text-lg h-14 mt-3"
                 />
@@ -706,11 +953,13 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                 Please review your information before submitting
               </p>
             </div>
-            
+
             <div className="bg-cool-gray-50 rounded-xl p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="font-medium text-cool-gray-700">Organization:</span>
+                  <span className="font-medium text-cool-gray-700">
+                    Organization:
+                  </span>
                   <p className="text-cool-gray-900">{formData.orgName}</p>
                 </div>
                 <div>
@@ -722,31 +971,55 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
                   <p className="text-cool-gray-900">{formData.phone}</p>
                 </div>
                 <div>
-                  <span className="font-medium text-cool-gray-700">Headquarters:</span>
-                  <p className="text-cool-gray-900">{formData.countryHeadquarters}</p>
+                  <span className="font-medium text-cool-gray-700">
+                    Headquarters:
+                  </span>
+                  <p className="text-cool-gray-900">
+                    {formData.countryHeadquarters}
+                  </p>
                 </div>
                 <div>
-                  <span className="font-medium text-cool-gray-700">Established:</span>
-                  <p className="text-cool-gray-900">{formData.yearEstablished}</p>
+                  <span className="font-medium text-cool-gray-700">
+                    Established:
+                  </span>
+                  <p className="text-cool-gray-900">
+                    {formData.yearEstablished}
+                  </p>
                 </div>
                 <div>
-                  <span className="font-medium text-cool-gray-700">License #:</span>
-                  <p className="text-cool-gray-900">{formData.registrationNumber}</p>
+                  <span className="font-medium text-cool-gray-700">
+                    License #:
+                  </span>
+                  <p className="text-cool-gray-900">
+                    {formData.registrationNumber}
+                  </p>
                 </div>
                 <div>
-                  <span className="font-medium text-cool-gray-700">Representative:</span>
-                  <p className="text-cool-gray-900">{formData.repName} - {formData.repDesignation}</p>
+                  <span className="font-medium text-cool-gray-700">
+                    Representative:
+                  </span>
+                  <p className="text-cool-gray-900">
+                    {formData.repName} - {formData.repDesignation}
+                  </p>
                 </div>
                 <div>
-                  <span className="font-medium text-cool-gray-700">Services:</span>
-                  <p className="text-cool-gray-900">{formData.servicesOffered.join(', ')}</p>
+                  <span className="font-medium text-cool-gray-700">
+                    Services:
+                  </span>
+                  <p className="text-cool-gray-900">
+                    {formData.servicesOffered.join(", ")}
+                  </p>
                 </div>
               </div>
-              
+
               {formData.companyOverview && (
                 <div>
-                  <span className="font-medium text-cool-gray-700">Company Overview:</span>
-                  <p className="text-cool-gray-900 mt-1">{formData.companyOverview}</p>
+                  <span className="font-medium text-cool-gray-700">
+                    Company Overview:
+                  </span>
+                  <p className="text-cool-gray-900 mt-1">
+                    {formData.companyOverview}
+                  </p>
                 </div>
               )}
             </div>
@@ -755,18 +1028,30 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
               <Checkbox
                 id="agreeToTerms"
                 checked={formData.agreeToTerms}
-                onCheckedChange={(checked) => updateFormData("agreeToTerms", checked)}
+                onCheckedChange={(checked) =>
+                  updateFormData("agreeToTerms", checked)
+                }
                 className={cn(errors.agreeToTerms && "border-red-500")}
               />
               <div>
-                <Label htmlFor="agreeToTerms" className="text-sm cursor-pointer leading-relaxed">
+                <Label
+                  htmlFor="agreeToTerms"
+                  className="text-sm cursor-pointer leading-relaxed"
+                >
                   ✅ I confirm the details are correct and I agree to VM Visa's{" "}
-                  <a href="#" className="text-royal-blue-600 hover:underline">terms</a>
-                  {" "}and{" "}
-                  <a href="#" className="text-royal-blue-600 hover:underline">privacy policy</a>.
+                  <a href="#" className="text-royal-blue-600 hover:underline">
+                    terms
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-royal-blue-600 hover:underline">
+                    privacy policy
+                  </a>
+                  .
                 </Label>
                 {errors.agreeToTerms && (
-                  <p className="text-red-500 text-sm mt-1">{errors.agreeToTerms}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.agreeToTerms}
+                  </p>
                 )}
               </div>
             </div>
@@ -789,15 +1074,17 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {steps[currentStep].icon && (
-              <steps[currentStep].icon className="w-8 h-8 text-royal-blue-500" />
-            )}
+            {steps[currentStep].icon &&
+              React.createElement(steps[currentStep].icon, {
+                className: "w-8 h-8 text-royal-blue-500",
+              })}
             <div>
               <h1 className="text-2xl font-heading font-bold text-cool-gray-800">
                 {steps[currentStep].title}
               </h1>
               <p className="text-cool-gray-600 text-sm">
-                {steps[currentStep].subtitle} • Step {currentStep + 1} of {steps.length}
+                {steps[currentStep].subtitle} • Step {currentStep + 1} of{" "}
+                {steps.length}
               </p>
             </div>
           </motion.div>
@@ -807,7 +1094,9 @@ export function OrganizationSignupForm({ onSubmit, onBack }: OrganizationSignupF
             <motion.div
               className="bg-gradient-royal h-2 rounded-full"
               initial={{ width: 0 }}
-              animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+              animate={{
+                width: `${((currentStep + 1) / steps.length) * 100}%`,
+              }}
               transition={{ duration: 0.5 }}
             />
           </div>
