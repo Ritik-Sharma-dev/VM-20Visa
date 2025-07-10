@@ -147,12 +147,21 @@ export default function AgentDashboard() {
 
   // Navigation handler for sidebar
   const handleSidebarNavigation = (page: string) => {
+    console.log("Navigating to:", page);
+
     if (page === "overview") {
       setCurrentView("overview");
+    } else if (page === "insights") {
+      navigate("/agent-insights");
     } else if (
       ["chat", "messages", "calendar", "support", "settings"].includes(page)
     ) {
       navigate(`/${page}`);
+    } else if (
+      ["file-manager", "ai-assistant", "payments", "tools"].includes(page)
+    ) {
+      // TODO: Create these pages later
+      console.log(`${page} - Coming Soon`);
     }
   };
 
