@@ -1,68 +1,31 @@
-import "./global.css";
-
-import { Toaster } from "@/components/ui/toaster";
-
-// Completely suppress Recharts defaultProps warnings
+// NUCLEAR OPTION: Completely suppress ALL React defaultProps warnings
 const originalWarn = console.warn;
 console.warn = (...args) => {
-  const message = args[0]?.toString?.() || "";
-  const fullMessage = args.join(" ");
+  // Convert all arguments to strings and join
+  const argStrings = args.map((arg) => String(arg));
+  const fullMessage = argStrings.join(" ");
 
-  // Block ALL defaultProps warnings completely
-  if (
-    message.includes("defaultProps") ||
-    fullMessage.includes("defaultProps") ||
-    (message.includes("%s") && message.includes("Support for defaultProps"))
-  ) {
+  // Block EVERYTHING related to defaultProps
+  if (fullMessage.includes("defaultProps")) {
     return;
   }
 
-  // Block any warning mentioning Recharts components
-  const rechartsComponents = [
-    "XAxis",
-    "YAxis",
-    "CartesianGrid",
-    "Tooltip",
-    "Area",
-    "Line",
-    "Bar",
-    "Pie",
-    "Cell",
-    "ResponsiveContainer",
-    "Legend",
-    "ReferenceLine",
-    "ReferenceArea",
-    "Brush",
-    "LineChart",
-    "AreaChart",
-    "BarChart",
-    "PieChart",
-    "ScatterChart",
-    "RadarChart",
-  ];
-
-  // Check if any argument is a Recharts component name
-  if (
-    args.some(
-      (arg) =>
-        typeof arg === "string" &&
-        rechartsComponents.some((comp) => arg.includes(comp)),
-    )
-  ) {
+  // Block specific Recharts components
+  if (fullMessage.includes("XAxis") || fullMessage.includes("YAxis")) {
     return;
   }
 
-  // Block warnings from Recharts URLs or containing recharts
-  if (
-    fullMessage.includes("recharts") ||
-    fullMessage.includes("/deps/recharts.js") ||
-    args.some((arg) => typeof arg === "string" && arg.includes("recharts"))
-  ) {
+  // Block anything from recharts
+  if (fullMessage.includes("recharts")) {
     return;
   }
 
   originalWarn.apply(console, args);
 };
+
+import "./global.css";
+
+import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
