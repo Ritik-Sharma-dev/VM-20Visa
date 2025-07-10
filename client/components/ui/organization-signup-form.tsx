@@ -269,7 +269,8 @@ export function OrganizationSignupForm({
     try {
       localStorage.removeItem("vm-visa-org-signup");
       await signup(formData.email, formData.password, "organization");
-      if (onSubmit) onSubmit(formData);
+      // Redirect to organization dashboard after successful signup
+      window.location.href = "/org-dashboard";
     } catch (error) {
       console.error("Signup failed:", error);
     }
@@ -1069,7 +1070,7 @@ export function OrganizationSignupForm({
         {/* Form Header */}
         <div className="mb-8 text-center">
           <motion.div
-            className="flex items-center justify-center space-x-2 mb-4"
+            className="flex items-center justify-center space-x-2 mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -1083,23 +1084,10 @@ export function OrganizationSignupForm({
                 {steps[currentStep].title}
               </h1>
               <p className="text-cool-gray-600 text-sm">
-                {steps[currentStep].subtitle} • Step {currentStep + 1} of{" "}
-                {steps.length}
+                {steps[currentStep].subtitle}
               </p>
             </div>
           </motion.div>
-
-          {/* Progress bar */}
-          <div className="w-full bg-cool-gray-200 rounded-full h-2 mb-6">
-            <motion.div
-              className="bg-gradient-royal h-2 rounded-full"
-              initial={{ width: 0 }}
-              animate={{
-                width: `${((currentStep + 1) / steps.length) * 100}%`,
-              }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
         </div>
 
         {/* Form Content */}
