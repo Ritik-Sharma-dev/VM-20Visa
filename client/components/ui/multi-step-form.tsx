@@ -345,29 +345,56 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
       }
     } else {
       switch (step) {
-        case 0:
-          if (!formData.orgName?.trim())
-            newErrors.orgName = "Organization name is required";
-          if (!formData.adminName?.trim())
-            newErrors.adminName = "Admin name is required";
-          break;
-        case 1:
+        case 0: // Admin Account
+          if (!formData.fullName.trim())
+            newErrors.fullName = "Full name is required";
           if (!formData.email.trim()) newErrors.email = "Email is required";
           if (!/\S+@\S+\.\S+/.test(formData.email))
             newErrors.email = "Invalid email format";
-          if (!formData.email.includes("@vmvisa.com"))
-            newErrors.email = "Must be a @vmvisa.com email";
-          if (!formData.phone.trim())
-            newErrors.phone = "Phone number is required";
-          break;
-        case 2:
           if (!formData.password) newErrors.password = "Password is required";
           if (formData.password.length < 8)
             newErrors.password = "Password must be at least 8 characters";
           if (formData.password !== formData.confirmPassword)
             newErrors.confirmPassword = "Passwords don't match";
+          if (!formData.phone.trim())
+            newErrors.phone = "Phone number is required";
           break;
-        case 3:
+        case 1: // Organization Profile
+          if (!formData.orgName?.trim())
+            newErrors.orgName = "Organization name is required";
+          if (!formData.registrationNumber?.trim())
+            newErrors.registrationNumber = "Registration number is required";
+          if (!formData.yearEstablished?.trim())
+            newErrors.yearEstablished = "Year of establishment is required";
+          if (!formData.headOfficeCountry?.trim())
+            newErrors.headOfficeCountry = "Head office country is required";
+          if (!formData.headOfficeCity?.trim())
+            newErrors.headOfficeCity = "Head office city is required";
+          if (!formData.officePhone?.trim())
+            newErrors.officePhone = "Office phone is required";
+          if (!formData.orgEmail?.trim())
+            newErrors.orgEmail = "Organization email is required";
+          break;
+        case 2: // Representative Info
+          if (!formData.repName?.trim())
+            newErrors.repName = "Representative name is required";
+          if (!formData.repDesignation?.trim())
+            newErrors.repDesignation = "Designation is required";
+          break;
+        case 3: // Services & Regions
+          if (!formData.servicesOffered?.length)
+            newErrors.servicesOffered = "Please select at least one service";
+          if (!formData.countriesServed?.length)
+            newErrors.countriesServed = "Please select at least one country";
+          if (!formData.languagesSupported?.length)
+            newErrors.languagesSupported =
+              "Please select at least one language";
+          break;
+        case 4: // Documentation
+          if (!formData.govLicense)
+            newErrors.govLicense = "Government license is required";
+          break;
+        case 5: // Review & Confirm
           if (!formData.agreeToTerms)
             newErrors.agreeToTerms = "You must agree to the terms";
           break;
