@@ -53,6 +53,8 @@ import AgentInsightsPage from "./pages/AgentInsightsPage";
 import FileManagerPage from "./pages/FileManagerPage";
 import PaymentsPage from "./pages/PaymentsPage";
 import ToolsPage from "./pages/ToolsPage";
+import EscrowDashboard from "./pages/EscrowDashboard";
+import AdminEscrowPage from "./pages/AdminEscrowPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -75,6 +77,8 @@ function AppContent() {
     "/file-manager",
     "/payments",
     "/tools",
+    "/escrow",
+    "/admin/escrow",
   ].includes(location.pathname);
 
   return (
@@ -211,6 +215,24 @@ function AppContent() {
             element={
               <ProtectedRoute allowedRoles={["agent"]}>
                 <ToolsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/escrow"
+            element={
+              <ProtectedRoute
+                allowedRoles={["client", "agent", "organization"]}
+              >
+                <EscrowDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/escrow"
+            element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminEscrowPage />
               </ProtectedRoute>
             }
           />
