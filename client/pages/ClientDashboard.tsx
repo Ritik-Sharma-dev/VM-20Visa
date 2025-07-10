@@ -99,6 +99,8 @@ export default function ClientDashboard() {
   const handleSidebarNavigation = (page: string) => {
     if (page === "overview") {
       setCurrentView("overview");
+    } else if (page === "escrow") {
+      navigate("/escrow");
     } else if (
       ["chat", "messages", "calendar", "support", "settings"].includes(page)
     ) {
