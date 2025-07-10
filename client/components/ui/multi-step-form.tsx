@@ -345,56 +345,57 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
       }
     } else {
       switch (step) {
-        case 0: // Admin Account
-          if (!formData.fullName.trim())
-            newErrors.fullName = "Full name is required";
+        case 0: // Organization Name
+          if (!formData.orgName?.trim())
+            newErrors.orgName = "Organization name is required";
+          break;
+        case 1: // Email Address
           if (!formData.email.trim()) newErrors.email = "Email is required";
           if (!/\S+@\S+\.\S+/.test(formData.email))
             newErrors.email = "Invalid email format";
+          break;
+        case 2: // Password Setup
           if (!formData.password) newErrors.password = "Password is required";
           if (formData.password.length < 8)
             newErrors.password = "Password must be at least 8 characters";
           if (formData.password !== formData.confirmPassword)
             newErrors.confirmPassword = "Passwords don't match";
+          break;
+        case 3: // Contact Information
           if (!formData.phone.trim())
             newErrors.phone = "Phone number is required";
           break;
-        case 1: // Organization Profile
-          if (!formData.orgName?.trim())
-            newErrors.orgName = "Organization name is required";
-          if (!formData.registrationNumber?.trim())
-            newErrors.registrationNumber = "Registration number is required";
+        case 4: // Basic Profile Info
+          if (!formData.countryHeadquarters?.trim())
+            newErrors.countryHeadquarters =
+              "Country of headquarters is required";
+          if (!formData.operatingRegions?.length)
+            newErrors.operatingRegions =
+              "Please select at least one operating region";
+          if (!formData.businessLicense)
+            newErrors.businessLicense = "Business license is required";
+          break;
+        case 5: // Detailed Company Info
           if (!formData.yearEstablished?.trim())
             newErrors.yearEstablished = "Year of establishment is required";
-          if (!formData.headOfficeCountry?.trim())
-            newErrors.headOfficeCountry = "Head office country is required";
-          if (!formData.headOfficeCity?.trim())
-            newErrors.headOfficeCity = "Head office city is required";
-          if (!formData.officePhone?.trim())
-            newErrors.officePhone = "Office phone is required";
-          if (!formData.orgEmail?.trim())
-            newErrors.orgEmail = "Organization email is required";
-          break;
-        case 2: // Representative Info
-          if (!formData.repName?.trim())
-            newErrors.repName = "Representative name is required";
-          if (!formData.repDesignation?.trim())
-            newErrors.repDesignation = "Designation is required";
-          break;
-        case 3: // Services & Regions
+          if (!formData.registrationNumber?.trim())
+            newErrors.registrationNumber =
+              "Registration/License number is required";
           if (!formData.servicesOffered?.length)
             newErrors.servicesOffered = "Please select at least one service";
-          if (!formData.countriesServed?.length)
-            newErrors.countriesServed = "Please select at least one country";
           if (!formData.languagesSupported?.length)
             newErrors.languagesSupported =
               "Please select at least one language";
+          if (!formData.companyOverview?.trim())
+            newErrors.companyOverview = "Company overview is required";
           break;
-        case 4: // Documentation
-          if (!formData.govLicense)
-            newErrors.govLicense = "Government license is required";
+        case 6: // Representative Info
+          if (!formData.repName?.trim())
+            newErrors.repName = "Representative name is required";
+          if (!formData.repDesignation?.trim())
+            newErrors.repDesignation = "Designation/Title is required";
           break;
-        case 5: // Review & Confirm
+        case 7: // Review & Confirmation
           if (!formData.agreeToTerms)
             newErrors.agreeToTerms = "You must agree to the terms";
           break;
