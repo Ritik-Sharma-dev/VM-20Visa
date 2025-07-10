@@ -852,7 +852,7 @@ export function MultiStepForm({ type, onSubmit, onBack }: MultiStepFormProps) {
       }
     } else if (type === "organization") {
       switch (currentStep) {
-        case 0: // Admin Account Step
+        case 0: // Organization Name
           return (
             <div className="space-y-6">
               <div>
