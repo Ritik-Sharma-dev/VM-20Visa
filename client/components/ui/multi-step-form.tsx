@@ -43,30 +43,22 @@ interface FormData {
 
   // Organization specific
   orgName?: string;
-  registrationNumber?: string;
+  alternatePhone?: string;
+  whatsappNumber?: string;
+  countryHeadquarters?: string;
+  operatingRegions?: string[];
+  companyLogo?: File | null;
+  businessLicense?: File | null;
   yearEstablished?: string;
-  headOfficeCountry?: string;
-  headOfficeCity?: string;
+  registrationNumber?: string;
   website?: string;
-  officePhone?: string;
-  orgEmail?: string;
-  incorporationCert?: File | null;
-
-  // Representative info
+  servicesOffered?: string[];
+  languagesSupported?: string[];
+  companyOverview?: string;
   repName?: string;
   repDesignation?: string;
-  repLinkedIn?: string;
   repPhoto?: File | null;
-
-  // Services & Regions
-  servicesOffered?: string[];
-  countriesServed?: string[];
-  languagesSupported?: string[];
-
-  // Documentation
-  govLicense?: File | null;
-  companyLogo?: File | null;
-  companyBrochure?: File | null;
+  repLinkedIn?: string;
 }
 
 interface MultiStepFormProps {
